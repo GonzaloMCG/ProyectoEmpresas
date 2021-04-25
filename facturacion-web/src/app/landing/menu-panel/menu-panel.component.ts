@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class MenuPanelComponent {
+  public userName = "Julio Gopar";
+
   constructor() { }
 }

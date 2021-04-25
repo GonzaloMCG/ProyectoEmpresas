@@ -1,0 +1,41 @@
+@import 'colors';
+
+.panel-container {
+  width: 14rem;
+  height: 100vh;
+
+  .head-container {
+    background-color: $light-grey-color;
+    height: 40%;
+    min-height: 15rem;
+  }
+
+  .menu-section {
+    display: flex;
+    background-color: $dark-grey-color;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 60%;
+
+    .item-section {
+      display: flex;
+      flex-direction: column;
+      color: $white-color;
+
+      .menu-item {
+        padding: 1rem;
+
+        &:hover {
+          background-color: $sky-blue-color;
+        }
+      }
+    }
+
+    .logout-btn {
+      background-color: $dark-hover-grey-color;
+      color: $white-color;
+      text-align: center;
+      padding: 0.8rem;
+    }
+  }
+}

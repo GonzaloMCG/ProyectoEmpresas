@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'assets/styles/colors';
+@import 'assets/styles/reset';
+@import 'fonts';
+
+html {
+  font-family: 'Lato';
+  font-weight: bold;
+  font-style: normal;
+}
