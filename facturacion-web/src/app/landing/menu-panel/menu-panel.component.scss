@@ -1,13 +1,53 @@
 @import 'colors';
 
-.panel-container {
-  width: 14rem;
-  height: 100vh;
+	
+.imagen:hover {filter: opacity(.5);}
 
-  .head-container {
-    background-color: $light-grey-color;
-    height: 40%;
-    min-height: 15rem;
+.panel-container {
+  width: 22rem;
+  height: 100vh;
+  font-size: 1.6em;
+  background-color:$light-grey-color;
+
+  .sidebar-header {
+    padding: 1rem 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: $white-color;
+    text-align: center;
+  }
+  
+  .sidebar-profile {
+    padding: 1rem;
+    overflow: hidden;
+    margin-top: 1rem;
+    border-top: 0.1px solid $online;
+    border-bottom: 0.01px solid $online;
+
+    .user-pic {
+      float: left;
+      width: 6rem;
+      padding: 0.2rem;
+      border-radius: 1.2rem;
+      margin-right: 1.5rem;
+      overflow: hidden;
+
+      img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+      
+    }
+    .user-info {
+      padding: 1rem;
+      float: left;
+      color: $white-color;
+
+      >span {
+        display: block;
+      }
+    }
   }
 
   .menu-section {
@@ -15,15 +55,29 @@
     background-color: $dark-grey-color;
     flex-direction: column;
     justify-content: space-between;
-    height: 60%;
+    height: 100%;
 
     .item-section {
+      padding: 1rem;
       display: flex;
       flex-direction: column;
       color: $white-color;
+      margin-top: 3rem;
+
+      .item {
+        width: 100%;
+      }
+
+      img {
+        height: 3rem;
+        width: 3rem;
+        margin-right: 1rem;
+      }
 
       .menu-item {
         padding: 1rem;
+        width: auto;
+        display: block;
 
         &:hover {
           background-color: $sky-blue-color;
