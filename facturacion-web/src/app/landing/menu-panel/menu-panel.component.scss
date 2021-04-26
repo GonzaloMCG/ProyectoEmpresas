@@ -13,7 +13,7 @@
     padding: 1rem 1rem;
     font-weight: bold;
     text-decoration: none;
-    color:white;
+    color: $white-color;
     text-align: center;
   }
   
@@ -42,7 +42,7 @@
     .user-info {
       padding: 1rem;
       float: left;
-      color: white;
+      color: $white-color;
 
       >span {
         display: block;
