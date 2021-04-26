@@ -10,7 +10,6 @@
   background-color:$light-grey-color;
 
   .sidebar-header {
-    //max-height:  10px;
     padding: 1rem 1rem;
     font-weight: bold;
     text-decoration: none;
@@ -22,8 +21,9 @@
     padding: 1rem;
     overflow: hidden;
     margin-top: 1rem;
-    border-top: 0.1px solid #09916c;
-    border-bottom: 0.01px solid #09916c;
+    border-top: 0.1px solid $online;
+    border-bottom: 0.01px solid $online;
+
     .user-pic {
       float: left;
       width: 6rem;
@@ -37,6 +37,7 @@
         height: 100%;
         width: 100%;
       }
+      
     }
     .user-info {
       padding: 1rem;
@@ -47,12 +48,6 @@
         display: block;
       }
     }
-  }
-
-  .head-container {
-    background-color: $light-grey-color;
-    //height: 40%;
-    min-height: 15rem;
   }
 
   .menu-section {
@@ -76,12 +71,10 @@
       img {
         height: 3rem;
         width: 3rem;
-        //margin-bottom: 1rem;
         margin-right: 1rem;
       }
 
       .menu-item {
-        //padding: 0.7rem 0 1rem 0.2rem;
         padding: 1rem;
         width: auto;
         display: block;
