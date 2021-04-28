@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { LandingModule } from './landing/landing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { LoginComponent } from './login/login.component';
     LandingModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
