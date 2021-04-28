@@ -14,15 +14,15 @@ button {
 
   &:hover {
     background-color: $light-black-color;
-  }    
+  }
 }
 
-.containter { 
+.containter {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: $light-white-color;  
+  background: $light-white-color;
 }
 
 .login-section {
@@ -30,7 +30,7 @@ button {
   border-radius: 0.1rem;
   overflow: hidden;
   padding: 7.7rem 5.5rem;
-  box-shadow: 0 0.5rem 1.0rem 0rem $shadow-grey-color;
+  box-shadow: 0 0.5rem 1.0rem 0 $shadow-grey-color;
   width: 27rem;
 }
 

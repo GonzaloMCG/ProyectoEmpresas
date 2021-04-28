@@ -1,22 +1,24 @@
 @import 'colors';
 
-	
-.imagen:hover {filter: opacity(.5);}
+
+.imagen:hover {
+  filter: opacity(.5);
+}
 
 .panel-container {
   width: 24rem;
-  height: 100vh;
+  height: 100%;
   font-size: 1.6em;
   background-color:$light-black-color;
 
   .sidebar-header {
-    padding: 1rem 1rem;
+    padding: 1rem;
     font-weight: bold;
     text-decoration: none;
     color: $white-color;
     text-align: center;
   }
-  
+
   .sidebar-profile {
     padding: 1rem;
     overflow: hidden;
@@ -37,8 +39,8 @@
         height: 100%;
         width: 100%;
       }
-      
     }
+
     .user-info {
       padding: 1rem;
       float: left;
