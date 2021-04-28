@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'login',
@@ -13,10 +14,14 @@ export class LoginComponent {
     userPassword: [''],
   });
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    private userService: UserService) { }
 
   submitData() {
-    console.log('user name: ' + this.loginForm.get('userName').value);
-    console.log('user password: ' + this.loginForm.get('userPassword').value);
+    const userData = {
+      user: this.loginForm.get('userName').value,
+      password: this.loginForm.get('userPassword').value,
+    }
+    this.userService.loginUser(userData);
   }
 }
