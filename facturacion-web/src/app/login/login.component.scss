@@ -40,20 +40,6 @@ button {
   padding-bottom: 4rem;
 }
 
-.input-container {
-  border-bottom: 0.2rem solid $hard-grey-light-color;
-  margin-bottom: 3.7rem;
-  padding: 0 0.5rem;
-}
-
-.input-text {
-  font-size: 1.5em;
-  color:$grey-color;
-  line-height: 1.2;
-  height: 4.5rem;
-  width: 100%;
-}
-
 .login-btn {
   font-size: 1.5em;
   color:$white-color;
@@ -61,4 +47,21 @@ button {
   padding: 1.6rem 2.0rem;
   width: 100%;
   border-radius: 2.5rem;
+}
+
+.form-row {
+  margin-bottom: 3.7rem;
+
+  .input-container {
+    border-bottom: 0.2rem solid $hard-grey-light-color;
+    padding: 0 0.5rem;
+
+    .input-text {
+      font-size: 1.5em;
+      color:$grey-color;
+      line-height: 1.2;
+      height: 4.5rem;
+      width: 100%;
+    }
+  }
 }

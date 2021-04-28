@@ -1,0 +1,11 @@
+.invalid-input-container {
+  border: 0.1rem solid $red-error-color !important;
+}
+
+.error-msg-container {
+  .error-msg {
+    font-size: 1.3em;
+    color: $red-error-color;
+    margin-top: 0.7rem;
+  }
+}
