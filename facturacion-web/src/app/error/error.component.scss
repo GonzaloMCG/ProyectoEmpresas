@@ -8,7 +8,6 @@
 .error-container > span {
   display: inline-block;
   line-height: 0.7;
-  position: relative;
   color: #FFB485;
 }
 .error-container > span {
@@ -27,7 +26,6 @@
 .error-container > span:nth-of-type(2) {
   width: 120px;
   height: 120px;
-  border-radius: 999px;
 }
 .error-container > span:nth-of-type(2):before,
 .error-container > span:nth-of-type(2):after {
@@ -38,21 +36,21 @@
 	width: inherit; height: inherit;
   border-radius: 999px;
 	box-shadow: inset 30px 0 0 rgba(209, 242, 165, 0.4),
-				inset 0 30px 0 rgba(239, 250, 180, 0.4),
-				inset -30px 0 0 rgba(255, 196, 140, 0.4),	
-				inset 0 -30px 0 rgba(245, 105, 145, 0.4);
+	inset 0 30px 0 rgba(239, 250, 180, 0.4),
+	inset -30px 0 0 rgba(255, 196, 140, 0.4),	
+	inset 0 -30px 0 rgba(245, 105, 145, 0.4);
   animation: shadowsdancing 4s infinite;
 }
 .error-container > span:nth-of-type(2):before {
 	-webkit-transform: rotate(45deg);
-	   -moz-transform: rotate(45deg);
-			transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	transform: rotate(45deg);
 }
 
 .screen-reader-text {
-    position: absolute;
-    top: -9999em;
-    left: -9999em;
+  position: absolute;
+  top: -9999em;
+  left: -9999em;
 }
 
 .texto {

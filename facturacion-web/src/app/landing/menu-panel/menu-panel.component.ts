@@ -9,9 +9,7 @@ import { DatePipe } from '@angular/common'
 
 export class MenuPanelComponent {
   public userName = "No Name";
-  public currentDate;
+  currentDate = new Date();
   constructor() { }
-
-
 }
 
