@@ -1,0 +1,64 @@
+@import 'colors';
+
+:host {
+  width: 15rem;
+}
+
+input {
+	outline: none;
+	border: none;
+}
+
+button {
+  background-color: $shadow-black-color;
+
+  &:hover {
+    background-color: $light-black-color;
+  }    
+}
+
+.containter { 
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $light-white-color;  
+}
+
+.login-section {
+  background: $white-color;
+  border-radius: 0.1rem;
+  overflow: hidden;
+  padding: 7.7rem 5.5rem;
+  box-shadow: 0 0.5rem 1.0rem 0rem $shadow-grey-color;
+  width: 27rem;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 4rem;
+}
+
+.input-container {
+  border-bottom: 0.2rem solid $hard-grey-light-color;
+  margin-bottom: 3.7rem;
+  padding: 0 0.5rem;
+}
+
+.input-text {
+  font-size: 1.5em;
+  color:$grey-color;
+  line-height: 1.2;
+  height: 4.5rem;
+  width: 100%;
+}
+
+.login-btn {
+  font-size: 1.5em;
+  color:$white-color;
+  text-transform: uppercase;
+  padding: 1.6rem 2.0rem;
+  width: 100%;
+  border-radius: 2.5rem;
+}

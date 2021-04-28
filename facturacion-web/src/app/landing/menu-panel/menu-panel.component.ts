@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-menu-panel',
@@ -7,7 +8,8 @@ import { Component } from '@angular/core';
 })
 
 export class MenuPanelComponent {
-  public userName = "Julio Gopar";
-
+  public userName = "No Name";
+  currentDate = new Date();
   constructor() { }
 }
+

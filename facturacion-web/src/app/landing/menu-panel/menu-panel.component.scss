@@ -4,10 +4,10 @@
 .imagen:hover {filter: opacity(.5);}
 
 .panel-container {
-  width: 22rem;
+  width: 24rem;
   height: 100vh;
   font-size: 1.6em;
-  background-color:$light-grey-color;
+  background-color:$light-black-color;
 
   .sidebar-header {
     padding: 1rem 1rem;
@@ -52,7 +52,7 @@
 
   .menu-section {
     display: flex;
-    background-color: $dark-grey-color;
+    background-color: $light-black-color;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
