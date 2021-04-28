@@ -1,16 +1,16 @@
 <div class="containter">
   <div class="login-section">
-    <form>
+    <form [formGroup]="loginForm">
       <div class="logo">
         <img src="assets/images/circle.png" alt="Logo" title="Logo">
       </div>
       <div class="input-container">
-        <input class="input-text" type="text" placeholder="Usuario">
+        <input class="input-text" type="text" placeholder="Usuario" formControlName="userName">
       </div>
       <div class="input-container">
-        <input class="input-text" type="password" placeholder="Contraseña">
+        <input class="input-text" type="password" placeholder="Contraseña" formControlName="userPassword">
       </div>
-      <button class="login-btn">
+      <button class="login-btn" (click)="submitData()">
         Ingresar
       </button>
     </form>
