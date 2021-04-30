@@ -84,6 +84,10 @@
         &:hover {
           background-color: $sky-blue-color;
         }
+
+        &:active{
+          color:$light-black-color;
+        }
       }
     }
 
