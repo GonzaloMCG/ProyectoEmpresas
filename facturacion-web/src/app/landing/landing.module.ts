@@ -11,12 +11,14 @@ import { CdkTableModule } from '@angular/cdk/table';
     LandingComponent,
     MenuPanelComponent,
     InvoicingPageComponent,
-    CdkTableModule,
   ],
   exports: [
-    LandingComponent
+    LandingComponent,
   ],
-  imports: [RouterModule],
+  imports: [
+    RouterModule,
+    CdkTableModule
+  ],
   providers: []
 })
 export class LandingModule { }
