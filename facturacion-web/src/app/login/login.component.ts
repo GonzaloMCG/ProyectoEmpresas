@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { AuthenticationService } from '../services/authentication.service';
+import { MessageService } from '../message/message.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -23,40 +24,21 @@ export class LoginComponent {
   });
 
   constructor(private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService,
-    private router: Router,
-    private route: ActivatedRoute,) {
-    // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/landing']);
-    }
+    private userService: UserService,
+    private messageService: MessageService) {
   }
 
-  ngOnInit() {
-    this.loading = true;
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-  }
-
-  onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
+  submitData() {
+    this.messageService.showError('hola error');
+    const userData = {
+      user: this.loginForm.get('userName').value,
+      password: this.loginForm.get('userPassword').value,
+    }
+    try {
+      this.userService.loginUser(userData);
+    } catch (error) {
+      this.messageService.showError(error);
     }
 
-    this.loading = true;
-    this.authenticationService.login(this.loginForm.get('userName').value,
-      this.loginForm.get('userPassword').value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          console.log(data);
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          this.error = error;
-          this.loading = false;
-        });
   }
 }

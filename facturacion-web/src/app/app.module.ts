@@ -19,6 +19,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ProductService } from './services/product.service';
 import { AuthenticationService } from './services/authentication.service';
 import { CommonModule } from '@angular/common';
+import { MessageService } from './message/message.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CommonModule } from '@angular/common';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     AuthenticationService,
+    MessageService,
   ],
   bootstrap: [AppComponent]
 })
