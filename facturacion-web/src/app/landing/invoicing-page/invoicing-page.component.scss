@@ -1,11 +1,91 @@
+@import 'colors';
+
 :host {
   flex: 0.8;
 }
 
+.form-row{
+  font-size: 3em;
+  padding: 3rem 0 1rem 10rem;
+}
+
+.line {
+  margin-right: 10rem;
+  margin-left: 10rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .invoicing-container {
-  width: 100%;
+  width: 80%;
   display: flex;
+  flex-direction: column;
+  margin:1rem auto;
+  padding: 1rem;
+}
+
+.container {
+  padding-top: 1rem;
+  display:flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  align-content: space-between
+}
+
+.item {
+  flex: 0 0 auto;
+  margin: 10px;
+  font-size: 1.5em;
+}
+
+.input {
+  height: 34px;
+  padding: 1px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  &.input-name{
+    width: 50rem;
+  }
+
+  &.input-quantity{
+    width: 6rem;
+  }
+
+  &.input-price{
+    width: 10rem;
+  }
+}
+
+.buttonAdd{
+  color: $white-color;
+  background-color: #337ab7;
+  display: inline-block;
+  padding: 0.3rem 1.2rem;
+  font-size: 2rem;
+  border-radius: 0.4rem;
+}
+
+.buttonDel{
+  color: $white-color;
+  background-color: #b44141;
+  display: inline-block;
+  padding: 0.3rem 1.2rem;
+  font-size: 2rem;
+  border-radius: 0.4rem;
+}
+
+.mat-column-name {
+width: 58%;
+}
+
+.mat-column-quantity{
+  text-align: center;
+
+}
+
+.mat-column-price{
+  text-align: center;
 }

@@ -9,21 +9,17 @@ import { MatTableDataSource } from '@angular/material/table'
 
 export class InvoicingPageComponent {
   public dataSource = new MatTableDataSource();
-  public displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  public displayedColumns: string[] = ['name', 'quantity', 'price'];
   public data = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+    { name: 'SERVILLETAS FLORIPEL 3rollos 120 toallas funda de 10pts', quantity: 1, price: '100' },
+    { name: 'Jabón lavarropas líquido 2lts funda de 8 botellas ', quantity: 2, price: '180' },
+    { position: 3, name: 'Limpiador perfumado 5lts funda de 4 bidones ', quantity: 4, price: '999' },
+    { position: 4, name: 'Escoba c/protector de plástico caja 12 un ', quantity: 30, price: '1243' },
+    { position: 5, name: 'Salsa de tomate (tradicional y pizza) caja 24un ', quantity: 120, price: '32456' },
   ];
 
   constructor() {
     this.dataSource.data = this.data;
   }
+
 }
