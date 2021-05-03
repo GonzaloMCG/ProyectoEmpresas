@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { InvoicingPageComponent } from './invoicing-page/invoicing-page.component';
 import { LandingComponent } from './landing.component';
 import { MenuPanelComponent } from './menu-panel/menu-panel.component';
-import { CdkTableModule } from '@angular/cdk/table';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import { CdkTableModule } from '@angular/cdk/table';
   ],
   imports: [
     RouterModule,
-    CdkTableModule
+    MatTableModule
   ],
   providers: []
 })
