@@ -29,9 +29,13 @@
           </p>
         </div>
       </div>
-      <button class="login-btn" (click)="submitData()" [disabled]="loginForm.invalid">
+      <button class="login-btn" (click)="onSubmit()" [disabled]="loginForm.invalid">
         Ingresar
       </button>
     </form>
   </div>
+
+  <ul *ngIf="users">
+    <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+  </ul>
 </div>

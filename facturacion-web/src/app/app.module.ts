@@ -12,6 +12,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,10 +31,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    HttpClientModule
   ],
   providers: [
-    UserService
+    UserService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
