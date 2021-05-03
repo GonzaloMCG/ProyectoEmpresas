@@ -3,18 +3,22 @@ import { RouterModule } from '@angular/router';
 import { InvoicingPageComponent } from './invoicing-page/invoicing-page.component';
 import { LandingComponent } from './landing.component';
 import { MenuPanelComponent } from './menu-panel/menu-panel.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
   declarations: [
     LandingComponent,
     MenuPanelComponent,
-    InvoicingPageComponent
+    InvoicingPageComponent,
   ],
   exports: [
-    LandingComponent
+    LandingComponent,
   ],
-  imports: [RouterModule],
+  imports: [
+    RouterModule,
+    MatTableModule
+  ],
   providers: []
 })
 export class LandingModule { }

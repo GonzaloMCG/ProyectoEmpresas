@@ -1,12 +1,17 @@
 @import 'colors';
 
 
+:host {
+  flex: 0.2;
+}
+
 .imagen:hover {
   filter: opacity(.5);
 }
 
 .panel-container {
-  width: 24rem;
+  width: auto;
+  min-width: 21rem;
   height: 100%;
   font-size: 1.6em;
   background-color:$light-black-color;
