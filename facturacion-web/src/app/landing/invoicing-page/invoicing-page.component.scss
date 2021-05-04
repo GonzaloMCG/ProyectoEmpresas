@@ -16,8 +16,17 @@
   margin-bottom: 2rem;
 }
 
+.form-init{
+  font-size: 1.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: auto;
+}
+
 .invoicing-container {
-  width: 80%;
+  width: 88%;
   display: flex;
   flex-direction: column;
   margin:1rem auto;
@@ -35,16 +44,17 @@
 
 .item {
   flex: 0 0 auto;
-  margin: 10px;
+  margin: 0.625rem;
   font-size: 1.5em;
 }
 
 .input {
-  height: 34px;
-  padding: 1px 12px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  height: 3rem;
+  padding: 0.063rem 1.5rem;
+  font-size: 0.875em;
+  border: 0.063rem solid $dark-white-color;
+  border-radius: 0.25rem;
+  outline: 0rem;
 
   &.input-name{
     width: 50rem;
@@ -59,23 +69,63 @@
   }
 }
 
-.buttonAdd{
+.button{
   color: $white-color;
-  background-color: #337ab7;
+  background-color: $white-color;
   display: inline-block;
-  padding: 0.3rem 1.2rem;
-  font-size: 2rem;
-  border-radius: 0.4rem;
+
+  .action-btn-Del{
+    background-color: $red-error-color;
+    padding: 0.3rem 1.5rem;
+    font-size: 1.35em;
+    border-radius: 0.4rem;
+    
+    &:hover {
+      background-color: $dark-red-color;
+    }
+  }
+
+  .action-btn-Add{
+    background-color: $green-color;
+    padding: 0.3rem 1.5rem;
+    font-size: 1.35em;
+    border-radius: 0.4rem;
+
+    &:hover {
+      background-color: $dark-green-color;
+    }
+  }
+
+  .action-btn-Cancel{
+    background-color: $grey-color;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.8em;
+    border-radius: 0.2rem;
+    //width: 8rem;
+
+    &:hover {
+      background-color: $shadow-black-color;
+    }
+  }
+
+  .action-btn-Emit{
+    background-color: $blue-color;
+    padding: 0.5rem 2.5rem;
+    font-size: 1.8em;
+    border-radius: 0.2rem;
+    //width: 8rem;
+    
+    &:hover {
+      background-color: $dark-blue-color;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0rem 0.063rem 0.5rem $light-black-color;
+    transition: all 0.5s;
+  }
 }
 
-.buttonDel{
-  color: $white-color;
-  background-color: #b44141;
-  display: inline-block;
-  padding: 0.3rem 1.2rem;
-  font-size: 2rem;
-  border-radius: 0.4rem;
-}
 
 .mat-column-name {
 width: 58%;
@@ -83,9 +133,43 @@ width: 58%;
 
 .mat-column-quantity{
   text-align: center;
-
 }
 
 .mat-column-price{
   text-align: center;
 }
+
+.mat-column-action{
+  text-align: right;
+}
+
+.mat-column-unitPrice{
+  text-align: center;
+}
+
+.button-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  max-width: 25%;
+  margin: auto;
+}
+
+.action-select-box {
+  background-color: $dark-hover-white-color;
+  height: 3rem;
+  padding: 0.063rem 1.5rem;
+  font-size: 0.875em;
+  border: 0.063rem solid $dark-white-color;
+  outline: 0rem;
+  overflow:hidden;
+  font-weight: 500;
+  transition: all 0.5s;
+  margin-left: 1rem;
+
+}
+.action-select-box:hover {
+  background-color: $shadow-white-color;
+}
+
