@@ -23,7 +23,6 @@ export class LoginComponent {
   });
 
   constructor(private formBuilder: FormBuilder,
-    private userService: UserService,
     private authenticationService: AuthenticationService,
     private router: Router,
     private route: ActivatedRoute,) {
@@ -35,20 +34,8 @@ export class LoginComponent {
 
   ngOnInit() {
     this.loading = true;
-    this.userService.getAll().pipe(first()).subscribe(users => {
-      this.loading = false;
-      this.users = users;
-    });
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
-
-  // submitData() {
-  //   const userData = {
-  //     user: this.loginForm.get('userName').value,
-  //     password: this.loginForm.get('userPassword').value,
-  //   }
-  //   this.userService.loginUser(userData);
-  // }
 
   onSubmit() {
     this.submitted = true;
@@ -64,6 +51,7 @@ export class LoginComponent {
       .pipe(first())
       .subscribe(
         data => {
+          console.log(data);
           this.router.navigate([this.returnUrl]);
         },
         error => {
