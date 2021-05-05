@@ -4,7 +4,7 @@ import { InvoicingPageComponent } from './invoicing-page/invoicing-page.componen
 import { LandingComponent } from './landing.component';
 import { MenuPanelComponent } from './menu-panel/menu-panel.component';
 import { MatTableModule } from '@angular/material/table';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { MatTableModule } from '@angular/material/table';
   ],
   imports: [
     RouterModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule,
   ],
   providers: []
 })

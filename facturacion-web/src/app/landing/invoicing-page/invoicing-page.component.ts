@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table'
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { DataSource } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-invoicing-page',
@@ -9,33 +15,47 @@ import { MatIconModule } from '@angular/material/icon';
 })
 
 export class InvoicingPageComponent {
-  public cost = 0;
-  public dataSource = new MatTableDataSource();
-  public displayedColumns: string[] = ['name', 'unitPrice', 'quantity', 'price', 'action'];
-  public data = [
-    { name: 'SERVILLETAS FLORIPEL 3rollos 120 toallas funda de 10pts', unitPrice: 100, quantity: 1, price: '100', },
-    { name: 'Jabón lavarropas líquido 2lts funda de 8 botellas ', unitPrice: 22, quantity: 2, price: '180' },
-    { name: 'Limpiador perfumado 5lts funda de 4 bidones ', unitPrice: 200, quantity: 4, price: '999' },
-    { name: 'Escoba c/protector de plástico caja 12 un ', unitPrice: 123, quantity: 30, price: '1243' },
-    { name: 'Salsa de tomate (tradicional y pizza) caja 24un ', unitPrice: 999, quantity: 120, price: '32456' },
 
+  total = 0;
+  columnas: string[] = ['name', 'unitPrice', 'quantity', 'price', 'action'];
+
+  sourceData = new MatTableDataSource();
+
+  falsedatos: Articulo[] = [new Articulo('SERVILLETAS FLORIPEL 3rollos 120 toallas funda de 10pts', 100, 1, 100),
+  new Articulo('Jabón lavarropas líquido 2lts funda de 8 botellas ', 22, 2, 180),
+  new Articulo('Limpiador perfumado 5lts funda de 4 bidones ', 200, 4, 999),
   ];
 
+  articuloselect: Articulo = new Articulo("", 0, 0, 0);
+
   constructor() {
-    this.dataSource.data = this.data;
+    this.sourceData.data = this.falsedatos;
   }
 
-  //Borrar una fila de la tabla
-  delete(elm: unknown) {
-    this.dataSource.data = this.dataSource.data.filter(i => i !== elm)
+  borrarFila(cod: number) {
+    const data = this.sourceData.data;
+    if (confirm("Realmente quiere borrarlo?")) {
+      data.splice(cod, 1);
+    }
+    this.sourceData.data = data;
+    this.calcularTotal();
   }
 
-  //Agregar una fila a la tabla
+  agregar() {
+    const data = this.sourceData.data;
+    data.push((new Articulo(this.articuloselect.name, this.articuloselect.unitPrice, this.articuloselect.quantity, this.articuloselect.price)));
+    this.sourceData.data = data;
+    this.calcularTotal();
+  }
 
-  //Calcular total
+  calcularTotal() {
+    this.total = 0;
+    this.sourceData.data.map((elem: any) => this.total += elem.price);
+  }
+}
 
-  //Limpiar formulario (Cancelar)
-
-  //Emitir formulario
+export class Articulo {
+  constructor(public name: string, public unitPrice: number, public quantity: number, public price: number) {
+  }
 
 }
