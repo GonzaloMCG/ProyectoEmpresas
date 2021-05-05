@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { DatePipe } from '@angular/common'
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-menu-panel',
@@ -10,6 +11,12 @@ import { DatePipe } from '@angular/common'
 export class MenuPanelComponent {
   public userName = "No Name";
   currentDate = new Date();
-  constructor() { }
-}
 
+  constructor(private authenticationService: AuthenticationService,
+    private router: Router) { }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+  }
+}
