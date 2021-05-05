@@ -16,7 +16,6 @@ const routes: Routes = [
       { path: '', redirectTo: 'home-page', pathMatch: 'full' },
       { path: 'home-page', component: InvoicingPageComponent, pathMatch: 'full' },
       { path: 'invoices-emitted-page', component: LandingComponent, pathMatch: 'full' },
-      { path: 'stack-page', component: LandingComponent, pathMatch: 'full' },
     ],
   },
   { path: '**', component: ErrorComponent }
