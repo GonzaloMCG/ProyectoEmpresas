@@ -1,30 +1,107 @@
+<div class="form-row">
+  <h1>Nueva Factura</h1>
+</div>
+<hr class="line">
+
+<div class="form-init">
+  <div>
+    <input id="name" class="input input-name" type="text" placeholder="Nombre de Cliente" autocomplete="off">
+  </div>
+  <div>
+    <span>Método de Pago:</span>
+    <select class="action-select-box">
+      <option value="0" class="select-option">Efectivo</option>
+      <option value="1" class="select-option">Crédito</option>
+      <option value="3" class="select-option">Débito</option>
+      <option value="4" class="select-option">Cheque</option>
+    </select>
+  </div>
+  <div>
+    <span>Moneda:</span>
+    <select class="action-select-box">
+      <option value="0">Pesos</option>
+      <option value="1">Dólares</option>
+      <option value="2">Reales</option>
+    </select>
+  </div>
+</div>
+<hr class="line">
+
+
+<div class="container">
+  <div class="item">
+    <input [(ngModel)]="articuloselect.name" type="text" placeholder="Ingrese un Producto" class="input input-name">
+  </div>
+  <div class="item">
+    <span>Precio Unitario: </span>
+    <input [(ngModel)]="articuloselect.unitPrice" type="number" placeholder="Precio Unitario" class="input input-price"
+      readonly disabled>
+  </div>
+  <div class="item quantityColumn">
+    <span>Cantidad: </span>
+    <input [(ngModel)]="articuloselect.quantity" type="number" placeholder="Cantidad" class="input input-quantity">
+  </div>
+  <div class="item">
+    <span>Precio: </span>
+    <input [(ngModel)]="articuloselect.price" type="number" placeholder="Precio" class="input input-price">
+  </div>
+  <div class="item">
+    <button mat-raised-button (click)="agregar()" class="button">
+      <a class="action-btn-add">+</a>
+    </button>
+  </div>
+</div>
+
 <div class="invoicing-container">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
+  <table mat-table [dataSource]="sourceData" class="mat-elevation-z8" #tabla1>
 
-    <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <th mat-header-cell *matHeaderCellDef> Nombre de Producto </th>
+      <td mat-cell *matCellDef="let articulo"> {{articulo.name}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> Weight </th>
-      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    <ng-container matColumnDef="unitPrice">
+      <th mat-header-cell *matHeaderCellDef> Precio Unitario </th>
+      <td mat-cell *matCellDef="let articulo"> {{articulo.unitPrice}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+      <td mat-cell *matCellDef="let articulo"> {{articulo.quantity}} </td>
+      <td mat-footer-cell *matFooterCellDef>Total: </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Precio </th>
+      <td mat-cell *matCellDef="let articulo"> {{articulo.price}} </td>
+      <td mat-footer-cell *matFooterCellDef> $ {{total}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Acción </th>
+      <td mat-cell *matCellDef="let j = index;">
+        <button mat-raised-button focusable="false" (click)="borrarFila(j)" class="button">
+          <a class="action-btn-del">-</a>
+        </button>
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+    <tr mat-footer-row *matFooterRowDef="columnas"></tr>
   </table>
+</div>
+
+<hr class="line">
+
+<div class="button-row">
+  <button class="button">
+    <a class="action-btn-emit">Emitir</a>
+  </button>
+  <button class="button">
+    <a class="action-btn-cancel">Cancelar</a>
+  </button>
 </div>

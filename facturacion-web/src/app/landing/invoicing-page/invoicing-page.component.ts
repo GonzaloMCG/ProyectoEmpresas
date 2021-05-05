@@ -1,5 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table'
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { DataSource } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-invoicing-page',
@@ -8,22 +15,47 @@ import { MatTableDataSource } from '@angular/material/table'
 })
 
 export class InvoicingPageComponent {
-  public dataSource = new MatTableDataSource();
-  public displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  public data = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+
+  total = 0;
+  columnas: string[] = ['name', 'unitPrice', 'quantity', 'price', 'action'];
+
+  sourceData = new MatTableDataSource();
+
+  falsedatos: Articulo[] = [new Articulo('SERVILLETAS FLORIPEL 3rollos 120 toallas funda de 10pts', 100, 1, 100),
+  new Articulo('Jabón lavarropas líquido 2lts funda de 8 botellas ', 22, 2, 180),
+  new Articulo('Limpiador perfumado 5lts funda de 4 bidones ', 200, 4, 999),
   ];
 
+  articuloselect: Articulo = new Articulo("", 0, 0, 0);
+
   constructor() {
-    this.dataSource.data = this.data;
+    this.sourceData.data = this.falsedatos;
   }
+
+  borrarFila(cod: number) {
+    const data = this.sourceData.data;
+    if (confirm("Realmente quiere borrarlo?")) {
+      data.splice(cod, 1);
+    }
+    this.sourceData.data = data;
+    this.calcularTotal();
+  }
+
+  agregar() {
+    const data = this.sourceData.data;
+    data.push((new Articulo(this.articuloselect.name, this.articuloselect.unitPrice, this.articuloselect.quantity, this.articuloselect.price)));
+    this.sourceData.data = data;
+    this.calcularTotal();
+  }
+
+  calcularTotal() {
+    this.total = 0;
+    this.sourceData.data.map((elem: any) => this.total += elem.price);
+  }
+}
+
+export class Articulo {
+  constructor(public name: string, public unitPrice: number, public quantity: number, public price: number) {
+  }
+
 }

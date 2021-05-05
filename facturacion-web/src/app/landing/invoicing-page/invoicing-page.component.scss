@@ -1,11 +1,169 @@
+@import 'colors';
+
 :host {
   flex: 0.8;
 }
 
-.invoicing-container {
-  width: 100%;
+.form-row{
+  font-size: 3em;
+  padding: 3rem 0 1rem 10rem;
+}
+
+.line {
+  margin: 2rem 10rem;
+}
+
+.form-init{
+  font-size: 1.5em;
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: auto;
+}
+
+.invoicing-container {
+  width: 88%;
+  display: flex;
+  flex-direction: column;
+  margin:1rem auto;
+  padding: 1rem;
+}
+
+.container {
+  padding-top: 1rem;
+  display:flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  align-content: space-between;
+}
+
+.item {
+  flex: 0 0 auto;
+  margin: 0.625rem;
+  font-size: 1.5em;
+}
+
+.input {
+  height: 3rem;
+  padding: 0.063rem 1.5rem;
+  font-size: 0.875em;
+  border: 0.063rem solid $dark-white-color;
+  border-radius: 0.25rem;
+  outline: 0;
+
+  &.input-name{
+    width: 50rem;
+  }
+
+  &.input-quantity{
+    width: 8rem;
+    text-align: center;
+  }
+
+  &.input-price{
+    width: 8em;
+    text-align: center;
+  }
+}
+
+.button{
+  color: $white-color;
+  background-color: $white-color;
+  display: inline-block;
+
+  .action-btn-del{
+    background-color: $red-error-color;
+    padding: 0.3rem 1.5rem;
+    font-size: 1.35em;
+    border-radius: 0.4rem;
+    
+    &:hover {
+      background-color: $dark-red-color;
+    }
+  }
+
+  .action-btn-add{
+    background-color: $green-color;
+    padding: 0.3rem 1.5rem;
+    font-size: 1.35em;
+    border-radius: 0.4rem;
+
+    &:hover {
+      background-color: $dark-green-color;
+    }
+  }
+
+  .action-btn-cancel{
+    background-color: $grey-color;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.8em;
+    border-radius: 0.2rem;
+
+    &:hover {
+      background-color: $shadow-black-color;
+    }
+  }
+
+  .action-btn-emit{
+    background-color: $blue-color;
+    padding: 0.5rem 2.5rem;
+    font-size: 1.8em;
+    border-radius: 0.2rem;
+    
+    &:hover {
+      background-color: $dark-blue-color;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0.5s;
+  }
+}
+
+
+.mat-column-name {
+width: 58%;
+}
+
+.mat-column-quantity{
+  text-align: center;
+}
+
+.mat-column-price{
+  text-align: center;
+}
+
+.mat-column-action{
+  text-align: right;
+}
+
+.mat-column-unitPrice{
+  text-align: center;
+}
+
+.button-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  max-width: 25%;
+  margin: auto;
+}
+
+.action-select-box {
+  background-color: $dark-hover-white-color;
+  height: 3rem;
+  padding: 0.063rem 1.5rem;
+  font-size: 0.875em;
+  border: 0.063rem solid $dark-white-color;
+  outline: 0;
+  overflow:hidden;
+  font-weight: 500;
+  transition: all 0.5s;
+  margin-left: 1rem;
+}
+
+.action-select-box:hover {
+  background-color: $shadow-white-color;
 }
