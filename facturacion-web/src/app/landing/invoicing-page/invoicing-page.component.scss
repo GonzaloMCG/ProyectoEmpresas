@@ -4,25 +4,28 @@
   flex: 0.8;
 }
 
+section {
+  padding: 0 10rem;
+}
+
 .form-row{
   font-size: 3em;
-  padding: 3rem 0 1rem 10rem;
+  padding: 3rem 0 1rem;
 }
 
 .line {
-  margin: 2rem 10rem;
+  margin: 3rem 0;
 }
 
 .form-init{
   font-size: 1.5em;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   margin: auto;
 }
 
 .invoicing-container {
-  width: 88%;
   display: flex;
   flex-direction: column;
   margin:1rem auto;
@@ -30,12 +33,11 @@
 }
 
 .container {
-  padding-top: 1rem;
+  padding: 1rem 0;
   display:flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
-  align-content: space-between;
+  justify-content: space-between;
 }
 
 .item {
@@ -52,8 +54,12 @@
   border-radius: 0.25rem;
   outline: 0;
 
-  &.input-name{
+  &.input-client {
     width: 50rem;
+  }
+
+  &.input-product {
+    width: 21rem;
   }
 
   &.input-quantity{
@@ -77,7 +83,7 @@
     padding: 0.3rem 1.5rem;
     font-size: 1.35em;
     border-radius: 0.4rem;
-    
+
     &:hover {
       background-color: $dark-red-color;
     }
@@ -110,7 +116,7 @@
     padding: 0.5rem 2.5rem;
     font-size: 1.8em;
     border-radius: 0.2rem;
-    
+
     &:hover {
       background-color: $dark-blue-color;
     }
@@ -124,7 +130,7 @@
 
 
 .mat-column-name {
-width: 58%;
+  width: 58%;
 }
 
 .mat-column-quantity{
