@@ -20,16 +20,18 @@
     <div class="item-section">
       <div>
         <div class="item">
-          <a class="menu-item"><img src="assets/images/facturacion.png">Facturación</a>
+          <a class="menu-item" routerLink="home-page"><img src="assets/images/facturacion.png">Facturación</a>
         </div>
         <div class="item">
-          <a class="menu-item"><img src="assets/images/facturasEmitidas.png">Facturas emitidas</a>
+          <a class="menu-item" routerLink="invoices-emitted-page"><img src="assets/images/facturasEmitidas.png">Facturas
+            emitidas</a>
         </div>
         <div class="item">
-          <a class="menu-item"><img src="assets/images/stock.png">Control de stock</a>
+          <a class="menu-item"><img src="assets/images/stock.png">Control de
+            stock</a>
         </div>
       </div>
     </div>
-    <a class="logout-btn">Salir</a>
+    <a class="logout-btn" (click)="logout()" routerLink="/login">Salir</a>
   </div>
 </div>

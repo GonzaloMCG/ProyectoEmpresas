@@ -1,0 +1,50 @@
+@import 'colors';
+
+:host {
+  flex: 0.8;
+}
+
+.form-row{
+  font-size: 3em;
+  padding: 3rem 0 1rem 10rem;
+}
+
+.line {
+  margin: 2rem 10rem;
+}
+
+.invoicing-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin:1rem auto;
+  padding: 1rem;
+}
+
+.button{
+  border-radius: 9px;
+  
+  &:hover {
+    box-shadow: 0 0.063rem 0.5rem black;
+    transition: all 0.5s;
+  }
+}
+
+.mat-column-date {
+  //width: 10%;
+  text-align: left;
+}
+
+.mat-column-client{
+  width: 40%;
+  text-align: left;
+}
+
+.mat-column-total{
+  //width: 10%;
+  text-align: center;
+}
+
+.mat-column-action{
+  text-align: right;
+}
