@@ -1,0 +1,91 @@
+@import 'colors';
+
+:host {
+  flex: 0.8;
+}
+
+.form-row{
+  font-size: 3em;
+  padding: 3rem 0 1rem 10rem;
+}
+
+.line {
+  margin: 2rem 10rem;
+}
+
+.invoicing-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin:1rem auto;
+  padding: 1rem;
+}
+
+.container {
+  padding-top: 1rem;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: space-between;
+}
+
+.item {
+  flex: 0 0 auto;
+  margin: 0.625rem;
+  font-size: 1.5em;
+}
+
+.input {
+  height: 3rem;
+  padding: 0.063rem 1.5rem;
+  font-size: 0.875em;
+  border: 0.063rem solid $dark-white-color;
+  border-radius: 0.25rem;
+  outline: 0;
+
+  &.input-name{
+    width: 50rem;
+  }
+
+  &.input-quantity{
+    width: 8rem;
+    text-align: center;
+  }
+
+  &.input-price{
+    width: 8em;
+    text-align: center;
+  }
+}
+
+.button{
+  color: $white-color;
+  background-color: $white-color;
+  display: inline-block;
+
+  &:hover {
+    //box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    //transition: all 0.5s;
+  }
+}
+
+
+.mat-column-date {
+  //width: 10%;
+  text-align: left;
+}
+
+.mat-column-client{
+  width: 40%;
+  text-align: left;
+}
+
+.mat-column-total{
+  //width: 10%;
+  text-align: center;
+}
+
+.mat-column-action{
+  text-align: right;
+}

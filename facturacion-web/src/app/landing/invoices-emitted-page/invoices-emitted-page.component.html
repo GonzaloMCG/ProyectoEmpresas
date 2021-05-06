@@ -1,2 +1,36 @@
-<h1>invoices emitted page</h1>
-<h1>Aqui comienza la aventura del miercoles</h1>
+<div class="form-row">
+  <h1>Facturas Emitidas</h1>
+</div>
+<hr class="line">
+
+<div class="invoicing-container">
+  <table mat-table [dataSource]="sourceData" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+      <td mat-cell *matCellDef="let articulo"> {{articulo.date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="client">
+      <th mat-header-cell *matHeaderCellDef> Cliente </th>
+      <td mat-cell *matCellDef="let articulo"> {{articulo.client}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef> Total </th>
+      <td mat-cell *matCellDef="let articulo"> ${{articulo.total}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Acción </th>
+      <td mat-cell *matCellDef="let j = index;">
+        <button mat-raised-button focusable="false" (click)="viewInvoice(j)" class="button">
+          <a class="menu-item"><img src="assets/images/view.png"></a>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+  </table>
+</div>
