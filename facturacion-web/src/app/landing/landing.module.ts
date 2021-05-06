@@ -5,12 +5,15 @@ import { LandingComponent } from './landing.component';
 import { MenuPanelComponent } from './menu-panel/menu-panel.component';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
+import { ExampleModalComponent } from './invoicing-page/example-modal/example-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     LandingComponent,
     MenuPanelComponent,
     InvoicingPageComponent,
+    ExampleModalComponent
   ],
   exports: [
     LandingComponent,
@@ -19,6 +22,10 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     MatTableModule,
     FormsModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    ExampleModalComponent
   ],
   providers: []
 })
