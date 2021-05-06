@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { ExampleModalComponent } from './invoicing-page/example-modal/example-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { InvoicesEmittedComponent } from './invoices-emitted-page/invoices-emitted-page.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MenuPanelComponent,
     InvoicingPageComponent,
     ExampleModalComponent
+    InvoicesEmittedComponent,
   ],
   exports: [
     LandingComponent,
