@@ -4,17 +4,20 @@
   flex: 0.8;
 }
 
+section {
+  padding: 0 10rem;
+}
+
 .form-row{
   font-size: 3em;
-  padding: 3rem 0 1rem 10rem;
+  padding: 3rem 0 1rem;
 }
 
 .line {
-  margin: 2rem 10rem;
+  margin: 2rem 0;
 }
 
 .invoicing-container {
-  width: 70%;
   display: flex;
   flex-direction: column;
   margin:1rem auto;
@@ -23,15 +26,14 @@
 
 .button{
   border-radius: 9px;
-  
+
   &:hover {
-    box-shadow: 0 0.063rem 0.5rem black;
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
     transition: all 0.5s;
   }
 }
 
 .mat-column-date {
-  //width: 10%;
   text-align: left;
 }
 
@@ -41,7 +43,6 @@
 }
 
 .mat-column-total{
-  //width: 10%;
   text-align: center;
 }
 

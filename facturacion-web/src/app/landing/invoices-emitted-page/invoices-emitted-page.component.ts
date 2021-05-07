@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { DataSource } from '@angular/cdk/collections';
+import { MatDialog } from '@angular/material/dialog';
+import { DetailInvoicesModalComponent } from '../modals/details-invoices-modal/details-invoices-modal.component';
 
 @Component({
   selector: 'app-invoices-emitted-page',
@@ -34,9 +36,23 @@ export class InvoicesEmittedComponent {
 
   articuloselect: Articulo = new Articulo("", "", 0);
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.sourceData.data = this.falsedatos;
   }
+
+  openModal() {
+    const dialogRef = this.dialog.open(DetailInvoicesModalComponent, {
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        console.log('aceptar');
+        //si le diste cerrar con el aceptar, hacemos algo
+      }
+    });
+  }
+
 }
 
 export class Articulo {

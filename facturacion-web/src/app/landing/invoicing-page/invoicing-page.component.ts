@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { DataSource } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
-import { ExampleModalComponent } from './example-modal/example-modal.component';
+import { DetailInvoicesModalComponent } from '../modals/details-invoices-modal/details-invoices-modal.component';
 
 @Component({
   selector: 'app-invoicing-page',
@@ -35,7 +35,7 @@ export class InvoicingPageComponent {
   }
 
   openModal() {
-    const dialogRef = this.dialog.open(ExampleModalComponent, {
+    const dialogRef = this.dialog.open(DetailInvoicesModalComponent, {
       autoFocus: false,
     });
 
