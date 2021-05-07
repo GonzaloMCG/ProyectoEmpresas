@@ -14,7 +14,7 @@ import { InvoicesEmittedComponent } from './invoices-emitted-page/invoices-emitt
     LandingComponent,
     MenuPanelComponent,
     InvoicingPageComponent,
-    ExampleModalComponent
+    ExampleModalComponent,
     InvoicesEmittedComponent,
   ],
   exports: [
