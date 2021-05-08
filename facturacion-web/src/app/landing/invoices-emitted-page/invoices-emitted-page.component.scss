@@ -17,6 +17,21 @@ section {
   margin: 2rem 0;
 }
 
+.filter-div{
+  background-color: $light-white-color;
+  border-radius: 0.5rem;
+  padding: 0.3rem 1.7rem;
+  font-size: 1.6em;
+  width: 20%;
+}
+.mat-form-field {
+  width: 100%;
+}
+
+.ng-tns-c94-4{
+  display: flex;
+}
+
 .invoicing-container {
   display: flex;
   flex-direction: column;
@@ -48,4 +63,8 @@ section {
 
 .mat-column-action{
   text-align: right;
+}
+
+.page-number{
+  margin-top: 1.7rem;
 }

@@ -1,14 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { MatTable } from '@angular/material/table';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'
-import { MatIconModule } from '@angular/material/icon';
-import { MatTableModule } from '@angular/material/table';
-import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { DataSource } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
 import { DetailInvoicesModalComponent } from '../modals/details-invoices-modal/details-invoices-modal.component';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-invoices-emitted-page',
@@ -16,10 +11,9 @@ import { DetailInvoicesModalComponent } from '../modals/details-invoices-modal/d
   styleUrls: ['./invoices-emitted-page.component.scss']
 })
 
-export class InvoicesEmittedComponent {
+export class InvoicesEmittedComponent implements AfterViewInit {
 
   columnas: string[] = ['date', 'client', 'total', 'action'];
-
   sourceData = new MatTableDataSource();
 
   falsedatos: Articulo[] = [new Articulo('10/02/2021', 'Probado Empresas', 12300),
@@ -34,8 +28,30 @@ export class InvoicesEmittedComponent {
   new Articulo('11/02/2021', 'Ultima Empresa', 1200),
   ];
 
-  articuloselect: Articulo = new Articulo("", "", 0);
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
+  ngAfterViewInit() {
+    this.sourceData.paginator = this.paginator;
+    this.sourceData.sort = this.sort;
+  }
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageEvent: PageEvent;
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.sourceData.filter = filterValue.trim().toLowerCase();
+
+    if (this.sourceData.paginator) {
+      this.sourceData.paginator.firstPage();
+    }
+  }
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    if (setPageSizeOptionsInput) {
+      this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+    }
+  }
   constructor(public dialog: MatDialog) {
     this.sourceData.data = this.falsedatos;
   }

@@ -22,7 +22,9 @@ export class DetailInvoicesModalComponent {
   new Articulo('Jabón lavarropas líquido 2lts funda de 8 botellas ', 22, 2, 180),
   new Articulo('Limpiador perfumado 5lts funda de 4 bidones ', 200, 4, 999),
   new Articulo('Jabón lavarropas líquido 2lts funda de 8 botellas ', 22, 2, 180),
-
+  new Articulo('Jabón lavarropas líquido 2lts funda de 8 botellas ', 22, 2, 180),
+  new Articulo('Limpiador perfumado 5lts funda de 4 bidones ', 200, 4, 999),
+  new Articulo('Jabón lavarropas líquido 2lts funda de 8 botellas ', 22, 2, 180),
   ];
 
   constructor(public dialogRef: MatDialogRef<DetailInvoicesModalComponent>,
