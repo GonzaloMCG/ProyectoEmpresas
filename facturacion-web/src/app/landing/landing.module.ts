@@ -5,16 +5,19 @@ import { LandingComponent } from './landing.component';
 import { MenuPanelComponent } from './menu-panel/menu-panel.component';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
-import { ExampleModalComponent } from './invoicing-page/example-modal/example-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { InvoicesEmittedComponent } from './invoices-emitted-page/invoices-emitted-page.component';
+import { DetailInvoicesModalComponent } from './modals/details-invoices-modal/details-invoices-modal.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
     LandingComponent,
     MenuPanelComponent,
     InvoicingPageComponent,
-    ExampleModalComponent,
+    DetailInvoicesModalComponent,
     InvoicesEmittedComponent,
   ],
   exports: [
@@ -24,10 +27,13 @@ import { InvoicesEmittedComponent } from './invoices-emitted-page/invoices-emitt
     RouterModule,
     MatTableModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
   ],
   entryComponents: [
-    ExampleModalComponent
+    DetailInvoicesModalComponent
   ],
   providers: []
 })
