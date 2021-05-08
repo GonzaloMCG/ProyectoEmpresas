@@ -14,7 +14,7 @@ export class UserService {
     console.log(data);
   }
 
-  getAll() {
-    return this.http.get<User[]>(`${environment.apiUrl}/users`);
+  getAllTest() {
+    return this.http.get(`${environment.apiUrl}/products`);
   }
 }

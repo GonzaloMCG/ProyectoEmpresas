@@ -11,6 +11,8 @@ import { DetailInvoicesModalComponent } from './modals/details-invoices-modal/de
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { MatInputModule } from '@angular/material/input';
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
+    MatAutocompleteModule,
+    CommonModule
   ],
   entryComponents: [
     DetailInvoicesModalComponent

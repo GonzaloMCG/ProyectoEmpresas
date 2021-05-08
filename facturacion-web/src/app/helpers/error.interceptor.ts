@@ -10,6 +10,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   constructor(private authenticationService: AuthenticationService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log('paso por el interceptor ERROR');
     return next.handle(request).pipe(catchError(err => {
       if (err.status === 401 || err.status === 400) {
         // auto logout if 401 response returned from api

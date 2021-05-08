@@ -29,6 +29,17 @@ export class AuthenticationService {
       }));
   }
 
+  getHeaders() {
+    const headers = {
+      Authorization: `Bearer ${this.$currentUserSubject.getValue().token}`
+    }
+    return headers;
+  }
+
+  getToken() {
+    return JSON.parse(localStorage.getItem('currentUser')).token;
+  }
+
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');

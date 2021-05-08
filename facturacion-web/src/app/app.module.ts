@@ -16,6 +16,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ProductService } from './services/product.service';
+import { AuthenticationService } from './services/authentication.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -34,12 +37,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FormsModule,
     MatFormFieldModule,
     HttpClientModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    CommonModule
   ],
   providers: [
     UserService,
+    ProductService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    AuthenticationService,
   ],
   bootstrap: [AppComponent]
 })

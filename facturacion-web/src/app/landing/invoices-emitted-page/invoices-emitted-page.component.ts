@@ -5,6 +5,7 @@ import { DetailInvoicesModalComponent } from '../modals/details-invoices-modal/d
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
+
 @Component({
   selector: 'app-invoices-emitted-page',
   templateUrl: 'invoices-emitted-page.component.html',
