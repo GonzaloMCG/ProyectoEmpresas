@@ -47,7 +47,6 @@ export class InvoicingPageComponent implements OnInit {
 
   async ngOnInit() {
     this.initialProducts = await this.productService.getAllProducts();
-    console.log(this.initialProducts);
     this.filteredProducts = this.initialProducts;
 
     const typeahead = this.searchQuery$.asObservable().pipe(
@@ -78,8 +77,6 @@ export class InvoicingPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        console.log('aceptar');
-        //si le diste cerrar con el aceptar, hacemos algo
       }
     });
   }
@@ -119,8 +116,6 @@ export class InvoicingPageComponent implements OnInit {
       ...this.invoicingForm,
       invoiceProducts: buildProductList
     }
-    console.log(data);
-    // POST: http://localhost:8080/api/v1/invoices}
   }
 
   private resetProductsFilter() {

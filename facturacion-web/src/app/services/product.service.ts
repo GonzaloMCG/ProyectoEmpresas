@@ -13,7 +13,7 @@ export class ProductService {
 
   getAllProducts(): Promise<any> {
     const headers = this.authenticationService.getHeaders();
-    return this.http.get(`${environment.apiUrl}/products`, { headers }).toPromise().then(response => console.log(response)).catch(error => Promise.reject(error));
+    return this.http.get(`${environment.apiUrl}/products`, { headers }).toPromise().catch(error => Promise.reject(error));
   }
 
   getFilteredProducts(query: string): Promise<any> {
