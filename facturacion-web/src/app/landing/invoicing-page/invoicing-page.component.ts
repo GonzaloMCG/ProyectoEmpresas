@@ -1,14 +1,12 @@
-import { Component, ViewChild } from '@angular/core';
-import { MatTable } from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'
-import { MatIconModule } from '@angular/material/icon';
-import { MatTableModule } from '@angular/material/table';
-import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { DataSource } from '@angular/cdk/collections';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DetailInvoicesModalComponent } from '../modals/details-invoices-modal/details-invoices-modal.component';
+import { Article } from 'src/app/models/article.model';
+import { ProductService } from 'src/app/services/product.service';
+import { BehaviorSubject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, skipWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-invoicing-page',
@@ -16,22 +14,60 @@ import { DetailInvoicesModalComponent } from '../modals/details-invoices-modal/d
   styleUrls: ['./invoicing-page.component.scss']
 })
 
-export class InvoicingPageComponent {
+export class InvoicingPageComponent implements OnInit {
+  public total = 0;
+  public columnas: string[] = ['name', 'price', 'quantity', 'total', 'action'];
+  public sourceData = new MatTableDataSource<Article>();
+  public searchQuery$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public filteredProducts = []
+  private initialProducts = [];
 
-  total = 0;
-  columnas: string[] = ['name', 'unitPrice', 'quantity', 'price', 'action'];
+  public invoicingForm = this.formBuilder.group({
+    client: ['', Validators.required],
+    paymentMethod: ['', Validators.required],
+    currency: ['', Validators.required],
+    total: ['', Validators.required]
+  });
 
-  sourceData = new MatTableDataSource();
+  public emptyArticle = {
+    name: '',
+    price: null,
+    quantity: null,
+    total: null
+  };
 
-  falsedatos: Articulo[] = [new Articulo('SERVILLETAS FLORIPEL 3rollos 120 toallas funda de 10pts', 100, 1, 100),
-  new Articulo('Jabón lavarropas líquido 2lts funda de 8 botellas ', 22, 2, 180),
-  new Articulo('Limpiador perfumado 5lts funda de 4 bidones ', 200, 4, 999),
-  ];
+  public productList: Article[] = [];
 
-  articuloselect: Articulo = new Articulo("", 0, 0, 0);
+  public articuloselect = { ...this.emptyArticle };
 
-  constructor(public dialog: MatDialog) {
-    this.sourceData.data = this.falsedatos;
+  constructor(public dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private productService: ProductService) {
+  }
+
+  async ngOnInit() {
+    this.initialProducts = await this.productService.getAllProducts();
+    this.filteredProducts = this.initialProducts;
+
+    const typeahead = this.searchQuery$.asObservable().pipe(
+      debounceTime(500),
+      distinctUntilChanged()
+    );
+
+    // just skipping null values because we want to detect the empty string
+    typeahead.pipe(skipWhile(q => q === null)).subscribe(query => this.filterProducts(query));
+  }
+
+  async filterProducts(query: string) {
+    if (query && query.length >= 3) {
+      this.filteredProducts = await this.productService.getFilteredProducts(query);
+    } else {
+      this.resetProductsFilter();
+    }
+  }
+
+  updateUnitPrice(price: number) {
+    this.articuloselect.price = price;
   }
 
   openModal() {
@@ -41,8 +77,6 @@ export class InvoicingPageComponent {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        console.log('aceptar');
-        //si le diste cerrar con el aceptar, hacemos algo
       }
     });
   }
@@ -56,21 +90,40 @@ export class InvoicingPageComponent {
     this.calcularTotal();
   }
 
-  agregar() {
+  add() {
     const data = this.sourceData.data;
-    data.push((new Articulo(this.articuloselect.name, this.articuloselect.unitPrice, this.articuloselect.quantity, this.articuloselect.price)));
+    const newArticle = new Article();
+    newArticle['name'] = this.articuloselect.name;
+    newArticle['price'] = this.articuloselect.price;
+    newArticle['quantity'] = this.articuloselect.quantity;
+    newArticle['total'] = this.articuloselect.total;
+    data.push(newArticle);
+
+    this.articuloselect = { ...this.emptyArticle };
     this.sourceData.data = data;
     this.calcularTotal();
   }
 
   calcularTotal() {
     this.total = 0;
-    this.sourceData.data.map((elem: any) => this.total += elem.price);
-  }
-}
-
-export class Articulo {
-  constructor(public name: string, public unitPrice: number, public quantity: number, public price: number) {
+    this.sourceData.data.map((elem: any) => this.total += elem.total);
   }
 
+  submit() {
+    const buildProductList = this.sourceData.data;
+
+    const data = {
+      ...this.invoicingForm,
+      invoiceProducts: buildProductList
+    }
+  }
+
+  private resetProductsFilter() {
+    this.filteredProducts = this.initialProducts;
+    this.articuloselect = { ...this.emptyArticle };
+  }
+
+  updateQuantityPrice() {
+    this.articuloselect.total = this.articuloselect.price * this.articuloselect.quantity;
+  }
 }

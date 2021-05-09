@@ -28,34 +28,40 @@
   </div>
   <hr class="line">
 
-
   <div class="container">
     <div class="item">
-      <input [(ngModel)]="articuloselect.name" type="text" placeholder="Ingrese un Producto"
-        class="input input-product">
+      <input [(ngModel)]="articuloselect.name" type="text" placeholder="Ingrese un Producto" class="input input-product"
+        matInput [matAutocomplete]="auto" (input)="filterProducts($event.target.value)">
+      <mat-autocomplete #auto="matAutocomplete" class="action-select-box">
+        <mat-option *ngFor="let product of filteredProducts" [value]="product.name"
+          (onSelectionChange)="updateUnitPrice(product.price)">
+          {{product.name}}
+        </mat-option>
+      </mat-autocomplete>
     </div>
     <div class="item">
       <span>Precio Unitario: </span>
-      <input [(ngModel)]="articuloselect.unitPrice" type="number" placeholder="Precio Unitario"
-        class="input input-price" readonly disabled>
+      <input [(ngModel)]="articuloselect.price" type="number" placeholder="0" class="input input-price" readonly
+        disabled>
     </div>
     <div class="item quantityColumn">
       <span>Cantidad: </span>
-      <input [(ngModel)]="articuloselect.quantity" type="number" placeholder="Cantidad" class="input input-quantity">
+      <input [(ngModel)]="articuloselect.quantity" type="number" placeholder="0" (change)="updateQuantityPrice()"
+        class="input input-quantity">
     </div>
     <div class="item">
       <span>Precio: </span>
-      <input [(ngModel)]="articuloselect.price" type="number" placeholder="Precio" class="input input-price">
+      <input [(ngModel)]="articuloselect.total" type="number" placeholder="0" class="input input-price">
     </div>
     <div class="item">
-      <button mat-raised-button (click)="agregar()" class="button">
+      <button (click)="add()" class="button">
         <a class="action-btn-add">+</a>
       </button>
     </div>
   </div>
 
   <div class="invoicing-container">
-    <table mat-table [dataSource]="sourceData" class="mat-elevation-z8" #tabla1>
+    <table mat-table [dataSource]="sourceData" class="mat-elevation-z8">
 
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Nombre de Producto </th>
@@ -63,9 +69,9 @@
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
 
-      <ng-container matColumnDef="unitPrice">
+      <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef> Precio Unitario </th>
-        <td mat-cell *matCellDef="let articulo"> {{articulo.unitPrice}} </td>
+        <td mat-cell *matCellDef="let articulo"> {{articulo.price}} </td>
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
 
@@ -75,9 +81,9 @@
         <td mat-footer-cell *matFooterCellDef>Total: </td>
       </ng-container>
 
-      <ng-container matColumnDef="price">
+      <ng-container matColumnDef="total">
         <th mat-header-cell *matHeaderCellDef> Precio </th>
-        <td mat-cell *matCellDef="let articulo"> {{articulo.price}} </td>
+        <td mat-cell *matCellDef="let articulo"> {{articulo.total}} </td>
         <td mat-footer-cell *matFooterCellDef> $ {{total}} </td>
       </ng-container>
 
@@ -101,11 +107,10 @@
 
   <div class="button-row">
     <button class="button">
-      <a class="action-btn-emit">Emitir</a>
-    </button>
-    <button class="button">
       <a class="action-btn-cancel">Cancelar</a>
     </button>
+    <button class="button">
+      <a class="action-btn-emit" (click)="submit()">Emitir</a>
+    </button>
   </div>
-
 </section>

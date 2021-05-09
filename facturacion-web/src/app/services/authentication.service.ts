@@ -5,13 +5,15 @@ import { map } from 'rxjs/operators';
 
 import { User } from '../models/user.model';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  public $currentUserSubject: BehaviorSubject<User>;
+  public $currentUserSubject: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private router: Router) {
     this.$currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
   }
 
@@ -29,9 +31,21 @@ export class AuthenticationService {
       }));
   }
 
+  getHeaders() {
+    const headers = {
+      Authorization: `Bearer ${this.$currentUserSubject.getValue().token}`
+    }
+    return headers;
+  }
+
+  getToken() {
+    return JSON.parse(localStorage.getItem('currentUser')).token;
+  }
+
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.$currentUserSubject.next(null);
+    this.router.navigate(['/login']);
   }
 }
