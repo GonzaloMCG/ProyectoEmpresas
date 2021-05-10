@@ -38,10 +38,11 @@
         <th mat-header-cell *matHeaderCellDef> Acción </th>
         <td mat-cell *matCellDef="let j = index;">
           <button mat-raised-button focusable="false" class="button">
-            <a class="menu-item" (click)="openModal()"><img src="assets/images/edit.png"></a>
+            <a class="menu-item" (click)="openModalEdit()"><img src="assets/images/edit.png"></a>
           </button>
+          <span class="space-button"></span>
           <button mat-raised-button focusable="false" class="button">
-            <a class="menu-item"><img src="assets/images/trash.png"></a>
+            <a class="menu-item" (click)="openModalDelete()"><img src="assets/images/trash.png"></a>
           </button>
         </td>
       </ng-container>

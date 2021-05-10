@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { StockComponent } from './stock-page/stock-page.component';
 import { DetailInvoicesModalComponent } from './modals/details-invoices-modal/details-invoices-modal.component';
 import { DetailProductModalComponent } from './modals/details-product-modal/details-product-modal.component';
+import { DeleteProductModalComponent } from './modals/delete-product-modal/delete-product-modal.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { DetailProductModalComponent } from './modals/details-product-modal/deta
     InvoicingPageComponent,
     DetailInvoicesModalComponent,
     DetailProductModalComponent,
+    DeleteProductModalComponent,
     InvoicesEmittedComponent,
     StockComponent,
   ],

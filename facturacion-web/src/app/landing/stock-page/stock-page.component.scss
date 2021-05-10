@@ -46,22 +46,31 @@ section {
   }
 }
 
+.space-button{
+  margin: 1rem;
+}
+
+.header-align-right{
+  display: flex;
+  padding: 21px 0;
+  justify-content: center;
+}
 .mat-column-name {
-  width: 25%;
+  width: 30%;
   text-align: left;
 }
 
 .mat-column-description{
-  width: 25%;
+  width: 30%;
   text-align: left;
 }
 
 .mat-column-stock{
-  text-align: center;
+  text-align: left;
 }
 
 .mat-column-price{
-  text-align: center;
+  text-align: left;
 }
 
 .mat-column-action{
@@ -71,4 +80,5 @@ section {
 .page-number{
   margin-top: 1.7rem;
 }
+
 

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DeleteProductModalComponent } from '../modals/delete-product-modal/delete-product-modal.component';
 import { DetailProductModalComponent } from '../modals/details-product-modal/details-product-modal.component';
 
 
@@ -58,8 +59,21 @@ export class StockComponent {
     this.sourceData.data = this.falsedatos;
   }
 
-  openModal() {
+  openModalEdit() {
     const dialogRef = this.dialog.open(DetailProductModalComponent, {
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        console.log('aceptar');
+        //si le diste cerrar con el aceptar, hacemos algo
+      }
+    });
+  }
+
+  openModalDelete() {
+    const dialogRef = this.dialog.open(DeleteProductModalComponent, {
       autoFocus: false,
     });
 
