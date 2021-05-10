@@ -19,11 +19,20 @@ section {
 }
 
 .filter-div{
-  background-color: $white-color;
-  border-radius: 0.5rem;
-  padding: 0.3rem 1.7rem;
+  display: flex;
+  align-items:center;
+  color: $white-color;
   font-size: 1.6em;
-  width: 20%;
+  .filter-label{
+    padding: 1rem 2rem;
+    background-color: $blue-color;
+  }
+  .filter-input{
+    color: $shadow-black-color;
+    width: 30rem;
+    border:solid 0.1rem $dark-white-color;
+    padding: 0.9rem;
+  }
 }
 
 .mat-form-field {

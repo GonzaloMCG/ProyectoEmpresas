@@ -35,6 +35,7 @@ export class InvoicesEmittedComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.sourceData.paginator = this.paginator;
     this.sourceData.sort = this.sort;
+    this.paginator._intl.itemsPerPageLabel = "Ítems por Página";
   }
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageEvent: PageEvent;
