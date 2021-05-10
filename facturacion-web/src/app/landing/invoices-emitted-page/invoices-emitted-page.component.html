@@ -4,11 +4,13 @@
   </div>
   <hr class="line">
 
-  <div class="filter-div mat-elevation-z2">
-    <mat-form-field>
+  <div class="filter-div">
+    <div class="filter-label">
       <mat-label>Filtrar</mat-label>
+    </div>
+    <div class="filter-input">
       <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese una palabra clave." autocomplete="off">
-    </mat-form-field>
+    </div>
   </div>
 
   <div class="invoicing-container">

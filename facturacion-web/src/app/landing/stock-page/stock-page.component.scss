@@ -1,7 +1,8 @@
 @import 'colors';
 
+
 :host {
-  flex: 0.8;
+  flex: 0.8;  
 }
 
 section {
@@ -54,16 +55,30 @@ section {
   }
 }
 
-.mat-column-date {
+.space-button{
+  margin: 1rem;
+}
+
+.header-align-right{
+  display: flex;
+  padding: 21px 0;
+  justify-content: center;
+}
+.mat-column-name {
+  width: 30%;
   text-align: left;
 }
 
-.mat-column-client{
-  width: 40%;
+.mat-column-description{
+  width: 30%;
   text-align: left;
 }
 
-.mat-column-total{
+.mat-column-stock{
+  text-align: left;
+}
+
+.mat-column-price{
   text-align: left;
 }
 
@@ -74,3 +89,5 @@ section {
 .page-number{
   margin-top: 1.7rem;
 }
+
+

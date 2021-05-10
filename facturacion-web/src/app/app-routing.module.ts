@@ -6,6 +6,7 @@ import { InvoicesEmittedComponent } from './landing/invoices-emitted-page/invoic
 import { InvoicingPageComponent } from './landing/invoicing-page/invoicing-page.component';
 import { LandingComponent } from './landing/landing.component';
 import { MenuPanelComponent } from './landing/menu-panel/menu-panel.component';
+import { StockComponent } from './landing/stock-page/stock-page.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'home-page', pathMatch: 'full' },
       { path: 'home-page', component: InvoicingPageComponent, pathMatch: 'full' },
       { path: 'invoices-emitted-page', component: InvoicesEmittedComponent, pathMatch: 'full' },
+      { path: 'stock-page', component: StockComponent, pathMatch: 'full' },
     ],
   },
   { path: '**', component: ErrorComponent }
