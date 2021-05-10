@@ -1,0 +1,74 @@
+@import 'colors';
+
+
+:host {
+  flex: 0.8;  
+}
+
+section {
+  padding: 0 10rem;
+}
+
+.form-row{
+  font-size: 3em;
+  padding: 3rem 0 1rem;
+}
+
+.line {
+  margin: 2rem 0;
+}
+
+.filter-div{
+  background-color: $white-color;
+  border-radius: 0.5rem;
+  padding: 0.3rem 1.7rem;
+  font-size: 1.6em;
+  width: 20%;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.invoicing-container {
+  display: flex;
+  flex-direction: column;
+  margin:1rem auto;
+  padding: 1rem;
+}
+
+.button{
+  border-radius: 0.9rem;
+
+  &:hover {
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0.5s;
+  }
+}
+
+.mat-column-name {
+  width: 25%;
+  text-align: left;
+}
+
+.mat-column-description{
+  width: 25%;
+  text-align: left;
+}
+
+.mat-column-stock{
+  text-align: center;
+}
+
+.mat-column-price{
+  text-align: center;
+}
+
+.mat-column-action{
+  text-align: center;
+}
+
+.page-number{
+  margin-top: 1.7rem;
+}
+

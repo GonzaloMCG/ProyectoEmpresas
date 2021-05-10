@@ -7,12 +7,14 @@ import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { InvoicesEmittedComponent } from './invoices-emitted-page/invoices-emitted-page.component';
-import { DetailInvoicesModalComponent } from './modals/details-invoices-modal/details-invoices-modal.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CommonModule } from '@angular/common';
+import { StockComponent } from './stock-page/stock-page.component';
+import { DetailInvoicesModalComponent } from './modals/details-invoices-modal/details-invoices-modal.component';
+import { DetailProductModalComponent } from './modals/details-product-modal/details-product-modal.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { CommonModule } from '@angular/common';
     MenuPanelComponent,
     InvoicingPageComponent,
     DetailInvoicesModalComponent,
+    DetailProductModalComponent,
     InvoicesEmittedComponent,
+    StockComponent,
   ],
   exports: [
     LandingComponent,
@@ -37,7 +41,8 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   entryComponents: [
-    DetailInvoicesModalComponent
+    DetailInvoicesModalComponent,
+    DetailProductModalComponent
   ],
   providers: []
 })
