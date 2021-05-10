@@ -17,7 +17,6 @@ export class DetailProductModalComponent {
 
   constructor(public dialogRef: MatDialogRef<DetailProductModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-
   }
 
   close() {

@@ -13,8 +13,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
-    //path: 'landing', canActivate: [AuthGuard], component: LandingComponent,
-    path: 'landing', component: LandingComponent,
+    path: 'landing', canActivate: [AuthGuard], component: LandingComponent,
     children: [
       { path: '', redirectTo: 'home-page', pathMatch: 'full' },
       { path: 'home-page', component: InvoicingPageComponent, pathMatch: 'full' },

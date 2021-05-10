@@ -12,7 +12,6 @@ export class DeleteProductModalComponent {
 
   constructor(public dialogRef: MatDialogRef<DeleteProductModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-
   }
 
   close() {
