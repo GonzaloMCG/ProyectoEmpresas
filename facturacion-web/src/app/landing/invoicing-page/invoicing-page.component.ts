@@ -7,6 +7,7 @@ import { Article } from 'src/app/models/article.model';
 import { ProductService } from 'src/app/services/product.service';
 import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, skipWhile } from 'rxjs/operators';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-invoicing-page',
@@ -15,12 +16,11 @@ import { debounceTime, distinctUntilChanged, skipWhile } from 'rxjs/operators';
 })
 
 export class InvoicingPageComponent implements OnInit {
-  public total = 0;
+  public total = '';
   public columnas: string[] = ['name', 'price', 'quantity', 'total', 'action'];
   public sourceData = new MatTableDataSource<Article>();
   public searchQuery$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   public filteredProducts = []
-  private initialProducts = [];
 
   public invoicingForm = this.formBuilder.group({
     client: ['', Validators.required],
@@ -46,9 +46,6 @@ export class InvoicingPageComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.initialProducts = await this.productService.getAllProducts();
-    this.filteredProducts = this.initialProducts;
-
     const typeahead = this.searchQuery$.asObservable().pipe(
       debounceTime(500),
       distinctUntilChanged()
@@ -61,13 +58,13 @@ export class InvoicingPageComponent implements OnInit {
   async filterProducts(query: string) {
     if (query && query.length >= 3) {
       this.filteredProducts = await this.productService.getFilteredProducts(query);
-    } else {
-      this.resetProductsFilter();
     }
   }
 
   updateUnitPrice(price: number) {
     this.articuloselect.price = price;
+    this.articuloselect.quantity = 1;
+    this.articuloselect.total = price;
   }
 
   openModal() {
@@ -97,16 +94,20 @@ export class InvoicingPageComponent implements OnInit {
     newArticle['price'] = this.articuloselect.price;
     newArticle['quantity'] = this.articuloselect.quantity;
     newArticle['total'] = this.articuloselect.total;
-    data.push(newArticle);
 
-    this.articuloselect = { ...this.emptyArticle };
-    this.sourceData.data = data;
-    this.calcularTotal();
+    if (newArticle.name && newArticle.price && newArticle.quantity & newArticle.total) {
+      data.push(newArticle);
+      this.articuloselect = { ...this.emptyArticle };
+      this.sourceData.data = data;
+      this.calcularTotal();
+    }
   }
 
   calcularTotal() {
-    this.total = 0;
-    this.sourceData.data.map((elem: any) => this.total += elem.total);
+    let totalValue = 0;
+    this.sourceData.data.map((elem: any) => totalValue += elem.total);
+    console.log(totalValue.toFixed(2));
+    this.total = totalValue.toFixed(2);
   }
 
   submit() {
@@ -116,14 +117,11 @@ export class InvoicingPageComponent implements OnInit {
       ...this.invoicingForm,
       invoiceProducts: buildProductList
     }
-  }
-
-  private resetProductsFilter() {
-    this.filteredProducts = this.initialProducts;
-    this.articuloselect = { ...this.emptyArticle };
+    console.log(data);
   }
 
   updateQuantityPrice() {
     this.articuloselect.total = this.articuloselect.price * this.articuloselect.quantity;
+    this.articuloselect.total = Number(this.articuloselect.total.toFixed(2));
   }
 }
