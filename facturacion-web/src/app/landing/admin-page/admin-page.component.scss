@@ -1,0 +1,138 @@
+@import 'colors';
+
+:host {
+  flex: 0.8;
+}
+
+section {
+  padding: 0 10rem;
+}
+
+.form-row{
+  font-size: 3em;
+  padding: 3rem 0 1rem;
+}
+
+.line {
+  margin: 2rem 0;
+}
+
+/*OPERATOR ROL*/
+.form-input{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-atribute{
+  display: flex;
+  flex-direction:column;
+  padding: 0.5rem 2rem;
+  justify-content: flex-end;
+  font-size: 1.5em;
+  color: $grey-color;
+}
+
+.input{
+  height: 2rem;
+  padding: 0.3rem 0.4rem;
+  font-size: 0.9em;
+  border: 0.063rem solid $dark-white-color;
+  border-radius: 0.25rem;
+  outline: 0;
+  width: 20rem;
+}
+
+.button-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  max-width: 70%;
+  margin: auto;
+  margin-top: 3rem;
+}
+
+
+.action-btn-small{
+  color: $white-color;
+  display: inline-block;
+  border-radius: 0.9rem;
+
+  &:hover {
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0.5s;
+  }
+}
+
+.action-btn-save{
+  color: $white-color;
+  display: inline-block;
+  background-color: $blue-color;
+  padding: 0.5rem 7.5rem;
+  font-size: 1.8em;
+  border-radius: 0.2rem;
+
+  &:hover {
+    background-color: $dark-blue-color;
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0.5s;
+  }
+}
+
+/*ADMIN ROL*/
+
+.filter-div{
+  display: flex;
+  align-items:center;
+  color: $white-color;
+  font-size: 1.6em;
+  .filter-label{
+    padding: 1rem 2rem;
+    background-color: $blue-color;
+  }
+  .filter-input{
+    color: $shadow-black-color;
+    width: 30rem;
+    border:solid 0.1rem $dark-white-color;
+    padding: 0.9rem;
+  }
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.invoicing-container {
+  display: flex;
+  flex-direction: column;
+  margin:1rem auto;
+  padding: 1rem;
+}
+
+.space-button{
+  margin: 1rem;
+}
+
+.header-align-right{
+  display: flex;
+  padding: 21px 0;
+  justify-content: center;
+}
+.mat-column-user {
+  width: 30%;
+  text-align: left;
+}
+
+.mat-column-rol{
+  width: 30%;
+  text-align: left;
+}
+
+.mat-column-action{
+  text-align: center;
+}
+
+.page-number{
+  margin-top: 1.7rem;
+}
