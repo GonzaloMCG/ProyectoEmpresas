@@ -3,6 +3,8 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
+import { DeleteItemModalComponent } from "../modals/delete-item-modal/delete-item-modal.component";
+import { UserEditModalComponent } from "../modals/user-edit-modal/user-edit-modal.component";
 
 
 @Component({
@@ -58,8 +60,8 @@ export class AdminComponent {
     this.sourceData.data = this.falsedatos;
   }
 
-  /*openModalEdit() {
-    const dialogRef = this.dialog.open(DetailProductModalComponent, {
+  openModalEdit() {
+    const dialogRef = this.dialog.open(UserEditModalComponent, {
       autoFocus: false,
     });
 
@@ -72,8 +74,11 @@ export class AdminComponent {
   }
 
   openModalDelete() {
-    const dialogRef = this.dialog.open(DeleteProductModalComponent, {
+    const dialogRef = this.dialog.open(DeleteItemModalComponent, {
       autoFocus: false,
+      data: {
+        isUser: true
+      }
     });
 
     dialogRef.afterClosed().subscribe((res) => {
@@ -82,7 +87,7 @@ export class AdminComponent {
         //si le diste cerrar con el aceptar, hacemos algo
       }
     });
-  }*/
+  }
 
 }
 

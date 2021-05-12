@@ -3,6 +3,10 @@
 
 :host {
   flex: 0.8;  
+  
+  ::ng-deep .mat-paginator-page-size {
+    align-items: center !important;
+  }
 }
 
 section {
@@ -33,6 +37,9 @@ section {
     border:solid 0.1rem $dark-white-color;
     padding: 0.9rem;
   }
+  &:hover{
+    cursor:context-menu;
+  }
 }
 
 .mat-form-field {
@@ -52,6 +59,16 @@ section {
   &:hover {
     box-shadow: 0 0.063rem 0.5rem $light-black-color;
     transition: all 0.5s;
+  }
+  .action-btn-small{
+    color: $white-color;
+    display: inline-block;
+    border-radius: 0.9rem;
+  
+    &:hover {
+      box-shadow: 0 0.063rem 0.5rem $light-black-color;
+      transition: all 0.5s;
+    }
   }
 }
 
@@ -84,10 +101,14 @@ section {
 
 .mat-column-action{
   text-align: center;
+  min-width: 10rem;
 }
 
 .page-number{
   margin-top: 1.7rem;
 }
+
+
+
 
 

@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DeleteProductModalComponent } from '../modals/delete-product-modal/delete-product-modal.component';
+import { DeleteItemModalComponent } from '../modals/delete-item-modal/delete-item-modal.component';
 import { DetailProductModalComponent } from '../modals/details-product-modal/details-product-modal.component';
 
 
@@ -74,8 +74,11 @@ export class StockComponent {
   }
 
   openModalDelete() {
-    const dialogRef = this.dialog.open(DeleteProductModalComponent, {
+    const dialogRef = this.dialog.open(DeleteItemModalComponent, {
       autoFocus: false,
+      data: {
+        isUser: false
+      }
     });
 
     dialogRef.afterClosed().subscribe((res) => {

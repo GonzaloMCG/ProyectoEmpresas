@@ -1,10 +1,8 @@
 @import 'colors';
 
-.question-box{
+.product-data{
   width: 45rem;
   font-size: 2em;
-  display: flex;
-  justify-content:center;
 }
 
 .close-button-line{
@@ -25,6 +23,43 @@
   }
 }
 
+.form-input{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-atribute{
+  display: flex;
+  flex-direction:column;
+  padding: 0.5rem 2rem;
+  justify-content: flex-end;
+  font-size: 1.5em;
+  color: $grey-color;
+  font-size: 0.8em;
+}
+
+.input{
+  height: 2rem;
+  padding: 0.3rem 0.4rem;
+  font-size: 0.9em;
+  border: 0.063rem solid $dark-white-color;
+  border-radius: 0.25rem;
+  outline: 0;
+  width: 20rem;
+}
+
+.action-select-box{
+  height: 3rem;
+  padding: 0.3rem 0.4rem;
+  font-size: 0.9em;
+  border: 0.063rem solid $dark-white-color;
+  border-radius: 0.25rem;
+  outline: 0;
+  width: 21rem;
+}
+
 .button-row{
   display: flex;
   align-items: center;
@@ -32,12 +67,14 @@
   max-width: 70%;
   margin: auto;
   margin-top: 4rem;
+  padding-bottom: 1.5rem;
 }
 
 .button{
   color: $white-color;
   background-color: $white-color;
   display: inline-block;
+  font-size: 0.6em;
 
   .action-btn-cancel{
     background-color: $grey-color;
@@ -50,14 +87,14 @@
     }
   }
 
-  .action-btn-delete{
-    background-color: $red-error-color;
+  .action-btn-save{
+    background-color: $blue-color;
     padding: 0.5rem 2.5rem;
     font-size: 1.8em;
     border-radius: 0.2rem;
 
     &:hover {
-      background-color: $shadow-red-color;
+      background-color: $dark-blue-color;
     }
   }
 }

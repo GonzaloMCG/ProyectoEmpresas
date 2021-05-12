@@ -15,8 +15,9 @@ import { CommonModule } from '@angular/common';
 import { DetailInvoicesModalComponent } from './modals/details-invoices-modal/details-invoices-modal.component';
 import { AdminComponent } from './admin-page/admin-page.component';
 import { DetailProductModalComponent } from './modals/details-product-modal/details-product-modal.component';
-import { DeleteProductModalComponent } from './modals/delete-product-modal/delete-product-modal.component';
 import { StockComponent } from './stock-page/stock-page.component';
+import { DeleteItemModalComponent } from './modals/delete-item-modal/delete-item-modal.component';
+import { UserEditModalComponent } from './modals/user-edit-modal/user-edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { StockComponent } from './stock-page/stock-page.component';
     InvoicingPageComponent,
     DetailInvoicesModalComponent,
     DetailProductModalComponent,
-    DeleteProductModalComponent,
+    DeleteItemModalComponent,
+    UserEditModalComponent,
     InvoicesEmittedComponent,
     StockComponent,
     AdminComponent,

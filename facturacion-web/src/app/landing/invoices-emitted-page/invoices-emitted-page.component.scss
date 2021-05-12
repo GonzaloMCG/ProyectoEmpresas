@@ -2,6 +2,10 @@
 
 :host {
   flex: 0.8;
+
+  ::ng-deep .mat-paginator-page-size {
+    align-items: center !important;
+  }
 }
 
 section {
@@ -31,6 +35,9 @@ section {
     width: 30rem;
     border:solid 0.1rem $dark-white-color;
     padding: 0.9rem;
+  }
+  &:hover{
+    cursor:context-menu;
   }
 }
 
