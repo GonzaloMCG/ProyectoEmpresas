@@ -12,10 +12,12 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CommonModule } from '@angular/common';
-import { StockComponent } from './stock-page/stock-page.component';
 import { DetailInvoicesModalComponent } from './modals/details-invoices-modal/details-invoices-modal.component';
+import { AdminComponent } from './admin-page/admin-page.component';
 import { DetailProductModalComponent } from './modals/details-product-modal/details-product-modal.component';
-import { DeleteProductModalComponent } from './modals/delete-product-modal/delete-product-modal.component';
+import { StockComponent } from './stock-page/stock-page.component';
+import { DeleteItemModalComponent } from './modals/delete-item-modal/delete-item-modal.component';
+import { UserEditModalComponent } from './modals/user-edit-modal/user-edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +26,14 @@ import { DeleteProductModalComponent } from './modals/delete-product-modal/delet
     InvoicingPageComponent,
     DetailInvoicesModalComponent,
     DetailProductModalComponent,
-    DeleteProductModalComponent,
+    DeleteItemModalComponent,
+    UserEditModalComponent,
     InvoicesEmittedComponent,
+    Administrator-Page
+    StockComponent,
+    AdminComponent,
     StockComponent
+
   ],
   exports: [
     LandingComponent
