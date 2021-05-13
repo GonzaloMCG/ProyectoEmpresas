@@ -6,7 +6,8 @@
 
   <div class="form-init">
     <div>
-      <input id="name" class="input input-client" type="text" placeholder="Nombre de Cliente" autocomplete="off">
+      <input id="name" class="input input-client" matInput type="text" placeholder="Nombre de Cliente"
+        autocomplete="off">
     </div>
     <div>
       <span>Método de Pago:</span>
@@ -83,7 +84,7 @@
 
       <ng-container matColumnDef="total">
         <th mat-header-cell *matHeaderCellDef> Precio </th>
-        <td mat-cell *matCellDef="let articulo"> {{articulo.total}} </td>
+        <td mat-cell *matCellDef="let articulo"> {{articulo.total}}</td>
         <td mat-footer-cell *matFooterCellDef> $ {{total}} </td>
       </ng-container>
 

@@ -35,6 +35,8 @@
     </form>
   </div>
 
+  <a (click)="displayMessage()">aca para mensajes</a>
+
   <ul *ngIf="users">
     <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
   </ul>

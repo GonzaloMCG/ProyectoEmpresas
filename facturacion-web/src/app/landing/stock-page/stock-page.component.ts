@@ -67,7 +67,6 @@ export class StockComponent {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        console.log('aceptar');
         //si le diste cerrar con el aceptar, hacemos algo
       }
     });
@@ -83,7 +82,6 @@ export class StockComponent {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        console.log('aceptar');
         //si le diste cerrar con el aceptar, hacemos algo
       }
     });
