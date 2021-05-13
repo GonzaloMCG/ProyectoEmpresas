@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MessageService } from './message.service';
 import { MessageObject } from './message.model';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-message-handler',
@@ -14,15 +13,14 @@ export class MessageHandlerComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   visible = false;
 
-  constructor(private messageService: MessageService) { }
+  constructor(public messageService: MessageService) { }
 
   ngOnInit() {
     this.subscription = this.messageService.$messageSubject
-      .pipe(filter(messageObject => !!messageObject.text))
       .subscribe(value => {
-        this.message = value;
         this.visible = true;
-        setTimeout(() => this.visible = false, value.duration);
+        this.message = value;
+        setTimeout(() => this.visible = false, this.message.duration);
       });
   }
 

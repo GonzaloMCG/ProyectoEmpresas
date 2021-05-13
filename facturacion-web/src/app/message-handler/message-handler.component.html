@@ -1,0 +1,8 @@
+<div *ngIf="visible" class="mgs-container">
+  <div class="message-card" [ngClass]="message.type">
+    <img *ngIf="message.type === 'error'">
+    <img *ngIf="message.type === 'success'">
+    <p>{{message.text}}</p>
+    <button (click)="close()">&times;</button>
+  </div>
+</div>

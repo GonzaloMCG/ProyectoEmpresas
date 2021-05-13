@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 import { User } from '../models/user.model';
-import { AuthenticationService } from '../services/authentication.service';
-import { MessageService } from '../message/message.service';
+import { MessageService } from '../message-handler/message.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -28,17 +25,21 @@ export class LoginComponent {
     private messageService: MessageService) {
   }
 
-  submitData() {
-    this.messageService.showError('hola error');
+  onSubmit() {
     const userData = {
       user: this.loginForm.get('userName').value,
       password: this.loginForm.get('userPassword').value,
     }
+
     try {
       this.userService.loginUser(userData);
     } catch (error) {
-      this.messageService.showError(error);
+      // this.messageService.showError(error);
     }
+  }
 
+  displayMessage() {
+    this.messageService.showSuccess('hola success', 3000);
+    // this.messageService.showError('hola error', 3000);
   }
 }

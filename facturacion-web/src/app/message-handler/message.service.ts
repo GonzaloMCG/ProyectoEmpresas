@@ -6,14 +6,14 @@ import { MessageObject } from './message.model';
   providedIn: 'root'
 })
 export class MessageService {
-  public $messageSubject = new BehaviorSubject<MessageObject>(null);
+  public $messageSubject = new BehaviorSubject<MessageObject>(new MessageObject());
 
   constructor() { }
 
   showError(text: string, duration?: number) {
     const message = new MessageObject();
     message.text = text;
-    message.duration = duration ? duration : 5000;
+    message.duration = duration ? duration : 3000;
     message.type = 'error';
     this.$messageSubject.next(message);
   }
@@ -21,7 +21,7 @@ export class MessageService {
   showSuccess(text: string, duration?: number) {
     const message = new MessageObject();
     message.text = text;
-    message.duration = duration ? duration : 500;
+    message.duration = duration ? duration : 3000;
     message.type = 'success';
     this.$messageSubject.next(message);
   }
