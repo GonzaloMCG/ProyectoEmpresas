@@ -65,7 +65,6 @@ export class InvoicesEmittedComponent implements AfterViewInit {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        console.log('aceptar');
         //si le diste cerrar con el aceptar, hacemos algo
       }
     });

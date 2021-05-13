@@ -26,10 +26,10 @@ import { DeleteProductModalComponent } from './modals/delete-product-modal/delet
     DetailProductModalComponent,
     DeleteProductModalComponent,
     InvoicesEmittedComponent,
-    StockComponent,
+    StockComponent
   ],
   exports: [
-    LandingComponent,
+    LandingComponent
   ],
   imports: [
     RouterModule,
