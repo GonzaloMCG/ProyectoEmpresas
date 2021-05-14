@@ -41,15 +41,20 @@
 </div>-->
 
 <mat-toolbar class="mat-elevation-z8">
-  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-    <mat-icon *ngIf="!sidenav.opened">
+  <button class="material-icons" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <!--<span class="material-icons" *ngIf="!sidenav.opened">
+      menu
+    </span>
+    <span class="material-icons" *ngIf="sidenav.opened">
+      close
+    </span>-->
+    <mat-icon class="material-icons" *ngIf="!sidenav.opened">
       menu
     </mat-icon>
-    <mat-icon *ngIf="sidenav.opened">
+    <mat-icon class="material-icons" *ngIf="sidenav.opened">
       close
     </mat-icon>
   </button>
-  Responsive side navigation
 </mat-toolbar>
 
 <mat-sidenav-container>

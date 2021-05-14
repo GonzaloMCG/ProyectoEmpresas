@@ -107,7 +107,7 @@
 
 mat-toolbar {
   background: #004a9f;
-  color: white;
+  color: #001935;
 }
 
 mat-sidenav {
@@ -119,6 +119,11 @@ mat-sidenav {
   border-radius: 10px;
   padding: 16px;
   text-align: center;
+}
+
+.material-icons {
+  background: #004a9f;
+  color: #001935;
 }
 
 .menu-section {
