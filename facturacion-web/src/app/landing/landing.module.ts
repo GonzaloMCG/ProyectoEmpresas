@@ -29,11 +29,8 @@ import { UserEditModalComponent } from './modals/user-edit-modal/user-edit-modal
     DeleteItemModalComponent,
     UserEditModalComponent,
     InvoicesEmittedComponent,
-    Administrator-Page
-    StockComponent,
     AdminComponent,
-    StockComponent
-
+    StockComponent,
   ],
   exports: [
     LandingComponent
