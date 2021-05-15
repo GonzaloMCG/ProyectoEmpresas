@@ -6,6 +6,8 @@
   ::ng-deep .mat-paginator-page-size {
     align-items: center !important;
   }
+
+  *:focus {outline:0;};
 }
 
 section {
@@ -15,17 +17,19 @@ section {
 .form-row{
   font-size: 3em;
   padding: 3rem 0 1rem;
+  user-select:none;
 }
 
 .line {
   margin: 2rem 0;
 }
 
-.filter-div{
+.filter-container{
   display: flex;
   align-items:center;
   color: $white-color;
   font-size: 1.6em;
+  user-select:none;
   .filter-label{
     padding: 1rem 2rem;
     background-color: $blue-color;
@@ -52,12 +56,21 @@ section {
   padding: 1rem;
 }
 
+.mat-elevation-z8{
+  user-select:none;
+}
+
 .button{
   border-radius: 0.9rem;
+  outline: none;
 
   &:hover {
-    box-shadow: 0 0.063rem 0.5rem $light-black-color;
     transition: all 0.5s;
+    filter: brightness(90%);
+  }
+  &:active{
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0 s;
   }
 }
 
@@ -80,4 +93,5 @@ section {
 
 .page-number{
   margin-top: 1.7rem;
+  user-select:none;
 }
