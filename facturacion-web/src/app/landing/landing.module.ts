@@ -5,16 +5,16 @@ import { MenuPanelComponent } from './menu-panel/menu-panel.component';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-// import { InvoicesEmittedComponent } from './invoices-emitted-page/invoices-emitted-page.component';
+import { InvoicesEmittedComponent } from './invoices-emitted-page/invoices-emitted-page.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CommonModule } from '@angular/common';
 import { DetailInvoicesModalComponent } from './modals/details-invoices-modal/details-invoices-modal.component';
-// import { AdminComponent } from './admin-page/admin-page.component';
+import { AdminComponent } from './admin-page/admin-page.component';
 import { DetailProductModalComponent } from './modals/details-product-modal/details-product-modal.component';
-// import { StockComponent } from './stock-page/stock-page.component';
+import { StockComponent } from './stock-page/stock-page.component';
 import { DeleteItemModalComponent } from './modals/delete-item-modal/delete-item-modal.component';
 import { UserEditModalComponent } from './modals/edit-user-modal/edit-user-modal.component';
 import { InvoicingPageComponent } from './invoicing-page/invoicing-page.component';
@@ -30,9 +30,9 @@ import { AddUserModalComponent } from './modals/add-user-modal/add-user-modal.co
     DeleteItemModalComponent,
     UserEditModalComponent,
     AddUserModalComponent,
-    // InvoicesEmittedComponent,
-    // AdminComponent,
-    // StockComponent,
+    InvoicesEmittedComponent,
+    AdminComponent,
+    StockComponent,
   ],
   exports: [
     LandingComponent

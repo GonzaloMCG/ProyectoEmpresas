@@ -1,0 +1,83 @@
+@import 'colors';
+
+:host {
+  flex: 0.8;
+
+  ::ng-deep .mat-paginator-page-size {
+    align-items: center !important;
+  }
+}
+
+section {
+  padding: 0 10rem;
+}
+
+.form-row{
+  font-size: 3em;
+  padding: 3rem 0 1rem;
+}
+
+.line {
+  margin: 2rem 0;
+}
+
+.filter-div{
+  display: flex;
+  align-items:center;
+  color: $white-color;
+  font-size: 1.6em;
+  .filter-label{
+    padding: 1rem 2rem;
+    background-color: $blue-color;
+  }
+  .filter-input{
+    color: $shadow-black-color;
+    width: 30rem;
+    border:solid 0.1rem $dark-white-color;
+    padding: 0.9rem;
+  }
+  &:hover{
+    cursor:context-menu;
+  }
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.invoicing-container {
+  display: flex;
+  flex-direction: column;
+  margin:1rem auto;
+  padding: 1rem;
+}
+
+.button{
+  border-radius: 0.9rem;
+
+  &:hover {
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0.5s;
+  }
+}
+
+.mat-column-date {
+  text-align: left;
+}
+
+.mat-column-client{
+  width: 40%;
+  text-align: left;
+}
+
+.mat-column-total{
+  text-align: left;
+}
+
+.mat-column-action{
+  text-align: center;
+}
+
+.page-number{
+  margin-top: 1.7rem;
+}

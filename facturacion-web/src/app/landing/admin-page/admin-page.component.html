@@ -1,0 +1,84 @@
+<section>
+  <div class="form-row">
+    <h1>Administración</h1>
+  </div>
+  <hr class="line">
+  <div mat-dialog-content class="user-data">
+    <div class="form-input">
+      <div class="item-atribute">
+        <span>Usuario:</span>
+        <input id="name" class="input input-user" type="text" value={{user}} autocomplete="off" disabled>
+      </div>
+      <div class="item-atribute">
+        <span>Contraseña actual:</span>
+        <input id="actualpassword" class="input input-password" type="password" value={{password}} autocomplete="off">
+      </div>
+      <div class="item-atribute">
+        <span>Nueva contraseña:</span>
+        <input id="newpassword" class="input input-password" type="password" value={{password}} autocomplete="off">
+      </div>
+      <div class="item-atribute">
+        <span>Confirmar nueva contraseña:</span>
+        <input id="repeatpassword" class="input input-password" type="password" value={{password}} autocomplete="off">
+      </div>
+    </div>
+    <div class="button-row">
+      <button class="button">
+        <a class="action-btn-save">Guardar</a>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <hr class="line">
+  <div class="filter-adduser">
+    <div class="filter-div">
+      <div class="filter-label">
+        <mat-label>Filtrar</mat-label>
+      </div>
+      <div class="filter-input">
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese una palabra clave." autocomplete="off">
+      </div>
+    </div>
+    <div class="add-btn">
+      <button class="button">
+        <a class="action-btn-add" (click)="openModalAdd()">+</a>
+      </button>
+    </div>
+  </div>
+
+  <div class="invoicing-container">
+    <table mat-table [dataSource]="sourceData" class="mat-elevation-z8" matSort>
+
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+        <td mat-cell *matCellDef="let articulo"> {{articulo.user}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="rol">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
+        <td mat-cell *matCellDef="let articulo"> {{articulo.rol}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Acción </th>
+        <td mat-cell *matCellDef="let j = index;">
+          <button mat-raised-button focusable="false" class="action-btn-small">
+            <a class="action-btn-small" (click)="openModalEdit()"><img src="assets/images/edit.png"></a>
+          </button>
+          <button mat-raised-button focusable="false" class="action-btn-small">
+            <a class="action-btn-small" (click)="openModalDelete()"><img src="assets/images/trash.png"></a>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+    </table>
+    <mat-paginator class="page-number" [length]="100" [pageSize]="10" [pageSizeOptions]="pageSizeOptions"
+      (page)="pageEvent = $event">
+    </mat-paginator>
+
+  </div>
+</section>
