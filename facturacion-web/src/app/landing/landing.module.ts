@@ -16,8 +16,9 @@ import { AdminComponent } from './admin-page/admin-page.component';
 import { DetailProductModalComponent } from './modals/details-product-modal/details-product-modal.component';
 import { StockComponent } from './stock-page/stock-page.component';
 import { DeleteItemModalComponent } from './modals/delete-item-modal/delete-item-modal.component';
-import { UserEditModalComponent } from './modals/user-edit-modal/user-edit-modal.component';
+import { UserEditModalComponent } from './modals/edit-user-modal/edit-user-modal.component';
 import { InvoicingPageComponent } from './invoicing-page/invoicing-page.component';
+import { AddUserModalComponent } from './modals/add-user-modal/add-user-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { InvoicingPageComponent } from './invoicing-page/invoicing-page.componen
     DetailProductModalComponent,
     DeleteItemModalComponent,
     UserEditModalComponent,
+    AddUserModalComponent,
     InvoicesEmittedComponent,
     AdminComponent,
     StockComponent,

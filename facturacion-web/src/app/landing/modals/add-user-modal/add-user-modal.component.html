@@ -2,27 +2,26 @@
   <div class="close-button-line">
     <button mat-dialog-close class="cross">&times;</button>
   </div>
-  <div mat-dialog-content class="product-data">
+  <div mat-dialog-content class="new-user-data">
 
     <div class="form-input">
       <div class="item-atribute">
         <span>Usuario:</span>
-        <input id="name" class="input input-user" type="text" value={{user}} autocomplete="off" disabled>
+        <input id="name" class="input input-user" type="text" autocomplete="off">
       </div>
       <div class="item-atribute">
         <span>Rol:</span>
         <select class="action-select-box">
-          <option value="0" class="select-option">Administrador</option>
-          <option value="1" class="select-option">Operador</option>}
+          <option [value]="item" *ngFor="let item of rolList">{{item}}</option>
         </select>
       </div>
       <div class="item-atribute">
         <span>Contraseña:</span>
-        <input id="password" class="input input-password" type="password" value={{password}} autocomplete="off">
+        <input id="password" class="input input-password" type="password" autocomplete="off">
       </div>
       <div class="item-atribute">
-        <span>Confirmar Contraseña:</span>
-        <input id="repeatpassword" class="input input-password" type="password" value={{password}} autocomplete="off">
+        <span>Confirmar contraseña:</span>
+        <input id="repeatpassword" class="input input-password" type="password" autocomplete="off">
       </div>
     </div>
 

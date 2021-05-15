@@ -3,8 +3,9 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
+import { AddUserModalComponent } from "../modals/add-user-modal/add-user-modal.component";
 import { DeleteItemModalComponent } from "../modals/delete-item-modal/delete-item-modal.component";
-import { UserEditModalComponent } from "../modals/user-edit-modal/user-edit-modal.component";
+import { UserEditModalComponent } from "../modals/edit-user-modal/edit-user-modal.component";
 
 
 @Component({
@@ -88,6 +89,23 @@ export class AdminComponent {
       }
     });
   }
+
+  openModalAdd() {
+    const dialogRef = this.dialog.open(AddUserModalComponent, {
+      autoFocus: false,
+      data: {
+        isUser: true
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        console.log('aceptar');
+        //si le diste cerrar con el aceptar, hacemos algo
+      }
+    });
+  }
+
 
 }
 
