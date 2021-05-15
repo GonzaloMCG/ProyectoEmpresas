@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { InvoicingPageComponent } from './invoicing-page/invoicing-page.component';
 import { LandingComponent } from './landing.component';
 import { MenuPanelComponent } from './menu-panel/menu-panel.component';
 import { MatTableModule } from '@angular/material/table';
@@ -18,6 +17,7 @@ import { DetailProductModalComponent } from './modals/details-product-modal/deta
 import { StockComponent } from './stock-page/stock-page.component';
 import { DeleteItemModalComponent } from './modals/delete-item-modal/delete-item-modal.component';
 import { UserEditModalComponent } from './modals/user-edit-modal/user-edit-modal.component';
+import { InvoicingPageComponent } from './invoicing-page/invoicing-page.component';
 
 @NgModule({
   declarations: [

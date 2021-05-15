@@ -31,7 +31,7 @@ justify-content: space-between;
   padding: 1rem 0;
 }
 
-.blue-div{
+.blue-container{
   display: flex;
   align-items:center;
   color: $white-color;
@@ -40,7 +40,7 @@ justify-content: space-between;
   cursor:context-menu;
   user-select:none;
   
-  .blue-label{
+  .sub-title{
     padding: 1rem;
     background-color: $blue-color;
   }

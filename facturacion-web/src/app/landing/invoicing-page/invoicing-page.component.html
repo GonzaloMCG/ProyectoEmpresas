@@ -5,15 +5,15 @@
   <hr class="line">
   <div class="first-line-invoice">
 
-    <div class="blue-div">
-      <div class="blue-label">
+    <div class="blue-container">
+      <div class="sub-title">
         <span>Nombre del cliente</span>
       </div>
       <input class="blue-input-name" matInput placeholder="Ingrese el nombre del Cliente" autocomplete="off">
     </div>
 
-    <div class="blue-div">
-      <div class="blue-label">
+    <div class="blue-container">
+      <div class="sub-title">
         <span>Método de Pago</span>
       </div>
       <select class="action-select-box">
@@ -24,8 +24,8 @@
       </select>
     </div>
 
-    <div class="blue-div">
-      <div class="blue-label">
+    <div class="blue-container">
+      <div class="sub-title">
         <span>Moneda</span>
       </div>
       <select class="action-select-box">
@@ -39,7 +39,7 @@
 
   <div class="container">
 
-    <div class="blue-div">
+    <div class="blue-container">
       <input [(ngModel)]="articuloselect.name" type="text" placeholder="Ingrese un Producto" class="input-product"
         matInput [matAutocomplete]="auto" (input)="filterProducts($event.target.value)">
       <mat-autocomplete #auto="matAutocomplete" class="action-select-box">
@@ -50,7 +50,7 @@
       </mat-autocomplete>
     </div>
 
-    <div class="blue-div">
+    <div class="blue-container">
       <div class="simple-label">
         <span>Precio Unitario:</span>
       </div>
@@ -59,7 +59,7 @@
     </div>
 
     <div class="item">
-      <div class="blue-div">
+      <div class="blue-container">
         <div class="simple-label">
           <span>Cantidad:</span>
         </div>
@@ -69,7 +69,7 @@
     </div>
 
     <div class="item">
-      <div class="blue-div">
+      <div class="blue-container">
         <div class="simple-label">
           <span>Precio:</span>
         </div>
