@@ -1,0 +1,35 @@
+<section>
+  <div class="close-button-line">
+    <button mat-dialog-close class="cross">&times;</button>
+  </div>
+  <div mat-dialog-content class="product-data">
+
+    <div class="form-input">
+      <div class="item-atribute">
+        <span>Nombre:</span>
+        <input id="name" class="input input-name" type="text" value={{name}} autocomplete="off">
+      </div>
+      <div class="item-atribute">
+        <span>Descripción:</span>
+        <input id="description" class="input input-description" type="text" value={{description}} autocomplete="off">
+      </div>
+      <div class="item-atribute">
+        <span>Unidades en stock:</span>
+        <input id="count" class="input input-stock" type="number" value={{stock}} autocomplete="off">
+      </div>
+      <div class="item-atribute">
+        <span>Precio:</span>
+        <input id="price" class="input input-price" type="number" value={{price}} autocomplete="off">
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button class="button">
+        <a class="action-btn-cancel">Cancelar</a>
+      </button>
+      <button class="button">
+        <a class="action-btn-save">Guardar</a>
+      </button>
+    </div>
+  </div>
+</section>
