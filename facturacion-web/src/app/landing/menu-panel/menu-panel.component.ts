@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -12,11 +11,9 @@ export class MenuPanelComponent {
   public userName = "No Name";
   currentDate = new Date();
 
-  constructor(private authenticationService: AuthenticationService,
-    private router: Router) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   logout() {
     this.authenticationService.logout();
-    this.router.navigate(['/login']);
   }
 }
