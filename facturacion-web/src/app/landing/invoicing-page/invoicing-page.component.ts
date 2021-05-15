@@ -112,7 +112,7 @@ export class InvoicingPageComponent implements OnInit {
     this.total = totalValue.toFixed(2);
   }
 
-  submit() {
+  submitInvoice() {
     const buildProductList = this.sourceData.data;
 
     const data = {

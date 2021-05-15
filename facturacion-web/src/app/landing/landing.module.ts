@@ -35,6 +35,9 @@ import { EditProductModalComponent } from './modals/edit-product-modal/edit-prod
     UserEditModalComponent,
     AddUserModalComponent,
     AddProductModalComponent,
+    InvoicesEmittedComponent,
+    AdminComponent,
+    StockComponent
   ],
   exports: [
     LandingComponent

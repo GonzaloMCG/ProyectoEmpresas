@@ -14,6 +14,7 @@ export class InvoiceService {
   constructor(private http: HttpClient,
     private authenticationService: AuthenticationService) { }
 
+  //probar endpoint
   async newInvoice(data: any) {
     const headers = this.authenticationService.getHeaders();
     const newInvoice = await this.http.post(`${environment.apiUrl}/invoices`, { data }, { headers });
@@ -27,6 +28,7 @@ export class InvoiceService {
     }
   }
 
+  //probar endpoint
   async getAll(): Promise<any> {
     const headers = this.authenticationService.getHeaders();
     const invoices = await this.http.get(`${environment.apiUrl}/invoices`, { headers }).toPromise()
@@ -37,18 +39,21 @@ export class InvoiceService {
     return invoices;
   }
 
+  //probar endpoint
   async getInvoicing(id: number): Promise<any> {
     const headers = this.authenticationService.getHeaders();
     return await this.http.get(`${environment.apiUrl}/invoices/${id}`, { headers }).toPromise()
       .catch(error => Promise.reject(error));
   }
 
+  //probar endpoint
   async getClientInvocing(clientName: string): Promise<any> {
     const headers = this.authenticationService.getHeaders();
     return await this.http.get(`${environment.apiUrl}/invoices?client=${clientName}`, { headers }).toPromise()
       .catch(error => Promise.reject(error));
   }
 
+  //probar endpoint
   async getInvocingDetails(id: string): Promise<any> {
     const headers = this.authenticationService.getHeaders();
     return await this.http.get(`${environment.apiUrl}/invoices/detail/${id}`, { headers }).toPromise()
