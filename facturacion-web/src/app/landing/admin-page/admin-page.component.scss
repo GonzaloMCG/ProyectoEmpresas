@@ -101,7 +101,7 @@ section {
   justify-content: space-between;
 }
 
-.filter-div{
+.filter-container{
   display: flex;
   color: $white-color;
   font-size: 1.6em;
@@ -142,10 +142,6 @@ section {
       transition: all 0s;
     }
   }
-}
-
-.mat-form-field {
-  width: 100%;
 }
 
 .invoicing-container {
