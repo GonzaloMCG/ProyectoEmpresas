@@ -10,11 +10,15 @@
         <input id="name" class="input input-user" type="text" value={{user}} autocomplete="off" disabled>
       </div>
       <div class="item-atribute">
-        <span>Contraseña:</span>
-        <input id="password" class="input input-password" type="password" value={{password}} autocomplete="off">
+        <span>Contraseña actual:</span>
+        <input id="actualpassword" class="input input-password" type="password" value={{password}} autocomplete="off">
       </div>
       <div class="item-atribute">
-        <span>Confirmar Contraseña:</span>
+        <span>Nueva contraseña:</span>
+        <input id="newpassword" class="input input-password" type="password" value={{password}} autocomplete="off">
+      </div>
+      <div class="item-atribute">
+        <span>Confirmar nueva contraseña:</span>
         <input id="repeatpassword" class="input input-password" type="password" value={{password}} autocomplete="off">
       </div>
     </div>
@@ -27,16 +31,20 @@
 </section>
 
 <section>
-  <div class="form-row">
-    <h1>Administración</h1>
-  </div>
   <hr class="line">
-  <div class="filter-div">
-    <div class="filter-label">
-      <mat-label>Filtrar</mat-label>
+  <div class="filter-adduser">
+    <div class="filter-div">
+      <div class="filter-label">
+        <mat-label>Filtrar</mat-label>
+      </div>
+      <div class="filter-input">
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese una palabra clave." autocomplete="off">
+      </div>
     </div>
-    <div class="filter-input">
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese una palabra clave." autocomplete="off">
+    <div class="add-btn">
+      <button class="button">
+        <a class="action-btn-add" (click)="openModalAdd()">+</a>
+      </button>
     </div>
   </div>
 

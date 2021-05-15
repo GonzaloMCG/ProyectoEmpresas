@@ -6,6 +6,8 @@
   ::ng-deep .mat-paginator-page-size {
     align-items: center !important;
   }
+  
+  *:focus {outline:0;};
 }
 
 section {
@@ -15,6 +17,7 @@ section {
 .form-row{
   font-size: 3em;
   padding: 3rem 0 1rem;
+  user-select:none
 }
 
 .line {
@@ -36,6 +39,7 @@ section {
   justify-content: flex-end;
   font-size: 1.5em;
   color: $grey-color;
+  user-select:none;
 }
 
 .input{
@@ -43,6 +47,7 @@ section {
   width: 25rem;
   border: solid 0.1rem $dark-white-color;
   padding: 0.9rem;
+  outline: none;
 }
 
 .button-row{
@@ -54,15 +59,19 @@ section {
   margin-top: 3rem;
 }
 
-
 .action-btn-small{
   color: $white-color;
   display: inline-block;
   border-radius: 0.9rem;
+  outline: none;
 
   &:hover {
-    box-shadow: 0 0.063rem 0.5rem $light-black-color;
     transition: all 0.5s;
+    filter: brightness(90%);
+  }
+  &:active{
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0 s;
   }
 }
 
@@ -74,21 +83,29 @@ section {
   font-size: 1.8em;
   border-radius: 0.2rem;
   width: 12rem;
-
+  user-select:none;
   &:hover {
     background-color: $dark-blue-color;
-    box-shadow: 0 0.063rem 0.5rem $light-black-color;
     transition: all 0.5s;
+  }
+  &:active{
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0s;
   }
 }
 
 /*ADMIN ROL*/
 
+.filter-adduser{
+  display: flex;
+  justify-content: space-between;
+}
+
 .filter-div{
   display: flex;
-  align-items:center;
   color: $white-color;
   font-size: 1.6em;
+  
   .filter-label{
     padding: 1rem 2rem;
     background-color: $blue-color;
@@ -100,7 +117,30 @@ section {
     padding: 0.9rem;
   }
   &:hover{
-    cursor:context-menu;
+    cursor: context-menu;
+  }
+}
+
+.add-btn{
+  display: flex;
+  min-width: 5rem;
+
+  .action-btn-add{
+    user-select:none;
+    color: $white-color;
+    background-color: $dark-green-color;
+    padding: 1rem 1.5rem;
+    font-size: 1.35em;
+    border-radius: 0.4rem;
+
+    &:hover {
+      background-color: $green-color;
+      transition: all 0.5s;
+    }
+    &:active{
+      box-shadow: 0 0.063rem 0.3rem $light-black-color;
+      transition: all 0s;
+    }
   }
 }
 
@@ -115,11 +155,16 @@ section {
   padding: 1rem;
 }
 
+.mat-elevation-z8{
+  user-select:none;
+}
+
 .header-align-right{
   display: flex;
   padding: 2.1rem;
   justify-content: center;
 }
+
 .mat-column-user {
   width: 30%;
   text-align: left;
@@ -132,9 +177,11 @@ section {
 
 .mat-column-action{
   text-align: center;
-  min-width: 10rem;
+  min-width: 20rem;
 }
 
 .page-number{
   margin-top: 1.7rem;
+  user-select:none;
 }
+
