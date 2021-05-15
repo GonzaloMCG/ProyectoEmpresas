@@ -1,0 +1,37 @@
+<section>
+  <div class="close-button-line">
+    <button mat-dialog-close class="cross">&times;</button>
+  </div>
+  <div mat-dialog-content class="new-user-data">
+
+    <div class="form-input">
+      <div class="item-atribute">
+        <span>Usuario:</span>
+        <input id="name" class="input input-user" type="text" autocomplete="off">
+      </div>
+      <div class="item-atribute">
+        <span>Rol:</span>
+        <select class="action-select-box">
+          <option [value]="item" *ngFor="let item of rolList">{{item}}</option>
+        </select>
+      </div>
+      <div class="item-atribute">
+        <span>Contraseña:</span>
+        <input id="password" class="input input-password" type="password" autocomplete="off">
+      </div>
+      <div class="item-atribute">
+        <span>Confirmar contraseña:</span>
+        <input id="repeatpassword" class="input input-password" type="password" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button class="button">
+        <a class="action-btn-cancel">Cancelar</a>
+      </button>
+      <button class="button">
+        <a class="action-btn-save">Guardar</a>
+      </button>
+    </div>
+  </div>
+</section>

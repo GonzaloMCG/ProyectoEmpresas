@@ -1,0 +1,63 @@
+<section>
+  <div class="close-button-line">
+    <button mat-dialog-close class="cross">&times;</button>
+  </div>
+  <div mat-dialog-content class="invoice-data">
+    <div class="form-init">
+      <div>
+        <input id="name" class="input input-client" type="text" placeholder="Nombre de Cliente" autocomplete="off"
+          disabled readonly>
+      </div>
+      <div>
+        <span>Método de Pago: {{paymentMethod}}</span>
+      </div>
+      <div>
+        <span>Moneda: {{currency}}</span>
+      </div>
+      <div>
+        <span>Fecha: {{date}}</span>
+      </div>
+    </div>
+    <hr class="line">
+
+    <div class="invoicing-container">
+      <table mat-table [dataSource]="sourceData" class="mat-elevation-z8" #tabla1>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nombre de Producto </th>
+          <td mat-cell *matCellDef="let articulo"> {{articulo.name}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="unitPrice">
+          <th mat-header-cell *matHeaderCellDef> Precio Unitario </th>
+          <td mat-cell *matCellDef="let articulo"> {{articulo.unitPrice}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+          <td mat-cell *matCellDef="let articulo"> {{articulo.quantity}} </td>
+          <td mat-footer-cell *matFooterCellDef>Total: </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Precio </th>
+          <td mat-cell *matCellDef="let articulo"> {{articulo.price}} </td>
+          <td mat-footer-cell *matFooterCellDef> $ {{total}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+        <tr mat-footer-row *matFooterRowDef="columnas"></tr>
+      </table>
+    </div>
+    <hr class="line">
+
+  </div>
+  <div mat-dialog-actions>
+    <button class="button">
+      <a class="action-btn-emit">Emitir</a>
+    </button>
+  </div>
+</section>
