@@ -1,3 +1,5 @@
+@import 'colors';
+
 .mgs-container {
   display: flex;
   justify-content: center;
@@ -14,20 +16,21 @@
 
 .message-card {
   align-items: center;
-  background-color: white;
-  border: 0.1rem solid red;
-  border-radius: 1rem;
-
+  background-color: $red-error-color;
+  color: $white-color;
   display: flex;
   min-width: 26rem;
   max-width: 50rem;
   justify-content: space-between;
+  align-items: center;
   padding: 0 1.5rem;
-  height: 5rem;
+  height: 5.5rem;
+  font-size: 1.3em;
+  border-radius: 0.8rem;
 
   button {
     background-color: transparent;
-    color: black;
+    color: $white-color;
     padding: 1rem;
     font-size: 2em;
     line-height: 0.8;
@@ -35,7 +38,7 @@
   }
 
   &.success {
-    background-color: white;
-    border-color: green;
+    background-color: $success-color;
+    color: $white-color;
   }
 }
