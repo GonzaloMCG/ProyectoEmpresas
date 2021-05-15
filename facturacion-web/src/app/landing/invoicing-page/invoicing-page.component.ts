@@ -84,7 +84,7 @@ export class InvoicingPageComponent implements OnInit {
     newArticle['quantity'] = this.articuloselect.quantity;
     newArticle['total'] = this.articuloselect.total;
 
-    if (newArticle.name && newArticle.price && newArticle.quantity & newArticle.total) {
+    if (newArticle.name && newArticle.price && newArticle.quantity && newArticle.total) {
       data.push(newArticle);
       this.articuloselect = { ...this.emptyArticle };
       this.sourceData.data = data;
