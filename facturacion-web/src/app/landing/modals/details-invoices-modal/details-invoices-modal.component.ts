@@ -13,6 +13,7 @@ export class DetailInvoicesModalComponent {
 
   columnas: string[] = ['name', 'unitPrice', 'quantity', 'price'];
   sourceData = new MatTableDataSource();
+  public client = "Nombre de empresa X"
   public paymentMethod = "Efectivo";
   public currency = "Pesos";
   public total = "999";

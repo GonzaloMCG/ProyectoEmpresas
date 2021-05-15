@@ -2,11 +2,13 @@
 
 
 :host {
-  flex: 0.8;  
-  
+  flex: 0.8;
+
   ::ng-deep .mat-paginator-page-size {
     align-items: center !important;
   }
+  
+  *:focus {outline:0;};
 }
 
 section {
@@ -16,17 +18,25 @@ section {
 .form-row{
   font-size: 3em;
   padding: 3rem 0 1rem;
+  user-select:none;
 }
 
 .line {
   margin: 2rem 0;
 }
 
-.filter-div{
+.filter-additem{
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-container{
   display: flex;
   align-items:center;
   color: $white-color;
   font-size: 1.6em;
+  user-select:none;
+
   .filter-label{
     padding: 1rem 2rem;
     background-color: $blue-color;
@@ -42,9 +52,46 @@ section {
   }
 }
 
-.mat-form-field {
-  width: 100%;
+.action-btn-small{
+  color: $white-color;
+  display: inline-block;
+  border-radius: 0.9rem;
+  outline: none;
+
+  &:hover {
+    transition: all 0.5s;
+    filter: brightness(90%);
+  }
+  &:active{
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0 s;
+  }
 }
+
+.add-btn{
+  display: flex;
+  min-width: 5rem;
+
+  .action-btn-add{
+    user-select:none;
+    color: $white-color;
+    background-color: $dark-green-color;
+    padding: 1rem 1.5rem;
+    font-size: 1.35em;
+    border-radius: 0.4rem;
+
+    &:hover {
+      background-color: $green-color;
+      transition: all 0.5s;
+    }
+    &:active{
+      box-shadow: 0 0.063rem 0.3rem $light-black-color;
+      transition: all 0s;
+    }
+  }
+}
+
+
 
 .invoicing-container {
   display: flex;
@@ -53,27 +100,8 @@ section {
   padding: 1rem;
 }
 
-.button{
-  border-radius: 0.9rem;
-
-  &:hover {
-    box-shadow: 0 0.063rem 0.5rem $light-black-color;
-    transition: all 0.5s;
-  }
-  .action-btn-small{
-    color: $white-color;
-    display: inline-block;
-    border-radius: 0.9rem;
-  
-    &:hover {
-      box-shadow: 0 0.063rem 0.5rem $light-black-color;
-      transition: all 0.5s;
-    }
-  }
-}
-
-.space-button{
-  margin: 1rem;
+.mat-elevation-z8{
+  user-select:none;
 }
 
 .header-align-right{
@@ -106,8 +134,8 @@ section {
 
 .page-number{
   margin-top: 1.7rem;
+  user-select:none;
 }
-
 
 
 

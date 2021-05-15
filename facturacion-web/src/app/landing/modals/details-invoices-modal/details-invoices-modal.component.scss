@@ -1,7 +1,7 @@
 @import 'colors';
 
-.invoice-data{
-  width: 80rem;
+:host{
+  *:focus {outline:0;};
 }
 
 .close-button-line{
@@ -15,15 +15,27 @@
   padding: 0.4rem 0.9rem;
   border-radius: 0.4rem;
   font-size: 1.7em;
+  user-select:none;
+  outline: none;
 
   &:hover {
-    background-color: $dark-red-color;
+    background-color: $shadow-red-color;
+    transition: all 0.5s;
+  }
+  &:active{
     box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0s;
   }
 }
 
+.invoice-data{
+  margin-top: 2rem;
+  width: 80rem;
+  user-select:none;
+}
+
 .line {
-  margin: 1rem 0;
+  margin: 1rem;
 }
 
 .form-init{
@@ -41,17 +53,8 @@
   padding: 1rem;
 }
 
-.input {
-  height: 3rem;
-  padding: 0.063rem 1.5rem;
-  font-size: 0.875em;
-  border: 0.063rem solid $dark-white-color;
-  border-radius: 0.25rem;
-  outline: 0;
-
-  &.input-client {
-    width: 20rem;
-  }
+.mat-elevation-z8{
+  user-select:none;
 }
 
 .mat-column-name {
@@ -84,14 +87,15 @@
     padding: 0.5rem 2.5rem;
     font-size: 1.8em;
     border-radius: 0.2rem;
+    user-select:none;
 
     &:hover {
       background-color: $dark-blue-color;
+      transition: all 0.5s;
     }
-  }
-
-  &:hover {
-    box-shadow: 0 0.63rem 1rem $light-black-color;
-    transition: all 0.5s;
+    &:active{
+      box-shadow: 0 0.063rem 0.5rem $light-black-color;
+      transition: all 0s;
+    }
   }
 }

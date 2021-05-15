@@ -3,19 +3,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
-  selector: 'app-details-product-modal',
-  templateUrl: 'details-product-modal.component.html',
-  styleUrls: ['./details-product-modal.component.scss']
+  selector: 'app-edit-product-modal',
+  templateUrl: 'edit-product-modal.component.html',
+  styleUrls: ['./edit-product-modal.component.scss']
 })
 
-export class DetailProductModalComponent {
+export class EditProductModalComponent {
 
   public name = "Nombre del producto";
   public description = "Descripción del Producto";
   public stock = "999";
   public price = "125.99";
 
-  constructor(public dialogRef: MatDialogRef<DetailProductModalComponent>,
+  constructor(public dialogRef: MatDialogRef<EditProductModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 

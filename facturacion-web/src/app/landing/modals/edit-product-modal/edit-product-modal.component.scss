@@ -4,11 +4,6 @@
   *:focus {outline:0;};
 }
 
-.user-data{
-  width: 45rem;
-  font-size: 2em;
-}
-
 .close-button-line{
   display: flex;
   justify-content: flex-end;
@@ -31,6 +26,11 @@
     box-shadow: 0 0.063rem 0.5rem $light-black-color;
     transition: all 0s;
   }
+}
+
+.product-data{
+  width: 45rem;
+  font-size: 2em;
 }
 
 .form-input{
@@ -59,16 +59,6 @@
   border-radius: 0.25rem;
   outline: 0;
   width: 20rem;
-}
-
-.action-select-box{
-  height: 3rem;
-  padding: 0.3rem 0.4rem;
-  font-size: 0.9em;
-  border: 0.063rem solid $dark-white-color;
-  border-radius: 0.25rem;
-  outline: 0;
-  width: 21rem;
 }
 
 .button-row{
