@@ -7,11 +7,11 @@
 
       <div class="form-row">
         <div class="input-container"
-          [class.invalid-input-container]="loginForm.get('userName').errors?.required && loginForm.get('userName').touched">
+          [class.invalid-input-container]="loginForm.get('userName').errors?.required && submitted">
           <input class="input-text" type="text" placeholder="Usuario" formControlName="userName">
         </div>
         <div class="error-msg-container">
-          <p *ngIf="loginForm.get('userName').errors?.required && loginForm.get('userName').touched" class="error-msg">
+          <p *ngIf="loginForm.get('userName').errors?.required && submitted" class="error-msg">
             El usuario no puede ser vacío
           </p>
         </div>
@@ -19,23 +19,20 @@
 
       <div class="form-row">
         <div class="input-container"
-          [class.invalid-input-container]="loginForm.get('userPassword').errors?.required && loginForm.get('userPassword').touched">
+          [class.invalid-input-container]="loginForm.get('userPassword').errors?.required && submitted">
           <input class="input-text" type="password" placeholder="Contraseña" formControlName="userPassword">
         </div>
         <div class="error-msg-container">
-          <p *ngIf="loginForm.get('userPassword').errors?.required && loginForm.get('userPassword').touched"
-            class="error-msg">
+          <p *ngIf="loginForm.get('userPassword').errors?.required && submitted" class="error-msg">
             La contraseña no puede ser vacía
           </p>
         </div>
       </div>
-      <button class="login-btn" (click)="onSubmit()" [disabled]="loginForm.invalid">
+      <button class="login-btn" (click)="onSubmit()">
         Ingresar
       </button>
     </form>
   </div>
-
-  <a (click)="displayMessage()">aca para mensajes</a>
 
   <ul *ngIf="users">
     <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
