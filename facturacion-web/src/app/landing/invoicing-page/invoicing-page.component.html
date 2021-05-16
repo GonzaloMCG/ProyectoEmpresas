@@ -3,38 +3,41 @@
     <h1>Nueva Factura</h1>
   </div>
   <hr class="line">
-  <div class="first-line-invoice">
+  <form [formGroup]="invoicingForm">
+    <div class="first-line-invoice">
 
-    <div class="blue-container">
-      <div class="sub-title">
-        <span>Nombre del cliente</span>
+      <div class="blue-container">
+        <div class="sub-title">
+          <span>Nombre del cliente</span>
+        </div>
+        <input class="blue-input-name" matInput placeholder="Ingrese el nombre del Cliente" autocomplete="off"
+          formControlName="client">
       </div>
-      <input class="blue-input-name" matInput placeholder="Ingrese el nombre del Cliente" autocomplete="off">
-    </div>
 
-    <div class="blue-container">
-      <div class="sub-title">
-        <span>Método de Pago</span>
+      <div class="blue-container">
+        <div class="sub-title">
+          <span>Método de Pago</span>
+        </div>
+        <select class="action-select-box" formControlName="paymentMethod">
+          <option [selected]="true" value="efectivo" class="select-option">Efectivo</option>
+          <option value="credito" class="select-option">Crédito</option>
+          <option value="debito" class="select-option">Débito</option>
+          <option value="cheque" class="select-option">Cheque</option>
+        </select>
       </div>
-      <select class="action-select-box">
-        <option value="0" class="select-option">Efectivo</option>
-        <option value="1" class="select-option">Crédito</option>
-        <option value="3" class="select-option">Débito</option>
-        <option value="4" class="select-option">Cheque</option>
-      </select>
-    </div>
 
-    <div class="blue-container">
-      <div class="sub-title">
-        <span>Moneda</span>
+      <div class="blue-container">
+        <div class="sub-title">
+          <span>Moneda</span>
+        </div>
+        <select class="action-select-box" formControlName="currency">
+          <option [selected]="true" value="pesos">Pesos</option>
+          <option value="dolares">Dólares</option>
+          <option value="reales">Reales</option>
+        </select>
       </div>
-      <select class="action-select-box">
-        <option value="0">Pesos</option>
-        <option value="1">Dólares</option>
-        <option value="2">Reales</option>
-      </select>
     </div>
-  </div>
+  </form>
   <hr class="line">
 
   <div class="container">
@@ -44,7 +47,7 @@
         matInput [matAutocomplete]="auto" (input)="filterProducts($event.target.value)">
       <mat-autocomplete #auto="matAutocomplete" class="action-select-box">
         <mat-option *ngFor="let product of filteredProducts" [value]="product.name"
-          (onSelectionChange)="updateUnitPrice(product.price)">
+          (onSelectionChange)="updateUnitPrice(product)">
           {{product.name}}
         </mat-option>
       </mat-autocomplete>
@@ -133,7 +136,7 @@
     <button class="button">
       <a class="action-btn-cancel">Cancelar</a>
     </button>
-    <button class="button">
+    <button type="submit" class="button">
       <a class="action-btn-emit" (click)="submitInvoice()">Emitir</a>
     </button>
   </div>

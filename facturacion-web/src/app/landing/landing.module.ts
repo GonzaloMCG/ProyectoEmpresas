@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { LandingComponent } from './landing.component';
 import { MenuPanelComponent } from './menu-panel/menu-panel.component';
 import { MatTableModule } from '@angular/material/table';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { InvoicesEmittedComponent } from './invoices-emitted-page/invoices-emitted-page.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -46,6 +46,7 @@ import { EditProductModalComponent } from './modals/edit-product-modal/edit-prod
     RouterModule,
     MatTableModule,
     FormsModule,
+    ReactiveFormsModule,
     MatDialogModule,
     MatPaginatorModule,
     MatSortModule,

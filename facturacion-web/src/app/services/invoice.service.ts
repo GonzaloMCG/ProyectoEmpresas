@@ -16,8 +16,8 @@ export class InvoiceService {
 
   //probar endpoint
   async newInvoice(data: any) {
-    const headers = this.authenticationService.getHeaders();
-    const newInvoice = await this.http.post(`${environment.apiUrl}/invoices`, { data }, { headers });
+    const newInvoice = await this.http.post(`${environment.apiUrl}/invoices`, { ...data }).toPromise();
+    console.log('newInvoice: ');
     console.log(newInvoice);
     const listInvoices = this.$invoicesEmitted.getValue();
     if (!!listInvoices) {
@@ -30,8 +30,7 @@ export class InvoiceService {
 
   //probar endpoint
   async getAll(): Promise<any> {
-    const headers = this.authenticationService.getHeaders();
-    const invoices = await this.http.get(`${environment.apiUrl}/invoices`, { headers }).toPromise()
+    const invoices = await this.http.get(`${environment.apiUrl}/invoices`).toPromise()
       .catch(error => Promise.reject(error));
     if (!this.$invoicesEmitted.getValue()) {
       this.$invoicesEmitted.next(invoices);
@@ -41,22 +40,19 @@ export class InvoiceService {
 
   //probar endpoint
   async getInvoicing(id: number): Promise<any> {
-    const headers = this.authenticationService.getHeaders();
-    return await this.http.get(`${environment.apiUrl}/invoices/${id}`, { headers }).toPromise()
+    return await this.http.get(`${environment.apiUrl}/invoices/${id}`).toPromise()
       .catch(error => Promise.reject(error));
   }
 
   //probar endpoint
   async getClientInvocing(clientName: string): Promise<any> {
-    const headers = this.authenticationService.getHeaders();
-    return await this.http.get(`${environment.apiUrl}/invoices?client=${clientName}`, { headers }).toPromise()
+    return await this.http.get(`${environment.apiUrl}/invoices?client=${clientName}`).toPromise()
       .catch(error => Promise.reject(error));
   }
 
   //probar endpoint
   async getInvocingDetails(id: string): Promise<any> {
-    const headers = this.authenticationService.getHeaders();
-    return await this.http.get(`${environment.apiUrl}/invoices/detail/${id}`, { headers }).toPromise()
+    return await this.http.get(`${environment.apiUrl}/invoices/detail/${id}`).toPromise()
       .catch(error => Promise.reject(error));
   }
 }
