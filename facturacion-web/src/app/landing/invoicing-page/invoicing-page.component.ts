@@ -8,6 +8,8 @@ import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, skipWhile } from 'rxjs/operators';
 import { MessageService } from 'src/app/message-handler/message.service';
 import { InvoiceService } from 'src/app/services/invoice.service';
+import { DeleteItemModalComponent } from '../modals/delete-item-modal/delete-item-modal.component';
+import { EditInvoiceProductModalComponent } from '../modals/edit-invoice-product-modal/edit-invoice-product-modal.component';
 
 @Component({
   selector: 'app-invoicing-page',
@@ -73,13 +75,33 @@ export class InvoicingPageComponent implements OnInit {
     this.articuloselect.id = element.id;
   }
 
-  borrarFila(cod: number) {
+  openModalEdit() {
+    const dialogRef = this.dialog.open(EditInvoiceProductModalComponent, {
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        //si le diste cerrar con el aceptar, hacemos algo
+      }
+    });
+  }
+
+  openModalDelete(cod: number) {
     const data = this.sourceData.data;
-    if (confirm("Realmente quiere borrarlo?")) {
-      data.splice(cod, 1);
-    }
-    this.sourceData.data = data;
-    this.calcularTotal();
+    const dialogRef = this.dialog.open(DeleteItemModalComponent, {
+      autoFocus: false,
+      data: {
+        isUser: false
+      }
+    })
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        data.splice(cod, 1);
+        this.sourceData.data = data;
+        this.calcularTotal();;
+      }
+    });
   }
 
   add() {
