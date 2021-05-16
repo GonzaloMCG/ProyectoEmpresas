@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Invoice } from '../models/invoice.model';
-import { AuthenticationService } from './authentication.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +10,10 @@ import { AuthenticationService } from './authentication.service';
 export class InvoiceService {
   public $invoicesEmitted: BehaviorSubject<any> = new BehaviorSubject(null);
 
-  constructor(private http: HttpClient,
-    private authenticationService: AuthenticationService) { }
+  constructor(private http: HttpClient) { }
 
-  //probar endpoint
   async newInvoice(data: any) {
     const newInvoice = await this.http.post(`${environment.apiUrl}/invoices`, { ...data }).toPromise();
-    console.log('newInvoice: ');
-    console.log(newInvoice);
     const listInvoices = this.$invoicesEmitted.getValue();
     if (!!listInvoices) {
       listInvoices.push(newInvoice);
@@ -28,7 +23,6 @@ export class InvoiceService {
     }
   }
 
-  //probar endpoint
   async getAll(): Promise<any> {
     const invoices = await this.http.get(`${environment.apiUrl}/invoices`).toPromise()
       .catch(error => Promise.reject(error));
@@ -50,7 +44,6 @@ export class InvoiceService {
       .catch(error => Promise.reject(error));
   }
 
-  //probar endpoint
   async getInvocingDetails(id: string): Promise<any> {
     return await this.http.get(`${environment.apiUrl}/invoices/detail/${id}`).toPromise()
       .catch(error => Promise.reject(error));

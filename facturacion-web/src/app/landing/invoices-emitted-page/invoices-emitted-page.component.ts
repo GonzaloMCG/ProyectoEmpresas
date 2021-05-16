@@ -4,6 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { DetailInvoicesModalComponent } from '../modals/details-invoices-modal/details-invoices-modal.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { InvoiceService } from 'src/app/services/invoice.service';
+import { Subscription } from 'rxjs';
+import { Article } from 'src/app/models/article.model';
 
 
 @Component({
@@ -13,32 +16,32 @@ import { MatSort } from '@angular/material/sort';
 })
 
 export class InvoicesEmittedComponent implements AfterViewInit {
-
-  columnas: string[] = ['date', 'client', 'total', 'action'];
-  sourceData = new MatTableDataSource();
-
-  falsedatos: Articulo[] = [new Articulo('10/02/2021', 'Probado Empresas', 12300),
-  new Articulo('11/02/2021', 'Esta es una empresa', 1200),
-  new Articulo('12/02/2021', 'Esta es otra empresa', 5430),
-  new Articulo('11/02/2021', 'Empresa1', 1200),
-  new Articulo('12/02/2021', 'Empresa2', 5430),
-  new Articulo('11/02/2021', 'Empresa3', 1200),
-  new Articulo('12/02/2021', 'Empresa4', 5430),
-  new Articulo('11/02/2021', 'Antepenultima Empresa', 1200),
-  new Articulo('12/02/2021', 'Penultima Empresa', 5430),
-  new Articulo('11/02/2021', 'Ultima Empresa', 1200),
-  ];
+  public columnas: string[] = ['date', 'client', 'total', 'action'];
+  public sourceData = new MatTableDataSource();
+  public pageSizeOptions: number[] = [5, 10, 25, 100];
+  public pageEvent: PageEvent;
+  private subscription: Subscription;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  ngAfterViewInit() {
+  constructor(public dialog: MatDialog,
+    private invoiceService: InvoiceService) {
+  }
+
+  async ngAfterViewInit() {
     this.sourceData.paginator = this.paginator;
     this.sourceData.sort = this.sort;
     this.paginator._intl.itemsPerPageLabel = "Ítems por Página";
+    const invoicesEmitted = await this.invoiceService.getAll();
+    this.sourceData.data = invoicesEmitted;
+    this.subscription = this.invoiceService.$invoicesEmitted.subscribe(
+      async invoicesEmitted => this.sourceData.data = invoicesEmitted);
   }
-  pageSizeOptions: number[] = [5, 10, 25, 100];
-  pageEvent: PageEvent;
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -54,25 +57,12 @@ export class InvoicesEmittedComponent implements AfterViewInit {
       this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
     }
   }
-  constructor(public dialog: MatDialog) {
-    this.sourceData.data = this.falsedatos;
-  }
 
-  openModal() {
-    const dialogRef = this.dialog.open(DetailInvoicesModalComponent, {
+  async openModal(articulo: Article) {
+    const invoiceWithProducts = await this.invoiceService.getInvocingDetails(articulo.id);
+    this.dialog.open(DetailInvoicesModalComponent, {
       autoFocus: false,
+      data: invoiceWithProducts
     });
-
-    dialogRef.afterClosed().subscribe((res) => {
-      if (res) {
-        //si le diste cerrar con el aceptar, hacemos algo
-      }
-    });
-  }
-
-}
-
-export class Articulo {
-  constructor(public date: string, public client: string, public total: number) {
   }
 }
