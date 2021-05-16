@@ -21,6 +21,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { CommonModule } from '@angular/common';
 import { MessageService } from './message-handler/message.service';
 import { MessageHandlerComponent } from './message-handler/message-handler.component';
+import { InvoiceService } from './services/invoice.service';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { MessageHandlerComponent } from './message-handler/message-handler.compo
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     AuthenticationService,
     MessageService,
+    InvoiceService
   ],
   bootstrap: [AppComponent]
 })

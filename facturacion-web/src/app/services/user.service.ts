@@ -1,20 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  public $usersSubject: BehaviorSubject<any> = new BehaviorSubject(null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private authenticationService: AuthenticationService) { }
 
-  loginUser(data: any) {
-    console.log(data);
+  async loginUser(data: any) {
+    this.http.post<any>(`${environment.apiUrl}/users/login`, { data });
+    // const user = await this.authenticationService.login(data.user, data.password);
+    // console.log(user);
+    // this.$usersSubject.next(user);
   }
 
-  getAllTest() {
-    return this.http.get(`${environment.apiUrl}/products`);
+
+  //Probar endpiont
+  async newUser(user: any) {
+    const headers = this.authenticationService.getHeaders();
+    const newUser = await this.http.post(`${environment.apiUrl}/users/register`, { user }, { headers }).toPromise();
+    if (!!this.$usersSubject.getValue()) {
+      const userList = this.$usersSubject.getValue();
+      userList.push(newUser);
+      this.$usersSubject.next(userList);
+    } else {
+      this.$usersSubject.next([newUser]);
+    }
   }
 }

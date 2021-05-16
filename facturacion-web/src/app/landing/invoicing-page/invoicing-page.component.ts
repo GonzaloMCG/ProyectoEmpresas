@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { DetailInvoicesModalComponent } from '../modals/details-invoices-modal/details-invoices-modal.component';
 import { Article } from 'src/app/models/article.model';
 import { ProductService } from 'src/app/services/product.service';
 import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, skipWhile } from 'rxjs/operators';
-import { DecimalPipe } from '@angular/common';
+import { MessageService } from 'src/app/message-handler/message.service';
+import { InvoiceService } from 'src/app/services/invoice.service';
 
 @Component({
   selector: 'app-invoicing-page',
@@ -24,12 +24,12 @@ export class InvoicingPageComponent implements OnInit {
 
   public invoicingForm = this.formBuilder.group({
     client: ['', Validators.required],
-    paymentMethod: ['', Validators.required],
-    currency: ['', Validators.required],
-    total: ['', Validators.required]
+    paymentMethod: ['efectivo', Validators.required],
+    currency: ['pesos', Validators.required],
   });
 
   public emptyArticle = {
+    id: '',
     name: '',
     price: null,
     quantity: null,
@@ -42,7 +42,9 @@ export class InvoicingPageComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private productService: ProductService) {
+    private productService: ProductService,
+    private messageService: MessageService,
+    private invoiceService: InvoiceService) {
   }
 
   async ngOnInit() {
@@ -58,26 +60,17 @@ export class InvoicingPageComponent implements OnInit {
   async filterProducts(query: string) {
     if (query && query.length >= 3) {
       this.filteredProducts = await this.productService.getFilteredProducts(query);
+      console.log(this.filteredProducts);
     } else {
       this.articuloselect = { ...this.emptyArticle };
     }
   }
 
-  updateUnitPrice(price: number) {
-    this.articuloselect.price = price;
+  updateUnitPrice(element: any) {
+    this.articuloselect.price = element.price;
     this.articuloselect.quantity = 1;
-    this.articuloselect.total = price;
-  }
-
-  openModal() {
-    const dialogRef = this.dialog.open(DetailInvoicesModalComponent, {
-      autoFocus: false,
-    });
-
-    dialogRef.afterClosed().subscribe((res) => {
-      if (res) {
-      }
-    });
+    this.articuloselect.total = element.price;
+    this.articuloselect.id = element.id;
   }
 
   borrarFila(cod: number) {
@@ -91,17 +84,14 @@ export class InvoicingPageComponent implements OnInit {
 
   add() {
     const data = this.sourceData.data;
-    const newArticle = new Article();
-    newArticle['name'] = this.articuloselect.name;
-    newArticle['price'] = this.articuloselect.price;
-    newArticle['quantity'] = this.articuloselect.quantity;
-    newArticle['total'] = this.articuloselect.total;
-
-    if (newArticle.name && newArticle.price && newArticle.quantity & newArticle.total) {
-      data.push(newArticle);
+    if (!!this.articuloselect.name && !!this.articuloselect.price
+      && !!this.articuloselect.quantity && !!this.articuloselect.total) {
+      data.push({ ...this.articuloselect });
       this.articuloselect = { ...this.emptyArticle };
       this.sourceData.data = data;
       this.calcularTotal();
+    } else {
+      this.messageService.showError('Complete todos los datos')
     }
   }
 
@@ -112,12 +102,25 @@ export class InvoicingPageComponent implements OnInit {
     this.total = totalValue.toFixed(2);
   }
 
-  submit() {
+  async submitInvoice() {
     const buildProductList = this.sourceData.data;
 
     const data = {
-      ...this.invoicingForm,
-      invoiceProducts: buildProductList
+      ...this.invoicingForm.value,
+      invoiceProducts: buildProductList,
+      total: this.total
+    }
+    if (!buildProductList || !buildProductList.length) {
+      this.messageService.showError('La factura no contiene ningún producto');
+      return;
+    }
+
+    try {
+      await this.invoiceService.newInvoice(data);
+      this.initForm();
+      this.messageService.showSuccess('Factura emitida correctamente');
+    } catch (error) {
+      this.messageService.showError(error);
     }
     console.log(data);
   }
@@ -125,5 +128,14 @@ export class InvoicingPageComponent implements OnInit {
   updateQuantityPrice() {
     this.articuloselect.total = this.articuloselect.price * this.articuloselect.quantity;
     this.articuloselect.total = Number(this.articuloselect.total.toFixed(2));
+  }
+
+  private initForm() {
+    this.sourceData.data = [];
+    this.invoicingForm.controls.client.setValue('');
+    this.invoicingForm.controls.currency.setValue('pesos');
+    this.invoicingForm.controls.paymentMethod.setValue('efectivo');
+    this.total = '';
+    this.articuloselect = { ...this.emptyArticle };
   }
 }
