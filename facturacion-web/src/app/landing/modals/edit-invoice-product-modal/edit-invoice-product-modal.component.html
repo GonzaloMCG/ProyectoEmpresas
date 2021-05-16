@@ -7,19 +7,19 @@
     <div class="form-input">
       <div class="item-atribute">
         <span>Nombre:</span>
-        <input id="name" class="input input-name" type="text" autocomplete="off">
+        <input id="name" class="input input-name" type="text" value={{name}} autocomplete="off" disabled readonly>
       </div>
       <div class="item-atribute">
-        <span>Descripción:</span>
-        <input id="description" class="input input-description" type="text" autocomplete="off">
+        <span>Precio unitario:</span>
+        <input id="description" class="input input-description" type="text" value={{unitprice}} disabled readonly>
       </div>
       <div class="item-atribute">
-        <span>Unidades en stock:</span>
-        <input id="count" class="input input-stock" type="number" autocomplete="off">
+        <span>Cantidad:</span>
+        <input id="count" class="input input-stock" type="number" value={{count}} autocomplete="off">
       </div>
       <div class="item-atribute">
         <span>Precio:</span>
-        <input id="price" class="input input-price" type="number" autocomplete="off">
+        <input id="price" class="input input-price" type="number" value={{price}} autocomplete="off">
       </div>
     </div>
 
@@ -28,7 +28,7 @@
         <a class="action-btn-cancel" (click)="close()">Cancelar</a>
       </button>
       <button class="button">
-        <a class="action-btn-save" (click)="submit()">Guardar</a>
+        <a class="action-btn-save" (click)="submit()">Aceptar</a>
       </button>
     </div>
   </div>

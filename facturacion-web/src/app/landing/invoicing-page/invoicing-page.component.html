@@ -8,7 +8,7 @@
 
       <div class="blue-container">
         <div class="sub-title">
-          <span>Nombre del cliente</span>
+          <span>Nombre del Cliente</span>
         </div>
         <input class="blue-input-name" matInput placeholder="Ingrese el nombre del Cliente" autocomplete="off"
           formControlName="client">
@@ -53,17 +53,19 @@
       </mat-autocomplete>
     </div>
 
-    <div class="blue-container">
-      <div class="simple-label">
-        <span>Precio Unitario:</span>
+    <div class="item">
+      <div class="blue-container">
+        <div class="unit-price-label">
+          <span>Precio Unitario:</span>
+        </div>
+        <input [(ngModel)]="articuloselect.price" type="number" placeholder="0" class="input-unit-price" readonly
+          disabled>
       </div>
-      <input [(ngModel)]="articuloselect.price" type="number" placeholder="0" class="input-unit-price" readonly
-        disabled>
     </div>
 
     <div class="item">
       <div class="blue-container">
-        <div class="simple-label">
+        <div class="count-label">
           <span>Cantidad:</span>
         </div>
         <input [(ngModel)]="articuloselect.quantity" type="number" placeholder="0" (change)="updateQuantityPrice()"
@@ -73,7 +75,7 @@
 
     <div class="item">
       <div class="blue-container">
-        <div class="simple-label">
+        <div class="price-label">
           <span>Precio:</span>
         </div>
         <input [(ngModel)]="articuloselect.total" type="number" placeholder="0" class="input-price">
@@ -117,8 +119,11 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Acción </th>
         <td mat-cell *matCellDef="let j = index;">
-          <button mat-raised-button focusable="false" (click)="borrarFila(j)" class="button">
-            <a class="action-btn-del"><img src="assets/images/trash.png"></a>
+          <button mat-raised-button focusable="false" class="action-btn-small">
+            <a class="action-btn-small" (click)="openModalEdit()"><img src="assets/images/edit.png"></a>
+          </button>
+          <button mat-raised-button focusable="false" (click)="openModalDelete(j)" class="action-btn-small">
+            <a class="action-btn-small"><img src="assets/images/trash.png"></a>
           </button>
         </td>
         <td mat-footer-cell *matFooterCellDef></td>

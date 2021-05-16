@@ -2,6 +2,8 @@
 
 :host {
   flex: 0.8;
+
+  *:focus {outline:0;};
 }
 
 section {
@@ -31,8 +33,16 @@ justify-content: space-between;
   padding: 1rem 0;
 }
 
+
+.item{
+  display: flex;
+  justify-content: space-between;
+  color: $white-color;
+}
+
 .blue-container{
   display: flex;
+  justify-content: flex-start;
   align-items:center;
   color: $white-color;
   font-size: 1.6em;
@@ -79,30 +89,34 @@ justify-content: space-between;
     border:solid 0.1rem $dark-white-color;
     padding: 1rem;
     text-align: center;
-    margin-right: 4rem;
     outline: none;
   }
 }
 
-.simple-label{
-  min-width: 12rem;
+.unit-price-label{
+  min-width: 11.5rem;
   color: $light-black-color;
-  margin-left: 2rem;
   text-align: right;
-padding-right: 1rem;
+  padding-right: 1rem;
 }
 
-.item{
-  display: flex;
-  align-items: center;
-  min-width: 12rem;
-  color: $white-color;
+.count-label{
+  min-width: 7.5rem;
+  color: $light-black-color;
+  text-align: right;
+  padding-right: 1rem;
+}
+
+.price-label{
+  min-width: 5.5rem;
+  color: $light-black-color;
+  text-align: right;
+  padding-right: 1rem;
 }
 
 .invoicing-container {
   display: flex;
   flex-direction: column;
-  margin:1rem auto;
   padding: 1rem;
 }
 
@@ -121,6 +135,35 @@ padding-right: 1rem;
   user-select:none;
 }
 
+.header-align-right{
+  display: flex;
+  padding: 21px 0;
+  justify-content: center;
+}
+.mat-column-name {
+  width: 30%;
+  text-align: left;
+}
+
+.mat-column-price{
+  width: 30%;
+  text-align: center;
+}
+
+.mat-column-quantity{
+  text-align: center;
+}
+
+.mat-column-total{
+  text-align: center;
+}
+
+.mat-column-action{
+  text-align: center;
+  min-width: 10rem;
+}
+
+
 .button-row{
   display: flex;
   align-items: center;
@@ -129,62 +172,73 @@ padding-right: 1rem;
   margin: auto;
 }
 
-.button{
+.action-btn-add{
   color: $white-color;
-  background-color: $white-color;
+  background-color: $dark-green-color;
+  padding: 1rem 1.5rem;
+  font-size: 1.35em;
+  border-radius: 0.4rem;
   display: inline-block;
   user-select:none;
 
-  .action-btn-del{
-    border-radius: 0.9rem;
-    &:hover {
-      box-shadow: 0 0.063rem 0.5rem $light-black-color;
-      transition: all 0.5s;
-      color: $white-color;
-      display: inline-block;
-      border-radius: 0.9rem;
-    }    
-      &:hover {
-        transition: all 0.5s;
-      }
-      &:active{
-        box-shadow: 0 0.063rem 0.5rem $light-black-color;
-      }
-    }
+  &:hover {
+    background-color: $green-color;
   }
 
-  .action-btn-add{
-    background-color: $dark-green-color;
-    padding: 1rem 1.5rem;
-    font-size: 1.35em;
-    border-radius: 0.4rem;
-
-    &:hover {
-      background-color: $green-color;
-    }
-
-    &:active{
-      box-shadow: 0 0.063rem 0.3rem $light-black-color;
-    }
+  &:active{
+    box-shadow: 0 0.063rem 0.7rem $light-black-color;
   }
+}
 
-  .action-btn-cancel{
-    background-color: $grey-color;
-    padding: 0.5rem 1.5rem;
-    font-size: 1.8em;
-    border-radius: 0.2rem;
-    &:hover {
-      background-color: $shadow-black-color;
-    }
-  }
+.action-btn-small{
+  color: $white-color;
+  display: inline-block;
+  border-radius: 0.9rem;
+  outline: none;
 
-  .action-btn-emit{
-    background-color: $blue-color;
-    padding: 0.5rem 2.5rem;
-    font-size: 1.8em;
-    border-radius: 0.2rem;
-    &:hover {
-      background-color: $dark-blue-color;
-    }
+  &:hover {
+    transition: all 0.5s;
+    filter: brightness(90%);
   }
+  &:active{
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0 s;
+  }
+}
+
+.action-btn-cancel{
+  color: $white-color;
+  background-color: $grey-color;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.8em;
+  border-radius: 0.2rem;
+  user-select:none;
+
+  &:hover {
+    background-color: $shadow-black-color;
+    transition: all 0.5s;
+  }
+  &:active{
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0s;
+  }
+}
+
+.action-btn-emit{
+  color: $white-color;
+  background-color: $blue-color;
+  padding: 0.5rem 2.5rem;
+  font-size: 1.8em;
+  border-radius: 0.2rem;
+  user-select:none;
+
+  &:hover {
+    background-color: $dark-blue-color;
+    transition: all 0.5s;
+  }
+  &:active{
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0s;
+  }
+}
 

@@ -20,6 +20,7 @@ import { InvoicingPageComponent } from './invoicing-page/invoicing-page.componen
 import { AddUserModalComponent } from './modals/add-user-modal/add-user-modal.component';
 import { AddProductModalComponent } from './modals/add-product-modal/add-product-modal.component';
 import { EditProductModalComponent } from './modals/edit-product-modal/edit-product-modal.component';
+import { EditInvoiceProductModalComponent } from './modals/edit-invoice-product-modal/edit-invoice-product-modal.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { EditProductModalComponent } from './modals/edit-product-modal/edit-prod
     UserEditModalComponent,
     AddUserModalComponent,
     AddProductModalComponent,
+    EditInvoiceProductModalComponent,
     InvoicesEmittedComponent,
     AdminComponent,
     StockComponent
