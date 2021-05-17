@@ -2,6 +2,8 @@
 
 :host {
   flex: 1;
+  *:focus {outline:0;};
+  user-select:none;
 }
 
 .mat-sidenav {
