@@ -1,7 +1,5 @@
 @import 'colors';
 
-<<<<<<< Updated upstream
-=======
 :host {
   flex: 1;
 }
@@ -27,104 +25,72 @@
   height: 10rem;
   border-radius: 50%;
 }
->>>>>>> Stashed changes
 
-:host {
-  flex: 0.2;
+.name {
+  margin-top: 0.8rem;
+  font-weight: normal;
 }
 
-.imagen:hover {
-  filter: opacity(.5);
+.mat-divider {
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+  background-color: $white-color;
 }
 
-.panel-container {
-  width: auto;
-  min-width: 21rem;
-  height: 100%;
-  font-size: 1.6em;
-  background-color:$light-black-color;
+.menu-section {
 
-  .sidebar-header {
+  .item-section {
     padding: 1rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: $white-color;
-    text-align: center;
-  }
-
-  .sidebar-profile {
-    padding: 1rem;
-    overflow: hidden;
-    margin-top: 1rem;
-    border-top: 0.1px solid $online;
-    border-bottom: 0.01px solid $online;
-
-    .user-pic {
-      float: left;
-      width: 6rem;
-      padding: 0.2rem;
-      border-radius: 1.2rem;
-      margin-right: 1.5rem;
-      overflow: hidden;
-
-      img {
-        object-fit: cover;
-        height: 100%;
-        width: 100%;
-      }
-    }
-
-    .user-info {
-      padding: 1rem;
-      float: left;
-      color: $white-color;
-
-      >span {
-        display: block;
-      }
-    }
-  }
-
-  .menu-section {
     display: flex;
-    background-color: $light-black-color;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+    color: $white-color;
+    margin-top: 3rem;
 
-    .item-section {
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      color: $white-color;
-      margin-top: 3rem;
-
-      .item {
-        width: 100%;
-      }
-
-      img {
-        height: 3rem;
-        width: 3rem;
-        margin-right: 1rem;
-      }
-
-      .menu-item {
-        padding: 1rem;
-        width: auto;
-        display: block;
-
-        &:hover {
-          background-color: $sky-blue-color;
-        }
-      }
+    .item {
+      width: 100%;
     }
 
-    .logout-btn {
-      background-color: $dark-hover-grey-color;
-      color: $white-color;
-      text-align: center;
-      padding: 0.8rem;
+    img {
+      height: 3rem;
+      width: 3rem;
+      margin-right: 1rem;
+    }
+
+    .menu-item {      
+      text-align: left;
+      padding: 1rem;
+      width: auto;
+      display: block;
+
+      &:hover {
+        background-color: $sky-blue-color;
+      }
     }
   }
+}
+
+.small-button-content{
+background-color: $white-background-color;
+padding: 1rem;
+max-width: 10rem;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.material-icons {
+  padding: 0.5rem;
+  background: $light-black-color;
+  color: $white-color;
+}
+
+.mat-sidenav-content{
+  display: flex;
+}
+
+.router-content{
+  width: 100%;
 }

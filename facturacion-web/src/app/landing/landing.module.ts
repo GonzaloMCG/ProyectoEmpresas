@@ -21,6 +21,10 @@ import { AddUserModalComponent } from './modals/add-user-modal/add-user-modal.co
 import { AddProductModalComponent } from './modals/add-product-modal/add-product-modal.component';
 import { EditProductModalComponent } from './modals/edit-product-modal/edit-product-modal.component';
 import { EditInvoiceProductModalComponent } from './modals/edit-invoice-product-modal/edit-invoice-product-modal.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,11 @@ import { EditInvoiceProductModalComponent } from './modals/edit-invoice-product-
     MatSortModule,
     MatInputModule,
     MatAutocompleteModule,
-    CommonModule
+    CommonModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatDividerModule,
   ],
   entryComponents: [
 
