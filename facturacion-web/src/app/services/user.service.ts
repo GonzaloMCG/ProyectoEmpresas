@@ -41,7 +41,7 @@ export class UserService {
   }
 
   registerUser(data: any): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/users/register`, {...data});
+    return this.http.post(`${environment.apiUrl}/users/register`, { ...data });
   }
 
   deleteUser(data: any): Observable<any> {
@@ -49,13 +49,13 @@ export class UserService {
   }
 
   manageRoles(data: any): Observable<any> {
-    console.log('llego al manageroles');    
+    console.log('llego al manageroles');
     console.log(data);
     return this.http.put(`${environment.apiUrl}/users/manage-roles`, {...data});
   }
 
   resetPassword(data: any): Observable<any> {
-    console.log('llego al resetPassword');    
+    console.log('llego al resetPassword');
     console.log(data);
     return this.http.put(`${environment.apiUrl}/users/reset-password`, {...data});
   }
