@@ -31,7 +31,7 @@ export class AddUserModalComponent {
     this.dialogRef.close();
   }
 
-  submit() {
+  async submit() {
     const data = {
       ...this.addUserForm.value
     }
@@ -40,14 +40,17 @@ export class AddUserModalComponent {
       password: data.password,
       roles: (data.roles == 'Admin') ? ['Admin', 'User'] : ['User']
     }
-    this.userService.registerUser(usuario).subscribe(
+    await this.userService.registerUser(usuario).subscribe(
       response => {
         console.log(response);
+        console.log('cierra');
+        this.dialogRef.close(true);
       },
       error => {
         console.log(error);
+        console.log('cierra');
+        this.dialogRef.close(true);
       }
     );
-    this.dialogRef.close(true);
   }
 }
