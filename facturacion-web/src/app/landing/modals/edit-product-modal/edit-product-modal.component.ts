@@ -44,6 +44,9 @@ export class EditProductModalComponent {
   }
 
   initForm() {
-
+    this.editProductForm.controls.name.setValue(this.data.product.name);
+    this.editProductForm.controls.description.setValue(this.data.product.description);
+    this.editProductForm.controls.stock.setValue(this.data.product.stock);
+    this.editProductForm.controls.price.setValue(this.data.product.price);
   }
 }

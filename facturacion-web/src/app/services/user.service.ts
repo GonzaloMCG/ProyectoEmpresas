@@ -41,12 +41,10 @@ export class UserService {
   }
 
   registerUser(data: any): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/users/register`, {...data});
+    return this.http.post(`${environment.apiUrl}/users/register`, { ...data });
   }
 
   deleteUser(data: any): Observable<any> {
     return this.http.delete(`${environment.apiUrl}/users/${data}`,);
   }
-
-
 }
