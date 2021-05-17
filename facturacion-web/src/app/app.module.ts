@@ -42,7 +42,7 @@ import { InvoiceService } from './services/invoice.service';
     MatFormFieldModule,
     HttpClientModule,
     MatPaginatorModule,
-    CommonModule,
+    CommonModule
   ],
   providers: [
     UserService,
