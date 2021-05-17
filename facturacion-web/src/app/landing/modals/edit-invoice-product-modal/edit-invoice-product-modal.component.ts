@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
@@ -9,14 +10,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 
 export class EditInvoiceProductModalComponent {
+  public productForm = this.formBuilder.group({
+    name: ['', Validators.required],
+    price: ['', Validators.required],
+    quantity: ['', Validators.required],
+    total: ['', Validators.required],
+  });
 
-  public name = "Nombre del producto";
-  public unitprice = 999;
-  public count = 4;
-  public price = 3996;
-
-  constructor(public dialogRef: MatDialogRef<EditInvoiceProductModalComponent>,
+  constructor(private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<EditInvoiceProductModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.initForm();
   }
 
   close() {
@@ -24,6 +28,11 @@ export class EditInvoiceProductModalComponent {
   }
 
   submit() {
-    this.dialogRef.close(true);
+    this.dialogRef.close({ ...this.data, ...this.productForm.value });
+  }
+
+  private initForm() {
+    Object.keys(this.productForm.controls).forEach(
+      key => this.productForm.controls[key].setValue(this.data[key]));
   }
 }

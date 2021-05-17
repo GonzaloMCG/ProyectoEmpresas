@@ -75,14 +75,19 @@ export class InvoicingPageComponent implements OnInit {
     this.articuloselect.id = element.id;
   }
 
-  openModalEdit() {
+  openModalEdit(article: Article) {
     const dialogRef = this.dialog.open(EditInvoiceProductModalComponent, {
       autoFocus: false,
+      data: article
     });
 
-    dialogRef.afterClosed().subscribe((res) => {
-      if (res) {
-        //si le diste cerrar con el aceptar, hacemos algo
+    dialogRef.afterClosed().subscribe(async updatedProduct => {
+      if (updatedProduct) {
+        let updateItem = this.sourceData.data.find(product => product.id === updatedProduct.id);
+        let index = this.sourceData.data.indexOf(updateItem);
+        this.sourceData.data[index] = { ...updatedProduct };
+        this.sourceData.data = [...this.sourceData.data];
+        this.calcularTotal();
       }
     });
   }
@@ -99,7 +104,7 @@ export class InvoicingPageComponent implements OnInit {
       if (res) {
         data.splice(cod, 1);
         this.sourceData.data = data;
-        this.calcularTotal();;
+        this.calcularTotal();
       }
     });
   }
