@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UserService } from 'src/app/services/user.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -10,10 +12,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export class AddUserModalComponent {
 
-  rolList: string[] = ["Administrador", "Operador", "Rol3", "Rol4"];
+  rolList: string[] = ["Administrador", "Operador"];
+
+  public addUserForm = this.formBuilder.group({
+    username: ['', Validators.required],
+    roles: ['', Validators.required],
+    password: ['', Validators.required],
+    repeatPassword: ['', Validators.required],
+  });
 
   constructor(public dialogRef: MatDialogRef<AddUserModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private userService: UserService,
+    private formBuilder: FormBuilder,) {
   }
 
   close() {
@@ -21,6 +32,22 @@ export class AddUserModalComponent {
   }
 
   submit() {
+    const data = {
+      ...this.addUserForm.value
+    }
+    var usuario = {
+      username: data.username,
+      password: data.password,
+      roles: (data.roles == 'Admin') ? ['Admin', 'User'] : ['User']
+    }
+    this.userService.registerUser(usuario).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    );
     this.dialogRef.close(true);
   }
 }
