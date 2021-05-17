@@ -48,5 +48,17 @@ export class UserService {
     return this.http.delete(`${environment.apiUrl}/users/${data}`,);
   }
 
+  manageRoles(data: any): Observable<any> {
+    console.log('llego al manageroles');    
+    console.log(data);
+    return this.http.put(`${environment.apiUrl}/users/manage-roles`, {...data});
+  }
+
+  resetPassword(data: any): Observable<any> {
+    console.log('llego al resetPassword');    
+    console.log(data);
+    return this.http.put(`${environment.apiUrl}/users/reset-password`, {...data});
+  }
+
 
 }

@@ -61,9 +61,12 @@ export class AdminComponent {
     this.getAllUsers();
   }
 
-  openModalEdit() {
+  openModalEdit(user: any) {
     const dialogRef = this.dialog.open(UserEditModalComponent, {
       autoFocus: false,
+      data: {
+        user: user
+      }
     });
 
     dialogRef.afterClosed().subscribe((res) => {

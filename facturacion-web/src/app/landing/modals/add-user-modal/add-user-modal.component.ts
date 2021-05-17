@@ -30,13 +30,13 @@ export class AddUserModalComponent {
   }
 
   submit() {
-    const data = {
+    const formData = {
       ...this.addUserForm.value
     }
     var usuario = {
-      username: data.username,
-      password: data.password,
-      roles: (data.roles == 'Admin') ? ['Admin', 'User'] : ['User']
+      username: formData.username,
+      password: formData.password,
+      roles: (formData.roles == 'Admin') ? ['Admin', 'User'] : ['User']
     }
     this.userService.registerUser(usuario).subscribe(
       response => {
