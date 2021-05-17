@@ -57,14 +57,18 @@ export class StockComponent {
   async ngOnInit() {
     this.getAllProduct();
   }
-  openModalEdit() {
+
+  openModalEdit(product: Article) {
     const dialogRef = this.dialog.open(EditProductModalComponent, {
       autoFocus: false,
+      data: {
+        product: product,
+      }
     });
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        //si le diste cerrar con el aceptar, hacemos algo
+        this.getAllProduct();
       }
     });
   }
@@ -79,7 +83,9 @@ export class StockComponent {
     });
 
     dialogRef.afterClosed().subscribe(async (res) => {
-      this.getAllProduct();
+      if (res) {
+        this.getAllProduct();
+      }
     });
   }
 
@@ -107,12 +113,9 @@ export class StockComponent {
     }
   }
 }
-
+/*
 export class Articulo {
   constructor(public name: string, public description: string, public stock: number, public price: number) {
   }
-}
-export class Product {
-  constructor(public id: string, public name: string, public description: string, public stock: number, public price: number) {
-  }
-}
+}*/
+

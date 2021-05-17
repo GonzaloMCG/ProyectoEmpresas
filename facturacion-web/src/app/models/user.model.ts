@@ -1,9 +1,10 @@
 export class User {
-  id: number;
+  id?: number;
   username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
+  password?: string;
   token?: string;
   roles?: string[];
+
+  constructor(data: any) {
+  }
 }

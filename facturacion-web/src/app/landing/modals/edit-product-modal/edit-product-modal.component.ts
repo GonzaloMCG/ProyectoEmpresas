@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
+import { FormBuilder, Validators } from '@angular/forms';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-edit-product-modal',
@@ -10,20 +11,35 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export class EditProductModalComponent {
 
-  public name = "Nombre del producto";
-  public description = "Descripción del Producto";
-  public stock = "999";
-  public price = "125.99";
+  public editProductForm = this.formBuilder.group({
+    name: ['', Validators.required],
+    description: ['', Validators.required],
+    stock: ['', Validators.required],
+    price: ['', Validators.required],
+  });
 
   constructor(public dialogRef: MatDialogRef<EditProductModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private productService: ProductService,
+    private formBuilder: FormBuilder,
+  ) {
   }
 
   close() {
     this.dialogRef.close();
   }
 
-  submit() {
-    this.dialogRef.close(true);
+  async submit() {
+    const data = {
+      ...this.editProductForm.value
+    }
+    try {
+      await this.productService.updateProduct(data)
+      this.dialogRef.close(true);
+    }
+    catch (error) {
+      this.dialogRef.close();
+    }
+
   }
 }

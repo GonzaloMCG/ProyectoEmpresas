@@ -21,12 +21,7 @@ export class ProductService {
     return this.http.get(`${environment.apiUrl}/products?name=${query}`).toPromise().catch(error => Promise.reject(error));
   }
 
-  //probar endpoint
-  newProduct(data: any) {
-    return this.http.post(`${environment.apiUrl}/products`, { data }).toPromise();
-  }
-
-  newProduct2(data: any): Observable<any> {
+  newProduct(data: any): Observable<any> {
     return this.http.post(`${environment.apiUrl}/products`, { ...data });
   }
 
@@ -42,13 +37,9 @@ export class ProductService {
 
   //probar endpoint
   async updateProduct(data: any) {
-    const updatedProduct = await this.http.put(`${environment.apiUrl}/products/${data.id}`, { data }).toPromise();
-    const productList = this.$productsSubject.getValue();
-    if (!productList) {
-      let filteredProductList = productList.filter(elem => elem.id !== data.id);
-      filteredProductList.push(updatedProduct);
-      this.$productsSubject.next(filteredProductList);
-    }
+    const updatedProduct = await this.http.put(`${environment.apiUrl}/products/${data.id}`, { ...data }).toPromise();
+    const productList = await this.getAllProducts();
+    this.$productsSubject.next(productList);
   }
 
   //probar endpoint

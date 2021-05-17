@@ -39,7 +39,7 @@ export class AddProductModalComponent {
       stock: data.stock,
       price: data.price,
     }
-    await this.productService.newProduct2(product).subscribe(
+    await this.productService.newProduct(product).subscribe(
       response => {
         console.log(response);
         console.log('cierra');
