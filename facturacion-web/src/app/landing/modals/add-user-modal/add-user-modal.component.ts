@@ -12,8 +12,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 export class AddUserModalComponent {
 
-  rolList: string[] = ["Administrador", "Operador"];
-
   public addUserForm = this.formBuilder.group({
     username: ['', Validators.required],
     roles: ['', Validators.required],
@@ -31,7 +29,7 @@ export class AddUserModalComponent {
     this.dialogRef.close();
   }
 
-  async submit() {
+  submit() {
     const data = {
       ...this.addUserForm.value
     }
@@ -40,7 +38,7 @@ export class AddUserModalComponent {
       password: data.password,
       roles: (data.roles == 'Admin') ? ['Admin', 'User'] : ['User']
     }
-    await this.userService.registerUser(usuario).subscribe(
+    this.userService.registerUser(usuario).subscribe(
       response => {
         console.log(response);
         console.log('cierra');

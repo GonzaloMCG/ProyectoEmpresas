@@ -41,8 +41,12 @@ export class UserService {
   }
 
   registerUser(data: any): Observable<any> {
-    console.log(data);
-    const headers = this.authenticationService.getHeaders();
-    return this.http.post(`${environment.apiUrl}/users/register`, {...data}, {headers});
+    return this.http.post(`${environment.apiUrl}/users/register`, {...data});
   }
+
+  deleteUser(data: any): Observable<any> {
+    return this.http.delete(`${environment.apiUrl}/users/${data}`,);
+  }
+
+
 }

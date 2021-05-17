@@ -39,7 +39,18 @@ export class DeleteItemModalComponent {
   }
 
   removeUser() {
-
+    this.userService.deleteUser(this.data.username).subscribe(
+      response => {
+        console.log(response);
+        console.log('cierra');
+        this.dialogRef.close(true);
+      },
+      error => {
+        console.log(error);
+        console.log('cierra');
+        this.dialogRef.close(true);
+      }
+    );
   }
 
   async removeProduct() {

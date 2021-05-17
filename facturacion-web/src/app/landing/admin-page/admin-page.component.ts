@@ -7,6 +7,7 @@ import { AddUserModalComponent } from "../modals/add-user-modal/add-user-modal.c
 import { DeleteItemModalComponent } from "../modals/delete-item-modal/delete-item-modal.component";
 import { UserEditModalComponent } from "../modals/edit-user-modal/edit-user-modal.component";
 import { UserService } from 'src/app/services/user.service';
+import { User } from '../../models/user.model'
 
 
 @Component({
@@ -17,8 +18,6 @@ import { UserService } from 'src/app/services/user.service';
 
 
 export class AdminComponent {
-
-  public allUsers: Usuario[];
 
   user = "NombreDeUsuario";
   password: 12345678;
@@ -70,22 +69,26 @@ export class AdminComponent {
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
         console.log('aceptar');
+        this.getAllUsers();
         //si le diste cerrar con el aceptar, hacemos algo
       }
     });
   }
 
-  openModalDelete() {
+  openModalDelete(user: any) {
+    console.log(user);
     const dialogRef = this.dialog.open(DeleteItemModalComponent, {
       autoFocus: false,
       data: {
-        isUser: true
+        isUser: true,
+        username: user.username
       }
     });
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
         console.log('aceptar');
+        this.getAllUsers();
         //si le diste cerrar con el aceptar, hacemos algo
       }
     });
@@ -111,11 +114,7 @@ export class AdminComponent {
   getAllUsers() {
     this.userService.getAllUsers().subscribe(
       response => {
-        this.allUsers = [];
-        for (let user of response) {
-          this.allUsers.push(new Usuario(user.id, user.username, user.roles));
-        }
-        this.sourceData.data = this.allUsers;
+        this.sourceData.data = response;
       },
       error => {
         console.log(error);
@@ -123,13 +122,4 @@ export class AdminComponent {
     );
   }
 
-}
-
-export class Articulo {
-  constructor(public user: string, public rol: string) {
-  }
-}
-export class Usuario {
-  constructor(public id: string, public username: string, public roles: Array<string>) {
-  }
 }
