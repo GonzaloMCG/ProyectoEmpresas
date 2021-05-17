@@ -1,5 +1,33 @@
 @import 'colors';
 
+<<<<<<< Updated upstream
+=======
+:host {
+  flex: 1;
+}
+
+.mat-sidenav {
+  margin: 0.5rem;
+  min-width: 23rem;
+  background: $light-black-color;
+  color: $white-color;
+  border-radius: 0.6rem;
+  padding: 1.6rem;
+  text-align: center;
+  font-size: 1.6em;
+}
+
+.mat-sidenav-container {
+  height: calc(100vh - 1rem);
+}
+
+.avatar {
+  margin-top: 1.6rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+>>>>>>> Stashed changes
 
 :host {
   flex: 0.2;

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <div class="panel-container">
   <div class="sidebar-header">
     <img src="assets/images/circle2.png" alt="Logo" title="Logo">
@@ -5,6 +6,40 @@
   <div class="sidebar-profile">
     <div class="user-pic">
       <img src="assets/images/logo.png" alt="User picture">
+=======
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+
+    <img class="avatar mat-elevation-z8" src="assets/images/circle2.png" />
+    <span></span>
+    <h4 class="name">Online</h4>
+    <img src="assets/images/online.png" alt="Online">
+
+    <mat-divider></mat-divider>
+
+    <div class="menu-section">
+      <div class="item-section">
+        <div>
+          <div class="item">
+            <a class="menu-item" routerLink="home-page"><img src="assets/images/facturacion.png">Facturación</a>
+          </div>
+          <div class="item">
+            <a class="menu-item" routerLink="invoices-emitted-page"><img
+                src="assets/images/facturasEmitidas.png">Facturas
+              emitidas</a>
+          </div>
+          <div class="item">
+            <a class="menu-item" routerLink="stock-page"><img src="assets/images/stock.png">Control de
+              stock</a>
+          </div>
+          <div class="item">
+            <a class="menu-item" routerLink="admin-page"><img src="assets/images/administracion.png">Administración</a>
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <a class="logout-btn" (click)="logout()" routerLink="/login">Salir</a>
+>>>>>>> Stashed changes
     </div>
     <div class="user-info">
       <!--<pre>{{ currentDate }}</pre>
