@@ -69,9 +69,10 @@
   }
 }
 
-.small-button{
+.small-button-content{
 background-color: $white-background-color;
 padding: 1rem;
+max-width: 10rem;
 }
 
 .content {
@@ -87,4 +88,9 @@ padding: 1rem;
 }
 
 .mat-sidenav-content{
+  display: flex;
+}
+
+.router-content{
+  width: 100%;
 }

@@ -39,7 +39,7 @@
 
 
   <mat-sidenav-content>
-    <div class="small-button">
+    <div class="small-button-content">
       <button class="material-icons" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
         <span class="material-icons" *ngIf="!sidenav.opened">
           menu
@@ -51,7 +51,9 @@
       -->
       </button>
     </div>
-    <router-outlet></router-outlet>
+    <div class="router-content">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 
 </mat-sidenav-container>
