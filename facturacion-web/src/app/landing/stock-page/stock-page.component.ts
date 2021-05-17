@@ -3,10 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { AddProductModalComponent } from '../modals/add-product-modal/add-product-modal.component';
 import { DeleteItemModalComponent } from '../modals/delete-item-modal/delete-item-modal.component';
 import { EditProductModalComponent } from '../modals/edit-product-modal/edit-product-modal.component';
-
+import { ProductService } from 'src/app/services/product.service';
+import { AddProductModalComponent } from '../modals/add-product-modal/add-product-modal.component';
 
 @Component({
   selector: 'app-stock-page',
@@ -19,18 +19,7 @@ export class StockComponent {
 
   columnas: string[] = ['name', 'description', 'stock', 'price', 'action'];
   sourceData = new MatTableDataSource();
-
-  falsedatos: Articulo[] = [new Articulo('Producto 0', 'Descripción 0', 0, 0),
-  new Articulo('Producto 1', 'Descripción 1', 1, 1300),
-  new Articulo('Producto 2', 'Descripción 2', 13, 1200),
-  new Articulo('Producto 3', 'Descripción 3', 99, 132),
-  new Articulo('Producto 4', 'Descripción 4', 1500, 456),
-  new Articulo('Producto 5', 'Descripción 5', 1300, 99),
-  new Articulo('Producto 6', 'Descripción 6', 500, 43),
-  new Articulo('Producto 7', 'Descripción 7', 200, 1300),
-  new Articulo('Producto 8', 'Descripción 8', 100, 340),
-  new Articulo('Producto 9', 'Descripción 9', 150, 999),
-  ];
+  public allProduct: Product[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -57,10 +46,16 @@ export class StockComponent {
       this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
     }
   }
-  constructor(public dialog: MatDialog) {
-    this.sourceData.data = this.falsedatos;
+  constructor(
+    public dialog: MatDialog,
+    private ProductService: ProductService
+  ) {
+    this.sourceData.data = [];
   }
 
+  async ngOnInit() {
+    this.getAllProduct();
+  }
   openModalEdit() {
     const dialogRef = this.dialog.open(EditProductModalComponent, {
       autoFocus: false,
@@ -97,14 +92,34 @@ export class StockComponent {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        console.log('aceptar');
+        this.getAllProduct();
         //si le diste cerrar con el aceptar, hacemos algo
       }
     });
   }
+
+  getAllProduct() {
+    this.ProductService.getAllProducts2().subscribe(
+      response => {
+        this.allProduct = [];
+        for (let product of response) {
+          this.allProduct.push(new Product(product.id, product.name, product.description, product.stock, product.price));
+        }
+        this.sourceData.data = this.allProduct;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
 }
 
 export class Articulo {
   constructor(public name: string, public description: string, public stock: number, public price: number) {
+  }
+}
+export class Product {
+  constructor(public id: string, public name: string, public description: string, public stock: number, public price: number) {
   }
 }

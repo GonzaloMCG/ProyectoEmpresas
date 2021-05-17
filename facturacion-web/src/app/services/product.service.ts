@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthenticationService } from './authentication.service';
 
@@ -18,6 +18,10 @@ export class ProductService {
     return this.http.get(`${environment.apiUrl}/products`, { headers }).toPromise().catch(error => Promise.reject(error));
   }
 
+  getAllProducts2(): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/products`);
+  }
+
   getFilteredProducts(query: string): Promise<any> {
     const headers = this.authenticationService.getHeaders();
     return this.http.get(`${environment.apiUrl}/products?name=${query}`, { headers }).toPromise().catch(error => Promise.reject(error));
@@ -27,6 +31,10 @@ export class ProductService {
   newProduct(data: any) {
     const headers = this.authenticationService.getHeaders();
     return this.http.post(`${environment.apiUrl}/products`, { data }, { headers }).toPromise();
+  }
+
+  newProduct2(data: any): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/products`, { ...data });
   }
 
   //probar endpoint

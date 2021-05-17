@@ -26,15 +26,6 @@ export class AdminComponent {
   columnas: string[] = ['user', 'rol', 'action'];
   sourceData = new MatTableDataSource();
 
-  falsedatos: Articulo[] = [new Articulo('Usuario 0', 'Administrador'),
-  new Articulo('Usuario 1', 'Operador'),
-  new Articulo('Usuario 2', 'Administrador'),
-  new Articulo('Usuario 3', 'Operador'),
-  new Articulo('Usuario 4', 'Administrador'),
-  new Articulo('Usuario 5', 'Operador'),
-  new Articulo('Usuario 6', 'Administrador'),
-  ];
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -64,11 +55,11 @@ export class AdminComponent {
     public dialog: MatDialog,
     private userService: UserService
   ) {
-    this.sourceData.data = this.falsedatos;
+    this.sourceData.data = [];
   }
 
   async ngOnInit() {
-    this.getAllUsers();    
+    this.getAllUsers();
   }
 
   openModalEdit() {
@@ -117,7 +108,7 @@ export class AdminComponent {
     });
   }
 
-  async getAllUsers() {
+  getAllUsers() {
     this.userService.getAllUsers().subscribe(
       response => {
         this.allUsers = [];
