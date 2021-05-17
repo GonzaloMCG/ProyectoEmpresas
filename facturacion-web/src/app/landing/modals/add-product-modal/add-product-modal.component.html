@@ -7,20 +7,24 @@
       <div class="form-input">
         <div class="item-atribute">
           <span>Nombre:</span>
-          <input id="name" class="input input-name" type="text" autocomplete="off" formControlName="name">
+          <input id="name" class="input input-name" type="text" autocomplete="off" formControlName="name"
+            [class.invalid-input-container]="addProductForm.get('name').errors?.required && submitted">
         </div>
         <div class="item-atribute">
           <span>Descripción:</span>
           <input id="description" class="input input-description" type="text" autocomplete="off"
-            formControlName="description">
+            formControlName="description"
+            [class.invalid-input-container]="addProductForm.get('description').errors?.required && submitted">
         </div>
         <div class="item-atribute">
           <span>Unidades en stock:</span>
-          <input id="count" class="input input-stock" type="number" autocomplete="off" formControlName="stock">
+          <input id="count" class="input input-stock" type="number" autocomplete="off" formControlName="stock"
+            [class.invalid-input-container]="addProductForm.get('stock').errors?.required && submitted">
         </div>
         <div class="item-atribute">
           <span>Precio unitario:</span>
-          <input id="price" class="input input-price" type="number" autocomplete="off" formControlName="price">
+          <input id="price" class="input input-price" type="number" autocomplete="off" formControlName="price"
+            [class.invalid-input-container]="addProductForm.get('price').errors?.required && submitted">
         </div>
       </div>
     </form>

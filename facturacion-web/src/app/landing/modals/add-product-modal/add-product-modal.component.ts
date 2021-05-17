@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MessageService } from 'src/app/message-handler/message.service';
 import { ProductService } from 'src/app/services/product.service';
 
 
@@ -12,6 +13,7 @@ import { ProductService } from 'src/app/services/product.service';
 
 export class AddProductModalComponent {
 
+  public submitted = false;
   public addProductForm = this.formBuilder.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
@@ -22,7 +24,8 @@ export class AddProductModalComponent {
   constructor(public dialogRef: MatDialogRef<AddProductModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private productService: ProductService,
-    private formBuilder: FormBuilder,) {
+    private formBuilder: FormBuilder,
+    private messageService: MessageService,) {
   }
 
   close() {
@@ -30,6 +33,13 @@ export class AddProductModalComponent {
   }
 
   async submit() {
+
+    this.submitted = true;
+    if (this.addProductForm.invalid) {
+      this.messageService.showError('Todos los campos son obligatorios.', 3000);
+      return;
+    }
+
     const data = {
       ...this.addProductForm.value
     }
