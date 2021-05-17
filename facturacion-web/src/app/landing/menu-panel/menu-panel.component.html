@@ -12,21 +12,21 @@
       <div class="item-section">
         <div>
           <div class="item">
-            <a class="menu-item" routerLink="home-page" *ngIf="sidenav.opened"><img
+            <a class="menu-item" routerLink="home-page" (click)="sidenav.toggle()"><img
                 src="assets/images/facturacion.png">Facturación</a>
           </div>
           <div class="item">
-            <a class="menu-item" routerLink="invoices-emitted-page" *ngIf="sidenav.opened"><img
+            <a class="menu-item" routerLink="invoices-emitted-page" (click)="sidenav.toggle()"><img
                 src="assets/images/facturasEmitidas.png">Facturas
               emitidas</a>
           </div>
           <div class="item">
-            <a class="menu-item" routerLink="stock-page" *ngIf="sidenav.opened"><img
+            <a class="menu-item" routerLink="stock-page" (click)="sidenav.toggle()"><img
                 src="assets/images/stock.png">Control de
               stock</a>
           </div>
           <div class="item">
-            <a class="menu-item" routerLink="admin-page" *ngIf="sidenav.opened"><img
+            <a class="menu-item" routerLink="admin-page" (click)="sidenav.toggle()"><img
                 src="assets/images/administracion.png">Administración</a>
           </div>
         </div>
@@ -34,21 +34,13 @@
       <mat-divider></mat-divider>
       <a class="logout-btn" (click)="logout()" routerLink="/login">Salir</a>
     </div>
-
   </mat-sidenav>
-
-
   <mat-sidenav-content>
     <div class="small-button-content">
       <button class="material-icons" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
         <span class="material-icons" *ngIf="!sidenav.opened">
           menu
         </span>
-        <!--
-      <span class="material-icons" *ngIf="sidenav.opened">
-        close
-      </span>
-      -->
       </button>
     </div>
     <div class="router-content">

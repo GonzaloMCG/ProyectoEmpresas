@@ -5,35 +5,35 @@
 }
 
 .mat-sidenav {
-  margin: 5px;
+  margin: 0.5rem;
   min-width: 23rem;
   background: $light-black-color;
   color: $white-color;
-  border-radius: 6px;
-  padding: 16px;
+  border-radius: 0.6rem;
+  padding: 1.6rem;
   text-align: center;
   font-size: 1.6em;
 }
 
 .mat-sidenav-container {
-  height: calc(100vh - 10px);
+  height: calc(100vh - 1rem);
 }
 
 .avatar {
-  margin-top: 16px;
+  margin-top: 1.6rem;
   width: 100px;
   height: 100px;
   border-radius: 50%;
 }
 
 .name {
-  margin-top: 8px;
+  margin-top: 0.8rem;
   font-weight: normal;
 }
 
 .mat-divider {
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
   background-color: $white-color;
 }
 
