@@ -23,7 +23,7 @@ export class AdminComponent {
   user = "NombreDeUsuario";
   password: 12345678;
 
-  columnas: string[] = ['user', 'rol', 'action'];
+  columnas: string[] = ['username', 'roles', 'action'];
   sourceData = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

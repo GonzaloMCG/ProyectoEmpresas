@@ -13,14 +13,9 @@ export class InvoiceService {
   constructor(private http: HttpClient) { }
 
   async newInvoice(data: any) {
-    const newInvoice = await this.http.post(`${environment.apiUrl}/invoices`, { ...data }).toPromise();
-    const listInvoices = this.$invoicesEmitted.getValue();
-    if (!!listInvoices) {
-      listInvoices.push(newInvoice);
-      this.$invoicesEmitted.next(listInvoices);
-    } else {
-      this.$invoicesEmitted.next([newInvoice]);
-    }
+    await this.http.post(`${environment.apiUrl}/invoices`, { ...data }).toPromise();
+    const listInvoices = await this.getAll();
+    this.$invoicesEmitted.next(listInvoices);
   }
 
   async getAll(): Promise<any> {

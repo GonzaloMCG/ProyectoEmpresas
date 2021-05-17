@@ -7,6 +7,7 @@ import { DeleteItemModalComponent } from '../modals/delete-item-modal/delete-ite
 import { EditProductModalComponent } from '../modals/edit-product-modal/edit-product-modal.component';
 import { ProductService } from 'src/app/services/product.service';
 import { AddProductModalComponent } from '../modals/add-product-modal/add-product-modal.component';
+import { Article } from 'src/app/models/article.model';
 
 @Component({
   selector: 'app-stock-page',
@@ -48,7 +49,7 @@ export class StockComponent {
   }
   constructor(
     public dialog: MatDialog,
-    private ProductService: ProductService
+    private productService: ProductService
   ) {
     this.sourceData.data = [];
   }
@@ -68,20 +69,20 @@ export class StockComponent {
     });
   }
 
-  openModalDelete() {
+  openModalDelete(product: Article) {
     const dialogRef = this.dialog.open(DeleteItemModalComponent, {
       autoFocus: false,
       data: {
-        isUser: false
+        isUser: false,
+        product: product,
       }
     });
 
-    dialogRef.afterClosed().subscribe((res) => {
-      if (res) {
-        //si le diste cerrar con el aceptar, hacemos algo
-      }
+    dialogRef.afterClosed().subscribe(async (res) => {
+      this.getAllProduct();
     });
   }
+
   openModalAdd() {
     const dialogRef = this.dialog.open(AddProductModalComponent, {
       autoFocus: false,
@@ -93,26 +94,18 @@ export class StockComponent {
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
         this.getAllProduct();
-        //si le diste cerrar con el aceptar, hacemos algo
       }
     });
   }
 
-  getAllProduct() {
-    this.ProductService.getAllProducts2().subscribe(
-      response => {
-        this.allProduct = [];
-        for (let product of response) {
-          this.allProduct.push(new Product(product.id, product.name, product.description, product.stock, product.price));
-        }
-        this.sourceData.data = this.allProduct;
-      },
-      error => {
-        console.log(error);
-      }
-    );
+  async getAllProduct() {
+    try {
+      this.allProduct = (await this.productService.getAllProducts()).map(product => new Product(product.id, product.name, product.description, product.stock, product.price));
+      this.sourceData.data = this.allProduct;
+    } catch (error) {
+      console.log(error);
+    }
   }
-
 }
 
 export class Articulo {

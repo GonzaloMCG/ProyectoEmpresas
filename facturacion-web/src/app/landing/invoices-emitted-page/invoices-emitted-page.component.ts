@@ -16,7 +16,7 @@ import { Article } from 'src/app/models/article.model';
 })
 
 export class InvoicesEmittedComponent implements AfterViewInit {
-  public columnas: string[] = ['date', 'client', 'total', 'action'];
+  public columnas: string[] = ['createdAt', 'client', 'total', 'action'];
   public sourceData = new MatTableDataSource();
   public pageSizeOptions: number[] = [5, 10, 25, 100];
   public pageEvent: PageEvent;
@@ -40,7 +40,9 @@ export class InvoicesEmittedComponent implements AfterViewInit {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   applyFilter(event: Event) {

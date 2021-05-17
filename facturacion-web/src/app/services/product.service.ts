@@ -14,23 +14,16 @@ export class ProductService {
     private authenticationService: AuthenticationService) { }
 
   getAllProducts(): Promise<any> {
-    const headers = this.authenticationService.getHeaders();
-    return this.http.get(`${environment.apiUrl}/products`, { headers }).toPromise().catch(error => Promise.reject(error));
-  }
-
-  getAllProducts2(): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/products`);
+    return this.http.get(`${environment.apiUrl}/products`).toPromise().catch(error => Promise.reject(error));
   }
 
   getFilteredProducts(query: string): Promise<any> {
-    const headers = this.authenticationService.getHeaders();
-    return this.http.get(`${environment.apiUrl}/products?name=${query}`, { headers }).toPromise().catch(error => Promise.reject(error));
+    return this.http.get(`${environment.apiUrl}/products?name=${query}`).toPromise().catch(error => Promise.reject(error));
   }
 
   //probar endpoint
   newProduct(data: any) {
-    const headers = this.authenticationService.getHeaders();
-    return this.http.post(`${environment.apiUrl}/products`, { data }, { headers }).toPromise();
+    return this.http.post(`${environment.apiUrl}/products`, { data }).toPromise();
   }
 
   newProduct2(data: any): Observable<any> {
@@ -39,20 +32,17 @@ export class ProductService {
 
   //probar endpoint
   getProductById(id: number) {
-    const headers = this.authenticationService.getHeaders();
-    return this.http.get(`${environment.apiUrl}/products/${id}`, { headers }).toPromise();
+    return this.http.get(`${environment.apiUrl}/products/${id}`).toPromise();
   }
 
   //probar endpoint
   getProductByName(name: string) {
-    const headers = this.authenticationService.getHeaders();
-    return this.http.get(`${environment.apiUrl}/products?name=${name}`, { headers }).toPromise();
+    return this.http.get(`${environment.apiUrl}/products?name=${name}`).toPromise();
   }
 
   //probar endpoint
   async updateProduct(data: any) {
-    const headers = this.authenticationService.getHeaders();
-    const updatedProduct = await this.http.put(`${environment.apiUrl}/products/${data.id}`, { data }, { headers }).toPromise();
+    const updatedProduct = await this.http.put(`${environment.apiUrl}/products/${data.id}`, { data }).toPromise();
     const productList = this.$productsSubject.getValue();
     if (!productList) {
       let filteredProductList = productList.filter(elem => elem.id !== data.id);
@@ -63,19 +53,17 @@ export class ProductService {
 
   //probar endpoint
   removeProduct(id: number) {
-    const headers = this.authenticationService.getHeaders();
-    this.http.delete(`${environment.apiUrl}/products/${id}`, { headers }).toPromise();
+    this.http.delete(`${environment.apiUrl}/products/${id}`).toPromise();
     const productList = this.$productsSubject.getValue();
-    if (!productList) {
+    /*if (!productList) {
       const filteredProductList = productList.filter(elem => elem.id !== id);
       this.$productsSubject.next(filteredProductList);
-    }
+    }*/
   }
 
   //probar endpoint
   removeAllProduct() {
-    const headers = this.authenticationService.getHeaders();
-    this.http.delete(`${environment.apiUrl}/products`, { headers }).toPromise();
+    this.http.delete(`${environment.apiUrl}/products`).toPromise();
     this.$productsSubject.next(null);
   }
 }
