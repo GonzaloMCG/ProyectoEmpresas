@@ -18,7 +18,7 @@
 
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
-        <td mat-cell *matCellDef="let articulo"> {{articulo.date}} </td>
+        <td mat-cell *matCellDef="let articulo"> {{articulo.createdAt | date: 'dd/MM/YYYY'}} </td>
       </ng-container>
 
       <ng-container matColumnDef="client">
@@ -33,9 +33,9 @@
 
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Acción </th>
-        <td mat-cell *matCellDef="let j = index;">
+        <td mat-cell *matCellDef="let articulo">
           <button mat-raised-button focusable="false" class="button">
-            <a class="menu-item" (click)="openModal()"><img src="assets/images/view.png"></a>
+            <a class="menu-item" (click)="openModal(articulo)"><img src="assets/images/view.png"></a>
           </button>
         </td>
       </ng-container>

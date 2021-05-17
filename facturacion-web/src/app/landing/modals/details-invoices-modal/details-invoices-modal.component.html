@@ -5,22 +5,22 @@
   <div mat-dialog-content class="invoice-data">
     <div class="form-init">
       <div>
-        <span>Cliente: {{client}}</span>
+        <span>Cliente: {{data.client}}</span>
       </div>
       <div>
-        <span>Método de Pago: {{paymentMethod}}</span>
+        <span>Método de Pago: {{data.paymentMethod}}</span>
       </div>
       <div>
-        <span>Moneda: {{currency}}</span>
+        <span>Moneda: {{data.currency}}</span>
       </div>
       <div>
-        <span>Fecha: {{date}}</span>
+        <span>Fecha: {{data.createdAt | date: 'dd/MM/YYYY'}}</span>
       </div>
     </div>
     <hr class="line">
 
     <div class="invoicing-container">
-      <table mat-table [dataSource]="sourceData" class="mat-elevation-z8" #tabla1>
+      <table mat-table [dataSource]="sourceData">
 
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Nombre de Producto </th>
@@ -28,9 +28,9 @@
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 
-        <ng-container matColumnDef="unitPrice">
+        <ng-container matColumnDef="price">
           <th mat-header-cell *matHeaderCellDef> Precio Unitario </th>
-          <td mat-cell *matCellDef="let articulo"> {{articulo.unitPrice}} </td>
+          <td mat-cell *matCellDef="let articulo"> {{articulo.price}} </td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 
@@ -40,10 +40,10 @@
           <td mat-footer-cell *matFooterCellDef>Total: </td>
         </ng-container>
 
-        <ng-container matColumnDef="price">
+        <ng-container matColumnDef="total">
           <th mat-header-cell *matHeaderCellDef> Precio </th>
-          <td mat-cell *matCellDef="let articulo"> {{articulo.price}} </td>
-          <td mat-footer-cell *matFooterCellDef> $ {{total}} </td>
+          <td mat-cell *matCellDef="let articulo"> {{articulo.total}} </td>
+          <td mat-footer-cell *matFooterCellDef> $ {{data.total}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="columnas"></tr>
