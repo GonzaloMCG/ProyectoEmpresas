@@ -23,6 +23,7 @@ export class EditProductModalComponent {
     private productService: ProductService,
     private formBuilder: FormBuilder,
   ) {
+    this.initForm();
   }
 
   close() {
@@ -34,12 +35,15 @@ export class EditProductModalComponent {
       ...this.editProductForm.value
     }
     try {
-      await this.productService.updateProduct(data)
+      await this.productService.updateProduct({ ...this.data.product, ...data });
       this.dialogRef.close(true);
     }
     catch (error) {
       this.dialogRef.close();
     }
+  }
+
+  initForm() {
 
   }
 }

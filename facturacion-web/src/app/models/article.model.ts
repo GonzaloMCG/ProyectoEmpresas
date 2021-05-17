@@ -8,4 +8,14 @@ export class Article {
   public description?: string;
   public updatedAt?: string;
   public stock?: number;
+
+  constructor(data: any) {
+    if (data) {
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          this[key] = data[key];
+        }
+      }
+    }
+  }
 }

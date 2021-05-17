@@ -20,7 +20,7 @@ export class StockComponent {
 
   columnas: string[] = ['name', 'description', 'stock', 'price', 'action'];
   sourceData = new MatTableDataSource();
-  public allProduct: Product[];
+  public allProduct: Article[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -106,7 +106,7 @@ export class StockComponent {
 
   async getAllProduct() {
     try {
-      this.allProduct = (await this.productService.getAllProducts()).map(product => new Product(product.id, product.name, product.description, product.stock, product.price));
+      this.allProduct = (await this.productService.getAllProducts()).map(product => new Article(product));
       this.sourceData.data = this.allProduct;
     } catch (error) {
       console.log(error);
