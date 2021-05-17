@@ -1,59 +1,50 @@
 <div class="panel-container">
-  <div class="sidebar-header">
-    <img src="assets/images/circle2.png" alt="Logo" title="Logo">
-  </div>
-  <div class="sidebar-profile">
-    <div class="user-pic">
-      <img src="assets/images/logo.png" alt="User picture">
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
 
-      <mat-sidenav-container>
-        <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+      <img class="avatar mat-elevation-z8" src="assets/images/circle2.png" />
+      <span></span>
+      <h4 class="name">Online</h4>
+      <img src="assets/images/online.png" alt="Online">
 
-          <img class="avatar mat-elevation-z8" src="assets/images/circle2.png" />
-          <span></span>
-          <h4 class="name">Online</h4>
-          <img src="assets/images/online.png" alt="Online">
+      <mat-divider></mat-divider>
 
-          <mat-divider></mat-divider>
-
-          <div class="menu-section">
-            <div class="item-section">
-              <div>
-                <div class="item">
-                  <a class="menu-item" routerLink="home-page"><img src="assets/images/facturacion.png">Facturación</a>
-                </div>
-                <div class="item">
-                  <a class="menu-item" routerLink="invoices-emitted-page"><img
-                      src="assets/images/facturasEmitidas.png">Facturas
-                    emitidas</a>
-                </div>
-                <div class="item">
-                  <a class="menu-item" routerLink="stock-page"><img src="assets/images/stock.png">Control de
-                    stock</a>
-                </div>
-                <div class="item">
-                  <a class="menu-item" routerLink="admin-page"><img
-                      src="assets/images/administracion.png">Administración</a>
-                </div>
-              </div>
+      <div class="menu-section">
+        <div class="item-section">
+          <div>
+            <div class="item">
+              <a class="menu-item" routerLink="home-page"><img src="assets/images/facturacion.png">Facturación</a>
             </div>
-            <mat-divider></mat-divider>
-            <a class="logout-btn" (click)="logout()" routerLink="/login">Salir</a>
+            <div class="item">
+              <a class="menu-item" routerLink="invoices-emitted-page"><img
+                  src="assets/images/facturasEmitidas.png">Facturas
+                emitidas</a>
+            </div>
+            <div class="item">
+              <a class="menu-item" routerLink="stock-page"><img src="assets/images/stock.png">Control de
+                stock</a>
+            </div>
+            <div class="item">
+              <a class="menu-item" routerLink="admin-page"><img
+                  src="assets/images/administracion.png">Administración</a>
+            </div>
           </div>
-        </mat-sidenav>
-        <mat-sidenav-content>
-          <div class="small-button-content">
-            <button class="material-icons" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-              <span class="material-icons" *ngIf="!sidenav.opened">
-                menu
-              </span>
-            </button>
-          </div>
-          <div class="router-content">
-            <router-outlet></router-outlet>
-          </div>
-        </mat-sidenav-content>
-      </mat-sidenav-container>
-    </div>
-  </div>
+        </div>
+        <mat-divider></mat-divider>
+        <a class="logout-btn" (click)="logout()" routerLink="/login">Salir</a>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="small-button-content">
+        <button class="material-icons" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+          <span class="material-icons" *ngIf="!sidenav.opened">
+            menu
+          </span>
+        </button>
+      </div>
+      <div class="router-content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
