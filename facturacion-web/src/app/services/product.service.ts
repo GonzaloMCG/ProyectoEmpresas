@@ -51,4 +51,9 @@ export class ProductService {
     this.http.delete(`${environment.apiUrl}/products`).toPromise();
     this.$productsSubject.next(null);
   }
+
+  //probar endpoint
+  getTotalInWarehouse(): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/products/money-in-warehouse`);
+  }
 }

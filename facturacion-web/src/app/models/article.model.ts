@@ -8,6 +8,7 @@ export class Article {
   public description?: string;
   public updatedAt?: string;
   public stock?: number;
+  public costprice?: number;
 
   constructor(data: any) {
     if (data) {

@@ -19,6 +19,7 @@ export class AddProductModalComponent {
     description: ['', Validators.required],
     stock: ['', Validators.required],
     price: ['', Validators.required],
+    costPrice: ['', Validators.required],
   });
 
   constructor(public dialogRef: MatDialogRef<AddProductModalComponent>,

@@ -17,12 +17,10 @@ import { AddProductModalComponent } from '../modals/add-product-modal/add-produc
 
 
 export class StockComponent {
-
-  totalstock = 999;
-  columnas: string[] = ['name', 'description', 'stock', 'price', 'action'];
+  columnas: string[] = ['name', 'description', 'stock', 'costPrice', 'price', 'action'];
   sourceData = new MatTableDataSource();
   public allProduct: Article[];
-
+  public totalstock: number;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -57,6 +55,7 @@ export class StockComponent {
 
   async ngOnInit() {
     this.getAllProduct();
+    this.getTotalInWarehouse();
   }
 
   openModalEdit(product: Article) {
@@ -70,6 +69,7 @@ export class StockComponent {
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
         this.getAllProduct();
+        this.getTotalInWarehouse();
       }
     });
   }
@@ -86,6 +86,7 @@ export class StockComponent {
     dialogRef.afterClosed().subscribe(async (res) => {
       if (res) {
         this.getAllProduct();
+        this.getTotalInWarehouse();
       }
     });
   }
@@ -101,6 +102,7 @@ export class StockComponent {
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
         this.getAllProduct();
+        this.getTotalInWarehouse();
       }
     });
   }
@@ -112,10 +114,15 @@ export class StockComponent {
     } catch (error) {
     }
   }
-}
-/*
-export class Articulo {
-  constructor(public name: string, public description: string, public stock: number, public price: number) {
-  }
-}*/
 
+  async getTotalInWarehouse() {
+    this.productService.getTotalInWarehouse().subscribe(
+      response => {
+        this.totalstock = response.totalInWarehouse;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+}

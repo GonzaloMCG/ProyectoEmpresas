@@ -17,6 +17,7 @@ export class EditProductModalComponent {
     name: ['', Validators.required],
     description: ['', Validators.required],
     stock: ['', Validators.required],
+    costPrice: ['', Validators.required],
     price: ['', Validators.required],
   });
 
@@ -57,6 +58,7 @@ export class EditProductModalComponent {
     this.editProductForm.controls.name.setValue(this.data.product.name);
     this.editProductForm.controls.description.setValue(this.data.product.description);
     this.editProductForm.controls.stock.setValue(this.data.product.stock);
+    this.editProductForm.controls.costPrice.setValue(this.data.product.costPrice);
     this.editProductForm.controls.price.setValue(this.data.product.price);
   }
 }
