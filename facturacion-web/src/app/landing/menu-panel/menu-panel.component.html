@@ -20,7 +20,7 @@
                   src="assets/images/facturasEmitidas.png">Notas
                 emitidas</a>
             </div>
-            <div class="item">
+            <div class="item" *ngIf="isAdmin()">
               <a class="menu-item" routerLink="stock-page"><img src="assets/images/stock.png">Control de
                 stock</a>
             </div>

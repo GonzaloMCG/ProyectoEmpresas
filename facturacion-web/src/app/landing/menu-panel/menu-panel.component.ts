@@ -32,4 +32,8 @@ export class MenuPanelComponent {
   logout() {
     this.authenticationService.logout();
   }
+
+  isAdmin() {
+    return this.authenticationService.currentUserValue.roles.includes('Admin');
+  }
 }
