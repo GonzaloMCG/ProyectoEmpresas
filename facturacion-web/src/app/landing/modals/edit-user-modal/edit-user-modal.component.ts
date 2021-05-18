@@ -13,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UserEditModalComponent {
 
   public editUserForm = this.formBuilder.group({
-    username: [{ value: this.data.user.username, disabled: true }, Validators.required],
+    username: [{ value: '', disabled: true }, Validators.required],
     roles: ['', Validators.required],
     password: ['', Validators.required],
     repeatPassword: ['', Validators.required],
@@ -23,6 +23,11 @@ export class UserEditModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
     private userService: UserService) {
+  }
+
+  ngOnInit() {
+    this.editUserForm.controls.username.setValue(this.data.user.username);
+    //this.editUserForm.controls.roles.setValue(this.data.user.roles);
   }
 
   close() {

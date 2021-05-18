@@ -9,6 +9,7 @@ import { AddUserModalComponent } from "../modals/add-user-modal/add-user-modal.c
 import { UserEditModalComponent } from "../modals/edit-user-modal/edit-user-modal.component";
 import { User } from '../../models/user.model'
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthenticationService } from '../../services//authentication.service';
 
 
 @Component({
@@ -62,11 +63,13 @@ export class AdminComponent {
     public dialog: MatDialog,
     private userService: UserService,
     private formBuilder: FormBuilder,
+    private authenticationService: AuthenticationService
   ) {
     this.sourceData.data = [];
   }
 
   async ngOnInit() {
+    this.changePasswordForm.controls.username.setValue(this.authenticationService.currentUserValue.username);
     this.getAllUsers();
   }
 
