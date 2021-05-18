@@ -125,9 +125,4 @@ export class StockComponent {
       }
     );
   }
-  /*
-  export class Articulo {
-    constructor(public name: string, public description: string, public stock: number, public price: number) {
-    }
-  }*/
 }
