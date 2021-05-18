@@ -18,6 +18,7 @@ import { AddProductModalComponent } from '../modals/add-product-modal/add-produc
 
 export class StockComponent {
 
+  totalstock = 999;
   columnas: string[] = ['name', 'description', 'stock', 'price', 'action'];
   sourceData = new MatTableDataSource();
   public allProduct: Article[];
