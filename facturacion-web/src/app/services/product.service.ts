@@ -35,21 +35,15 @@ export class ProductService {
     return this.http.get(`${environment.apiUrl}/products?name=${name}`).toPromise();
   }
 
-  //probar endpoint
   async updateProduct(data: any) {
     const updatedProduct = await this.http.put(`${environment.apiUrl}/products/${data.id}`, { ...data }).toPromise();
     const productList = await this.getAllProducts();
     this.$productsSubject.next(productList);
   }
 
-  //probar endpoint
   removeProduct(id: number) {
     this.http.delete(`${environment.apiUrl}/products/${id}`).toPromise();
     const productList = this.$productsSubject.getValue();
-    /*if (!productList) {
-      const filteredProductList = productList.filter(elem => elem.id !== id);
-      this.$productsSubject.next(filteredProductList);
-    }*/
   }
 
   //probar endpoint

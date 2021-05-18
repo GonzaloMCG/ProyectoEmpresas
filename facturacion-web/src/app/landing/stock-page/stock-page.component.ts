@@ -4,10 +4,10 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DeleteItemModalComponent } from '../modals/delete-item-modal/delete-item-modal.component';
-import { EditProductModalComponent } from '../modals/edit-product-modal/edit-product-modal.component';
 import { ProductService } from 'src/app/services/product.service';
-import { AddProductModalComponent } from '../modals/add-product-modal/add-product-modal.component';
 import { Article } from 'src/app/models/article.model';
+import { EditProductModalComponent } from '../modals/edit-product-modal/edit-product-modal.component';
+import { AddProductModalComponent } from '../modals/add-product-modal/add-product-modal.component';
 
 @Component({
   selector: 'app-stock-page',
@@ -109,7 +109,6 @@ export class StockComponent {
       this.allProduct = (await this.productService.getAllProducts()).map(product => new Article(product));
       this.sourceData.data = this.allProduct;
     } catch (error) {
-      console.log(error);
     }
   }
 }

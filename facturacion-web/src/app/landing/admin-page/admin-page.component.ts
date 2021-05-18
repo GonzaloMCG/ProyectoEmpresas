@@ -3,11 +3,10 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
-import { AddUserModalComponent } from "../modals/add-user-modal/add-user-modal.component";
 import { DeleteItemModalComponent } from "../modals/delete-item-modal/delete-item-modal.component";
-import { UserEditModalComponent } from "../modals/edit-user-modal/edit-user-modal.component";
 import { UserService } from 'src/app/services/user.service';
-import { User } from '../../models/user.model'
+import { AddUserModalComponent } from "../modals/add-user-modal/add-user-modal.component";
+import { UserEditModalComponent } from "../modals/edit-user-modal/edit-user-modal.component";
 
 
 @Component({
@@ -73,13 +72,11 @@ export class AdminComponent {
       if (res) {
         console.log('aceptar');
         this.getAllUsers();
-        //si le diste cerrar con el aceptar, hacemos algo
       }
     });
   }
 
   openModalDelete(user: any) {
-    console.log(user);
     const dialogRef = this.dialog.open(DeleteItemModalComponent, {
       autoFocus: false,
       data: {
@@ -92,7 +89,6 @@ export class AdminComponent {
       if (res) {
         console.log('aceptar');
         this.getAllUsers();
-        //si le diste cerrar con el aceptar, hacemos algo
       }
     });
   }
@@ -109,7 +105,6 @@ export class AdminComponent {
       if (res) {
         console.log('aceptar');
         this.getAllUsers();
-        //si le diste cerrar con el aceptar, hacemos algo
       }
     });
   }

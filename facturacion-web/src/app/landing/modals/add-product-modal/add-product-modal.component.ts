@@ -40,24 +40,11 @@ export class AddProductModalComponent {
       return;
     }
 
-    const data = {
-      ...this.addProductForm.value
-    }
-    var product = {
-      name: data.name,
-      description: data.description,
-      stock: data.stock,
-      price: data.price,
-    }
-    await this.productService.newProduct(product).subscribe(
+    await this.productService.newProduct({ ...this.addProductForm.value }).subscribe(
       response => {
-        console.log(response);
-        console.log('cierra');
         this.dialogRef.close(true);
       },
       error => {
-        console.log(error);
-        console.log('cierra');
         this.dialogRef.close(true);
       }
     );

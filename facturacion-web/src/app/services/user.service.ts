@@ -16,11 +16,7 @@ export class UserService {
 
   async loginUser(data: any) {
     this.http.post<any>(`${environment.apiUrl}/users/login`, { data });
-    // const user = await this.authenticationService.login(data.user, data.password);
-    // console.log(user);
-    // this.$usersSubject.next(user);
   }
-
 
   //Probar endpiont
   async newUser(user: any) {
@@ -36,7 +32,6 @@ export class UserService {
   }
 
   getAllUsers(): Observable<any> {
-    //const headers = this.authenticationService.getHeaders();
     return this.http.get(`${environment.apiUrl}/users`);
   }
 
@@ -49,16 +44,10 @@ export class UserService {
   }
 
   manageRoles(data: any): Observable<any> {
-    console.log('llego al manageroles');
-    console.log(data);
-    return this.http.put(`${environment.apiUrl}/users/manage-roles`, {...data});
+    return this.http.put(`${environment.apiUrl}/users/manage-roles`, { ...data });
   }
 
   resetPassword(data: any): Observable<any> {
-    console.log('llego al resetPassword');
-    console.log(data);
-    return this.http.put(`${environment.apiUrl}/users/reset-password`, {...data});
+    return this.http.put(`${environment.apiUrl}/users/reset-password`, { ...data });
   }
-
-
 }

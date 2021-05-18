@@ -13,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UserEditModalComponent {
 
   public editUserForm = this.formBuilder.group({
-    username: [{value: this.data.user.username, disabled: true}, Validators.required],
+    username: [{ value: this.data.user.username, disabled: true }, Validators.required],
     roles: ['', Validators.required],
     password: ['', Validators.required],
     repeatPassword: ['', Validators.required],
@@ -51,10 +51,9 @@ export class UserEditModalComponent {
         }
         else {
           this.dialogRef.close(true);
-        }        
+        }
       },
       error => {
-        console.log(error);
         this.dialogRef.close(true);
       }
     );

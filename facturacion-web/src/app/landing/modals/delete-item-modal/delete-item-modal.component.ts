@@ -41,13 +41,9 @@ export class DeleteItemModalComponent {
   removeUser() {
     this.userService.deleteUser(this.data.username).subscribe(
       response => {
-        console.log(response);
-        console.log('cierra');
         this.dialogRef.close(true);
       },
       error => {
-        console.log(error);
-        console.log('cierra');
         this.dialogRef.close(true);
       }
     );
@@ -58,7 +54,6 @@ export class DeleteItemModalComponent {
       await this.productService.removeProduct(this.data.product.id);
       this.dialogRef.close(this.data.product.id);
     } catch (error) {
-      console.log(error);
       this.dialogRef.close();
     }
   }
