@@ -153,4 +153,7 @@ export class AdminComponent {
     );
   }
 
+  isAdmin() {
+    return this.authenticationService.currentUserValue.roles.includes('Admin');
+  }
 }
