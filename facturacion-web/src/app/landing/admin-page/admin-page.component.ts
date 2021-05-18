@@ -7,6 +7,8 @@ import { DeleteItemModalComponent } from "../modals/delete-item-modal/delete-ite
 import { UserService } from 'src/app/services/user.service';
 import { AddUserModalComponent } from "../modals/add-user-modal/add-user-modal.component";
 import { UserEditModalComponent } from "../modals/edit-user-modal/edit-user-modal.component";
+import { User } from '../../models/user.model'
+import { FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -17,6 +19,13 @@ import { UserEditModalComponent } from "../modals/edit-user-modal/edit-user-moda
 
 
 export class AdminComponent {
+
+  public changePasswordForm = this.formBuilder.group({
+    username: [{value: '', disabled: true}, Validators.required],
+    password: ['', Validators.required],
+    newPassword: ['', Validators.required],
+    repeatPassword: ['', Validators.required],
+  });
 
   user = "NombreDeUsuario";
   password: 12345678;
@@ -51,7 +60,8 @@ export class AdminComponent {
   }
   constructor(
     public dialog: MatDialog,
-    private userService: UserService
+    private userService: UserService,
+    private formBuilder: FormBuilder,
   ) {
     this.sourceData.data = [];
   }
@@ -116,6 +126,26 @@ export class AdminComponent {
       },
       error => {
         console.log(error);
+      }
+    );
+  }
+
+  submit() {
+    const formData = {
+      ...this.changePasswordForm.value
+    }
+    var passwords = {
+      oldPassword: formData.password,
+      password: formData.newPassword,
+    }
+    this.userService.changePassword(passwords).subscribe(
+      response => {
+        console.log(response);
+        console.log('cierra');
+      },
+      error => {
+        console.log(error);
+        console.log('cierra');
       }
     );
   }

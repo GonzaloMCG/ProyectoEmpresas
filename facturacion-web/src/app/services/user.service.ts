@@ -50,4 +50,8 @@ export class UserService {
   resetPassword(data: any): Observable<any> {
     return this.http.put(`${environment.apiUrl}/users/reset-password`, { ...data });
   }
+
+  changePassword(data: any): Observable<any> {
+    return this.http.put(`${environment.apiUrl}/users/change-password`, { ...data });
+  }
 }

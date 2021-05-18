@@ -4,27 +4,29 @@
   </div>
   <hr class="line">
   <div mat-dialog-content class="user-data">
-    <div class="form-input">
-      <div class="item-atribute">
-        <span>Usuario:</span>
-        <input id="name" class="input input-user" type="text" value={{user}} autocomplete="off" disabled>
+    <form [formGroup]="changePasswordForm" (submit)="submit()">
+      <div class="form-input">
+        <div class="item-atribute">
+          <span>Usuario:</span>
+          <input id="username" class="input input-user" type="text" value={{user}} autocomplete="off" formControlName="username">
+        </div>
+        <div class="item-atribute">
+          <span>Contraseña actual:</span>
+          <input id="password" class="input input-password" type="password" value={{password}} autocomplete="off" formControlName="password">
+        </div>
+        <div class="item-atribute">
+          <span>Nueva contraseña:</span>
+          <input id="newPassword" class="input input-password" type="password" value={{password}} autocomplete="off" formControlName="newPassword">
+        </div>
+        <div class="item-atribute">
+          <span>Confirmar nueva contraseña:</span>
+          <input id="repeatPassword" class="input input-password" type="password" value={{password}} autocomplete="off" formControlName="repeatPassword">
+        </div>
       </div>
-      <div class="item-atribute">
-        <span>Contraseña actual:</span>
-        <input id="actualpassword" class="input input-password" type="password" value={{password}} autocomplete="off">
-      </div>
-      <div class="item-atribute">
-        <span>Nueva contraseña:</span>
-        <input id="newpassword" class="input input-password" type="password" value={{password}} autocomplete="off">
-      </div>
-      <div class="item-atribute">
-        <span>Confirmar nueva contraseña:</span>
-        <input id="repeatpassword" class="input input-password" type="password" value={{password}} autocomplete="off">
-      </div>
-    </div>
+    </form>
     <div class="button-row">
       <button class="button">
-        <a class="action-btn-save">Guardar</a>
+        <a class="action-btn-save" (click)="submit()">Guardar</a>
       </button>
     </div>
   </div>
