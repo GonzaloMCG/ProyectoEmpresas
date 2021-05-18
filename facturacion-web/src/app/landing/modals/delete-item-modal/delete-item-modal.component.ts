@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ProductService } from 'src/app/services/product.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -13,6 +15,8 @@ export class DeleteItemModalComponent {
   public message: string
 
   constructor(public dialogRef: MatDialogRef<DeleteItemModalComponent>,
+    private productService: ProductService,
+    private userService: UserService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
@@ -25,6 +29,32 @@ export class DeleteItemModalComponent {
   }
 
   submit() {
-    this.dialogRef.close(true);
+
+    if (this.data.isUser) {
+      this.removeUser();
+    }
+    else {
+      this.removeProduct();
+    }
+  }
+
+  removeUser() {
+    this.userService.deleteUser(this.data.username).subscribe(
+      response => {
+        this.dialogRef.close(true);
+      },
+      error => {
+        this.dialogRef.close(true);
+      }
+    );
+  }
+
+  async removeProduct() {
+    try {
+      await this.productService.removeProduct(this.data.product.id);
+      this.dialogRef.close(this.data.product.id);
+    } catch (error) {
+      this.dialogRef.close();
+    }
   }
 }

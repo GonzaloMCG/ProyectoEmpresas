@@ -3,8 +3,9 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
-import { AddUserModalComponent } from "../modals/add-user-modal/add-user-modal.component";
 import { DeleteItemModalComponent } from "../modals/delete-item-modal/delete-item-modal.component";
+import { UserService } from 'src/app/services/user.service';
+import { AddUserModalComponent } from "../modals/add-user-modal/add-user-modal.component";
 import { UserEditModalComponent } from "../modals/edit-user-modal/edit-user-modal.component";
 
 
@@ -20,17 +21,8 @@ export class AdminComponent {
   user = "NombreDeUsuario";
   password: 12345678;
 
-  columnas: string[] = ['user', 'rol', 'action'];
+  columnas: string[] = ['username', 'roles', 'action'];
   sourceData = new MatTableDataSource();
-
-  falsedatos: Articulo[] = [new Articulo('Usuario 0', 'Administrador'),
-  new Articulo('Usuario 1', 'Operador'),
-  new Articulo('Usuario 2', 'Administrador'),
-  new Articulo('Usuario 3', 'Operador'),
-  new Articulo('Usuario 4', 'Administrador'),
-  new Articulo('Usuario 5', 'Operador'),
-  new Articulo('Usuario 6', 'Administrador'),
-  ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -57,35 +49,46 @@ export class AdminComponent {
       this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
     }
   }
-  constructor(public dialog: MatDialog) {
-    this.sourceData.data = this.falsedatos;
+  constructor(
+    public dialog: MatDialog,
+    private userService: UserService
+  ) {
+    this.sourceData.data = [];
   }
 
-  openModalEdit() {
+  async ngOnInit() {
+    this.getAllUsers();
+  }
+
+  openModalEdit(user: any) {
     const dialogRef = this.dialog.open(UserEditModalComponent, {
       autoFocus: false,
+      data: {
+        user: user
+      }
     });
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
         console.log('aceptar');
-        //si le diste cerrar con el aceptar, hacemos algo
+        this.getAllUsers();
       }
     });
   }
 
-  openModalDelete() {
+  openModalDelete(user: any) {
     const dialogRef = this.dialog.open(DeleteItemModalComponent, {
       autoFocus: false,
       data: {
-        isUser: true
+        isUser: true,
+        username: user.username
       }
     });
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
         console.log('aceptar');
-        //si le diste cerrar con el aceptar, hacemos algo
+        this.getAllUsers();
       }
     });
   }
@@ -101,15 +104,20 @@ export class AdminComponent {
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
         console.log('aceptar');
-        //si le diste cerrar con el aceptar, hacemos algo
+        this.getAllUsers();
       }
     });
   }
 
-
-}
-
-export class Articulo {
-  constructor(public user: string, public rol: string) {
+  getAllUsers() {
+    this.userService.getAllUsers().subscribe(
+      response => {
+        this.sourceData.data = response;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
+
 }

@@ -4,27 +4,29 @@
   </div>
   <div mat-dialog-content class="user-data">
 
-    <div class="form-input">
-      <div class="item-atribute">
-        <span>Usuario:</span>
-        <input id="name" class="input input-user" type="text" value={{user}} autocomplete="off" disabled>
+    <form [formGroup]="editUserForm" (submit)="submit()">
+      <div class="form-input">
+        <div class="item-atribute">
+          <span>Usuario:</span>
+          <input id="username" class="input input-user" type="text" formControlName="username">
+        </div>
+        <div class="item-atribute">
+          <span>Rol:</span>
+          <select class="action-select-box" formControlName="roles">
+            <option [selected]="true" value="User" class="select-option">Operador</option>
+            <option value="Admin" class="select-option">Administrador</option>
+          </select>
+        </div>
+        <div class="item-atribute">
+          <span>Nueva contraseña:</span>
+          <input id="password" class="input input-password" type="password" autocomplete="off" formControlName="password">
+        </div>
+        <div class="item-atribute">
+          <span>Confirmar contraseña:</span>
+          <input id="repeatPassword" class="input input-password" type="password" autocomplete="off" formControlName="repeatPassword">
+        </div>
       </div>
-      <div class="item-atribute">
-        <span>Rol:</span>
-        <select class="action-select-box">
-          <option [value]="item" *ngFor="let item of rolList">{{item}}</option>
-        </select>
-      </div>
-      <div class="item-atribute">
-        <span>Nueva contraseña:</span>
-        <input id="password" class="input input-password" type="password" autocomplete="off">
-      </div>
-      <div class="item-atribute">
-        <span>Confirmar contraseña:</span>
-        <input id="repeatpassword" class="input input-password" type="password" autocomplete="off">
-      </div>
-    </div>
-
+    </form>
     <div class="button-row">
       <button class="button">
         <a class="action-btn-cancel" (click)="close()">Cancelar</a>

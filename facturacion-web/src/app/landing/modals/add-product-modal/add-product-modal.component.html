@@ -3,26 +3,31 @@
     <button mat-dialog-close class="cross">&times;</button>
   </div>
   <div mat-dialog-content class="product-data">
-
-    <div class="form-input">
-      <div class="item-atribute">
-        <span>Nombre:</span>
-        <input id="name" class="input input-name" type="text" autocomplete="off">
+    <form [formGroup]="addProductForm" (submit)="submit()">
+      <div class="form-input">
+        <div class="item-atribute">
+          <span>Nombre:</span>
+          <input id="name" class="input input-name" type="text" autocomplete="off" formControlName="name"
+            [class.invalid-input-container]="addProductForm.get('name').errors?.required && submitted">
+        </div>
+        <div class="item-atribute">
+          <span>Descripción:</span>
+          <input id="description" class="input input-description" type="text" autocomplete="off"
+            formControlName="description"
+            [class.invalid-input-container]="addProductForm.get('description').errors?.required && submitted">
+        </div>
+        <div class="item-atribute">
+          <span>Unidades en stock:</span>
+          <input id="count" class="input input-stock" type="number" autocomplete="off" formControlName="stock"
+            [class.invalid-input-container]="addProductForm.get('stock').errors?.required && submitted">
+        </div>
+        <div class="item-atribute">
+          <span>Precio unitario:</span>
+          <input id="price" class="input input-price" type="number" autocomplete="off" formControlName="price"
+            [class.invalid-input-container]="addProductForm.get('price').errors?.required && submitted">
+        </div>
       </div>
-      <div class="item-atribute">
-        <span>Descripción:</span>
-        <input id="description" class="input input-description" type="text" autocomplete="off">
-      </div>
-      <div class="item-atribute">
-        <span>Unidades en stock:</span>
-        <input id="count" class="input input-stock" type="number" autocomplete="off">
-      </div>
-      <div class="item-atribute">
-        <span>Precio:</span>
-        <input id="price" class="input input-price" type="number" autocomplete="off">
-      </div>
-    </div>
-
+    </form>
     <div class="button-row">
       <button class="button">
         <a class="action-btn-cancel" (click)="close()">Cancelar</a>

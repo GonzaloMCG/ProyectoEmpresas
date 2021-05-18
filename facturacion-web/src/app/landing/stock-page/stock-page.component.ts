@@ -3,10 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { AddProductModalComponent } from '../modals/add-product-modal/add-product-modal.component';
 import { DeleteItemModalComponent } from '../modals/delete-item-modal/delete-item-modal.component';
+import { ProductService } from 'src/app/services/product.service';
+import { Article } from 'src/app/models/article.model';
 import { EditProductModalComponent } from '../modals/edit-product-modal/edit-product-modal.component';
-
+import { AddProductModalComponent } from '../modals/add-product-modal/add-product-modal.component';
 
 @Component({
   selector: 'app-stock-page',
@@ -19,18 +20,7 @@ export class StockComponent {
 
   columnas: string[] = ['name', 'description', 'stock', 'price', 'action'];
   sourceData = new MatTableDataSource();
-
-  falsedatos: Articulo[] = [new Articulo('Producto 0', 'Descripción 0', 0, 0),
-  new Articulo('Producto 1', 'Descripción 1', 1, 1300),
-  new Articulo('Producto 2', 'Descripción 2', 13, 1200),
-  new Articulo('Producto 3', 'Descripción 3', 99, 132),
-  new Articulo('Producto 4', 'Descripción 4', 1500, 456),
-  new Articulo('Producto 5', 'Descripción 5', 1300, 99),
-  new Articulo('Producto 6', 'Descripción 6', 500, 43),
-  new Articulo('Producto 7', 'Descripción 7', 200, 1300),
-  new Articulo('Producto 8', 'Descripción 8', 100, 340),
-  new Articulo('Producto 9', 'Descripción 9', 150, 999),
-  ];
+  public allProduct: Article[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -57,36 +47,48 @@ export class StockComponent {
       this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
     }
   }
-  constructor(public dialog: MatDialog) {
-    this.sourceData.data = this.falsedatos;
+  constructor(
+    public dialog: MatDialog,
+    private productService: ProductService
+  ) {
+    this.sourceData.data = [];
   }
 
-  openModalEdit() {
+  async ngOnInit() {
+    this.getAllProduct();
+  }
+
+  openModalEdit(product: Article) {
     const dialogRef = this.dialog.open(EditProductModalComponent, {
       autoFocus: false,
+      data: {
+        product: product,
+      }
     });
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        //si le diste cerrar con el aceptar, hacemos algo
+        this.getAllProduct();
       }
     });
   }
 
-  openModalDelete() {
+  openModalDelete(product: Article) {
     const dialogRef = this.dialog.open(DeleteItemModalComponent, {
       autoFocus: false,
       data: {
-        isUser: false
+        isUser: false,
+        product: product,
       }
     });
 
-    dialogRef.afterClosed().subscribe((res) => {
+    dialogRef.afterClosed().subscribe(async (res) => {
       if (res) {
-        //si le diste cerrar con el aceptar, hacemos algo
+        this.getAllProduct();
       }
     });
   }
+
   openModalAdd() {
     const dialogRef = this.dialog.open(AddProductModalComponent, {
       autoFocus: false,
@@ -97,14 +99,22 @@ export class StockComponent {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        console.log('aceptar');
-        //si le diste cerrar con el aceptar, hacemos algo
+        this.getAllProduct();
       }
     });
   }
-}
 
+  async getAllProduct() {
+    try {
+      this.allProduct = (await this.productService.getAllProducts()).map(product => new Article(product));
+      this.sourceData.data = this.allProduct;
+    } catch (error) {
+    }
+  }
+}
+/*
 export class Articulo {
   constructor(public name: string, public description: string, public stock: number, public price: number) {
   }
-}
+}*/
+
