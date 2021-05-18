@@ -22,7 +22,13 @@
             [class.invalid-input-container]="addProductForm.get('stock').errors?.required && submitted">
         </div>
         <div class="item-atribute">
-          <span>Precio unitario:</span>
+          <span>Precio de costo:</span>
+          <input id="costPrice" class="input input-costprice" type="number" autocomplete="off"
+            formControlName="costPrice"
+            [class.invalid-input-container]="addProductForm.get('costPrice').errors?.required && submitted">
+        </div>
+        <div class="item-atribute">
+          <span>Precio final:</span>
           <input id="price" class="input input-price" type="number" autocomplete="off" formControlName="price"
             [class.invalid-input-container]="addProductForm.get('price').errors?.required && submitted">
         </div>
