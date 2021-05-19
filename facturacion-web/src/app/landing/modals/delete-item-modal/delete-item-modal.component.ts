@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
+import { MessageService } from '../../../message-handler/message.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class DeleteItemModalComponent {
   constructor(public dialogRef: MatDialogRef<DeleteItemModalComponent>,
     private productService: ProductService,
     private userService: UserService,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -41,9 +43,11 @@ export class DeleteItemModalComponent {
   removeUser() {
     this.userService.deleteUser(this.data.username).subscribe(
       response => {
+        this.messageService.showSuccess(response.message, 3000);
         this.dialogRef.close(true);
       },
       error => {
+        this.messageService.showError(error, 30333);
         this.dialogRef.close(true);
       }
     );
@@ -52,8 +56,10 @@ export class DeleteItemModalComponent {
   async removeProduct() {
     try {
       await this.productService.removeProduct(this.data.product.id);
+      this.messageService.showSuccess('El producto fue borrado correctamente.', 3000);
       this.dialogRef.close(this.data.product.id);
     } catch (error) {
+      this.messageService.showError(error, 30333);
       this.dialogRef.close();
     }
   }

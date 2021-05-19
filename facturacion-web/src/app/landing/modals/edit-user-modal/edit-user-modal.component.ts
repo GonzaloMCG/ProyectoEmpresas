@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { MessageService } from '../../../message-handler/message.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class UserEditModalComponent {
   constructor(public dialogRef: MatDialogRef<UserEditModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
-    private userService: UserService) {
+    private userService: UserService,
+    private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -47,19 +49,23 @@ export class UserEditModalComponent {
         if (usuario.password) {
           this.userService.resetPassword({ username: this.data.user.username, password: usuario.password }).subscribe(
             response => {
+              this.messageService.showSuccess(response.message, 3000);
               this.dialogRef.close(true);
             },
             error => {
-              this.dialogRef.close(true);
+              this.messageService.showError(error, 30333);
+              //this.dialogRef.close(true);
             }
           );
         }
         else {
+          this.messageService.showSuccess(response.message, 3000);
           this.dialogRef.close(true);
         }
       },
       error => {
-        this.dialogRef.close(true);
+        this.messageService.showError(error, 30333);
+        //this.dialogRef.close(true);
       }
     );
   }

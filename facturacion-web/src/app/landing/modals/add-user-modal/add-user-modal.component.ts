@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MessageService } from '../../../message-handler/message.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class AddUserModalComponent {
   constructor(public dialogRef: MatDialogRef<AddUserModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private userService: UserService,
-    private formBuilder: FormBuilder,) {
+    private formBuilder: FormBuilder,
+    private messageService: MessageService) {
   }
 
   close() {
@@ -39,15 +41,12 @@ export class AddUserModalComponent {
       roles: (formData.roles == 'Admin') ? ['Admin', 'User'] : ['User']
     }
     this.userService.registerUser(usuario).subscribe(
-      response => {
-        console.log(response);
-        console.log('cierra');
+      response => {        
+        this.messageService.showSuccess(response.message, 3000);
         this.dialogRef.close(true);
       },
       error => {
-        console.log(error);
-        console.log('cierra');
-        this.dialogRef.close(true);
+        this.messageService.showError(error, 30333);
       }
     );
   }
