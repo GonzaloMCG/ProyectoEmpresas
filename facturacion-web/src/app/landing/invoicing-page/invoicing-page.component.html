@@ -58,7 +58,8 @@
         <div class="unit-price-label">
           <span>Precio Unitario:</span>
         </div>
-        <input [(ngModel)]="articuloselect.price" type="number" placeholder="0" class="input-unit-price">
+        <input [(ngModel)]="articuloselect.price" type="number" placeholder="0" (change)="modifyUnitPrice()"
+          (keyup)="modifyUnitPrice()" class="input-unit-price">
       </div>
     </div>
 
@@ -68,7 +69,7 @@
           <span>Cantidad:</span>
         </div>
         <input [(ngModel)]="articuloselect.quantity" type="number" placeholder="0" (change)="updateQuantityPrice()"
-          class="input-quantity">
+          (keyup)="updateQuantityPrice()" class="input-quantity">
       </div>
     </div>
 

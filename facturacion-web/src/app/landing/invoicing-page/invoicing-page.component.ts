@@ -92,6 +92,15 @@ export class InvoicingPageComponent implements OnInit {
     });
   }
 
+  modifyUnitPrice() {
+    if (this.articuloselect.price >= 0) {
+      this.updateQuantityPrice();
+    } else {
+      this.articuloselect.price = '';
+      this.articuloselect.total = '';
+    }
+  }
+
   openModalDelete(cod: number) {
     const data = this.sourceData.data;
     const dialogRef = this.dialog.open(DeleteItemModalComponent, {
@@ -153,8 +162,13 @@ export class InvoicingPageComponent implements OnInit {
   }
 
   updateQuantityPrice() {
-    this.articuloselect.total = this.articuloselect.price * this.articuloselect.quantity;
-    this.articuloselect.total = Number(this.articuloselect.total.toFixed(2));
+    if (this.articuloselect.quantity > 0) {
+      this.articuloselect.total = this.articuloselect.price * this.articuloselect.quantity;
+      this.articuloselect.total = Number(this.articuloselect.total.toFixed(2));
+    } else {
+      this.articuloselect.quantity = '';
+      this.articuloselect.total = '';
+    }
   }
 
   private initForm() {
