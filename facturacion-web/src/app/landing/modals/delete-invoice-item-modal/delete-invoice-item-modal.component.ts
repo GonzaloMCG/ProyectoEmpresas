@@ -24,15 +24,6 @@ export class DeleteInvoiceItemModalComponent {
   }
 
   submit() {
-    this.removeProduct();
-  }
-
-  async removeProduct() {
-    try {
-      /*QUITAR LA FILA DE LA TABLA*/
-      this.dialogRef.close();
-    } catch (error) {
-      this.dialogRef.close();
-    }
+    this.dialogRef.close(true);
   }
 }
