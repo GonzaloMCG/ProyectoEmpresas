@@ -1,0 +1,50 @@
+@import 'colors';
+
+:host {
+  text-align: center;
+  *:focus {outline:0;};
+  user-select:none;
+}
+
+.mat-column-name {
+  width: 40%;
+  text-align: left;
+}
+
+.mat-column-quantity{
+  width: 20%;
+  text-align: center;
+}
+
+.mat-column-total{
+  text-align: center;
+  width: 40%;
+}
+
+
+.button-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  max-width: 25%;
+  margin: auto;
+}
+
+.action-btn-emit{
+  color: $white-color;
+  background-color: $blue-color;
+  padding: 0.5rem 2.5rem;
+  font-size: 1.8em;
+  border-radius: 0.2rem;
+  user-select:none;
+
+  &:hover {
+    background-color: $dark-blue-color;
+    transition: all 0.5s;
+  }
+  &:active{
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0s;
+  }
+}
+

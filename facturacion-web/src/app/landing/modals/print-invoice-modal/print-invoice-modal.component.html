@@ -1,0 +1,49 @@
+<div id="print-section">
+  <section>
+    <div mat-dialog-content class="invoice-data">
+      <hr class="line">
+      <div>
+        <span>Fecha: {{ today }}</span>
+      </div>
+      <hr class="line">
+      <div class="form-init">
+        <div>
+          <span>Cliente: {{data.printData.form.client}}</span>
+        </div>
+        <div>
+          <span>Método de Pago: {{data.printData.form.paymentMethod}}</span>
+        </div>
+        <div>
+          <span>Moneda: {{data.printData.form.currency}}</span>
+        </div>
+      </div>
+      <hr class="line">
+
+      <div class="invoicing-container">
+        <table mat-table [dataSource]="sourceData">
+
+          <ng-container matColumnDef="name">
+            <td mat-cell *matCellDef="let articulo"> {{articulo.name}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+          <ng-container matColumnDef="quantity">
+            <td mat-cell *matCellDef="let articulo"> {{articulo.quantity}} </td>
+            <td mat-footer-cell *matFooterCellDef>Total: </td>
+          </ng-container>
+
+          <ng-container matColumnDef="total">
+            <td mat-cell *matCellDef="let articulo"> {{articulo.total}} </td>
+            <td mat-footer-cell *matFooterCellDef> $ {{data.printData.form.total}} </td>
+          </ng-container>
+
+          <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+          <tr mat-footer-row *matFooterRowDef="columnas"></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="button-row">
+  <button [useExistingCss]="true" class="action-btn-emit" printSectionId="print-section" ngxPrint>Imprimir</button>
+</div>

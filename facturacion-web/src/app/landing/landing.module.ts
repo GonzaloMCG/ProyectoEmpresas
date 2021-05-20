@@ -26,6 +26,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { DeleteInvoiceItemModalComponent } from './modals/delete-invoice-item-modal/delete-invoice-item-modal.component';
+import { PrintInvoiceModalComponent } from './modals/print-invoice-modal/print-invoice-modal.component';
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { DeleteInvoiceItemModalComponent } from './modals/delete-invoice-item-mo
     AddUserModalComponent,
     AddProductModalComponent,
     EditInvoiceProductModalComponent,
+    PrintInvoiceModalComponent,
     InvoicesEmittedComponent,
     AdminComponent,
     StockComponent,
@@ -65,6 +68,7 @@ import { DeleteInvoiceItemModalComponent } from './modals/delete-invoice-item-mo
     MatSidenavModule,
     MatIconModule,
     MatDividerModule,
+    NgxPrintModule,
   ],
   entryComponents: [
 

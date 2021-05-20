@@ -10,6 +10,7 @@ import { MessageService } from 'src/app/message-handler/message.service';
 import { InvoiceService } from 'src/app/services/invoice.service';
 import { EditInvoiceProductModalComponent } from '../modals/edit-invoice-product-modal/edit-invoice-product-modal.component';
 import { DeleteInvoiceItemModalComponent } from '../modals/delete-invoice-item-modal/delete-invoice-item-modal.component';
+import { PrintInvoiceModalComponent } from '../modals/print-invoice-modal/print-invoice-modal.component';
 
 @Component({
   selector: 'app-invoicing-page',
@@ -46,7 +47,8 @@ export class InvoicingPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private productService: ProductService,
     private messageService: MessageService,
-    private invoiceService: InvoiceService) {
+    private invoiceService: InvoiceService,
+  ) {
   }
 
   async ngOnInit() {
@@ -158,6 +160,8 @@ export class InvoicingPageComponent implements OnInit {
       await this.invoiceService.newInvoice(data);
       this.initForm();
       this.messageService.showSuccess('Factura emitida correctamente');
+      this.openModalAdd(data);
+
     } catch (error) {
       console.log(error);
       this.messageService.showError(error);
@@ -182,5 +186,17 @@ export class InvoicingPageComponent implements OnInit {
     this.invoicingForm.controls.paymentMethod.setValue('efectivo');
     this.total = '';
     this.articuloselect = { ...this.emptyArticle };
+  }
+
+  async openModalAdd(invoicingForm: any) {
+    const printData = {
+      form: invoicingForm,
+    }
+    const dialogRef = this.dialog.open(PrintInvoiceModalComponent, {
+      autoFocus: false,
+      data: {
+        printData,
+      }
+    });
   }
 }
