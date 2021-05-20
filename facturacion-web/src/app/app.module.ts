@@ -21,6 +21,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { CommonModule } from '@angular/common';
 import { MessageService } from './message-handler/message.service';
 import { MessageHandlerComponent } from './message-handler/message-handler.component';
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MessageHandlerComponent } from './message-handler/message-handler.compo
     HttpClientModule,
     MatPaginatorModule,
     CommonModule,
+    NgxPrintModule,
   ],
   providers: [
     UserService,
