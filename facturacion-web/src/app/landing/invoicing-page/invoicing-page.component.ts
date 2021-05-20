@@ -125,7 +125,6 @@ export class InvoicingPageComponent implements OnInit {
     if (!!this.articuloselect.name && !!this.articuloselect.price
       && !!this.articuloselect.quantity && !!this.articuloselect.total) {
       data.push({ ...this.articuloselect });
-      console.log(data);
       this.articuloselect = { ...this.emptyArticle };
       this.sourceData.data = data;
       this.calcularTotal();
@@ -139,8 +138,6 @@ export class InvoicingPageComponent implements OnInit {
     if (this.sourceData.data && this.sourceData.data.length) {
       this.sourceData.data.map((elem: any) => totalValue += elem.total);
     }
-    console.log('totalValue: ');
-    console.log(Number(totalValue));
     this.total = Number(totalValue).toFixed(2);
   }
 

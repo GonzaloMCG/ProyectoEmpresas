@@ -42,7 +42,6 @@ export class EditInvoiceProductModalComponent {
 
   private calcularTotal() {
     let total = this.productForm.controls.quantity.value * this.productForm.controls.price.value;
-    total
     this.productForm.get('total').setValue(Number(total.toFixed(2)));
   }
 
