@@ -6,21 +6,24 @@
     <form [formGroup]="productForm" (submit)="submit()">
       <div class="form-input">
         <div class="item-atribute">
-          <span>Nombre:</span>
+          <span>Nombre</span>
           <input id="name" class="input input-name" type="text" autocomplete="off" disabled readonly
             formControlName="name">
         </div>
         <div class="item-atribute">
-          <span>Precio unitario:</span>
-          <input id="description" class="input input-description" type="text" disabled readonly formControlName="price">
+          <span>Precio unitario</span>
+          <input id="price" class="input input-description" type="number" (change)="negativeValuesControl($event)"
+            (keyup)="negativeValuesControl($event)" formControlName="price">
         </div>
         <div class="item-atribute">
-          <span>Cantidad:</span>
-          <input id="count" class="input input-stock" type="number" autocomplete="off" formControlName="quantity">
+          <span>Cantidad</span>
+          <input id="quantity" class="input input-stock" type="number" autocomplete="off"
+            (change)="negativeValuesControl($event)" (keyup)="negativeValuesControl($event)" formControlName="quantity">
         </div>
         <div class="item-atribute">
-          <span>Precio:</span>
-          <input id="price" class="input input-price" type="number" autocomplete="off" formControlName="total">
+          <span>Precio</span>
+          <input id="total" class="input input-price" type="number" autocomplete="off" disabled readonly
+            formControlName="total">
         </div>
       </div>
     </form>

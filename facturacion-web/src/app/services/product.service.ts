@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +9,7 @@ import { AuthenticationService } from './authentication.service';
 export class ProductService {
   public $productsSubject: BehaviorSubject<any[]> = new BehaviorSubject(null);
 
-  constructor(private http: HttpClient,
-    private authenticationService: AuthenticationService) { }
+  constructor(private http: HttpClient) { }
 
   async getAllProducts(): Promise<any> {
     return await this.http.get(`${environment.apiUrl}/products`).toPromise().catch(error => Promise.reject(error));
@@ -36,7 +34,7 @@ export class ProductService {
   }
 
   async updateProduct(data: any) {
-    const updatedProduct = await this.http.put(`${environment.apiUrl}/products/${data.id}`, { ...data }).toPromise();
+    await this.http.put(`${environment.apiUrl}/products/${data.id}`, { ...data }).toPromise();
     const productList = await this.getAllProducts();
     this.$productsSubject.next(productList);
   }

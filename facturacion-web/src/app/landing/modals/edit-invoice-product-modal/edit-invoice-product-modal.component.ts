@@ -31,6 +31,21 @@ export class EditInvoiceProductModalComponent {
     this.dialogRef.close({ ...this.data, ...this.productForm.value });
   }
 
+  negativeValuesControl(event) {
+    if (event.target.value < 0) {
+      this.productForm.get(event.target.id).setValue('');
+      this.productForm.get('total').setValue('');
+    } else {
+      this.calcularTotal();
+    }
+  }
+
+  private calcularTotal() {
+    let total = this.productForm.controls.quantity.value * this.productForm.controls.price.value;
+    total
+    this.productForm.get('total').setValue(Number(total.toFixed(2)));
+  }
+
   private initForm() {
     Object.keys(this.productForm.controls).forEach(
       key => this.productForm.controls[key].setValue(this.data[key]));
