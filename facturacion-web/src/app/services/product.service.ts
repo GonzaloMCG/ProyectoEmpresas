@@ -13,12 +13,12 @@ export class ProductService {
   constructor(private http: HttpClient,
     private authenticationService: AuthenticationService) { }
 
-  getAllProducts(): Promise<any> {
-    return this.http.get(`${environment.apiUrl}/products`).toPromise().catch(error => Promise.reject(error));
+    async getAllProducts(): Promise<any> {
+    return await this.http.get(`${environment.apiUrl}/products`).toPromise().catch(error => Promise.reject(error));
   }
 
-  getFilteredProducts(query: string): Promise<any> {
-    return this.http.get(`${environment.apiUrl}/products?name=${query}`).toPromise().catch(error => Promise.reject(error));
+  async getFilteredProducts(query: string): Promise<any> {
+    return await this.http.get(`${environment.apiUrl}/products?name=${query}`).toPromise().catch(error => Promise.reject(error));
   }
 
   newProduct(data: any): Observable<any> {
@@ -26,13 +26,13 @@ export class ProductService {
   }
 
   //probar endpoint
-  getProductById(id: number) {
-    return this.http.get(`${environment.apiUrl}/products/${id}`).toPromise();
+  async getProductById(id: number) {
+    return await this.http.get(`${environment.apiUrl}/products/${id}`).toPromise();
   }
 
   //probar endpoint
-  getProductByName(name: string) {
-    return this.http.get(`${environment.apiUrl}/products?name=${name}`).toPromise();
+  async getProductByName(name: string) {
+    return await this.http.get(`${environment.apiUrl}/products?name=${name}`).toPromise();
   }
 
   async updateProduct(data: any) {
@@ -41,14 +41,13 @@ export class ProductService {
     this.$productsSubject.next(productList);
   }
 
-  removeProduct(id: number) {
-    this.http.delete(`${environment.apiUrl}/products/${id}`).toPromise();
-    const productList = this.$productsSubject.getValue();
+  async removeProduct(id: number) {
+    await this.http.delete(`${environment.apiUrl}/products/${id}`).toPromise();
   }
 
   //probar endpoint
-  removeAllProduct() {
-    this.http.delete(`${environment.apiUrl}/products`).toPromise();
+  async removeAllProduct() {
+    await this.http.delete(`${environment.apiUrl}/products`).toPromise();
     this.$productsSubject.next(null);
   }
 

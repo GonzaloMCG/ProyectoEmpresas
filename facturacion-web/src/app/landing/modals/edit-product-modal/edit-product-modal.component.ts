@@ -47,10 +47,12 @@ export class EditProductModalComponent {
     }
     try {
       await this.productService.updateProduct({ ...this.data.product, ...data });
+      this.messageService.showSuccess('El producto fue actualizado correctamente.', 3000);
       this.dialogRef.close(true);
     }
     catch (error) {
-      this.dialogRef.close();
+      this.messageService.showError(error, 3000);
+      this.dialogRef.close(true);
     }
   }
 

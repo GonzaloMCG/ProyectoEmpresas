@@ -10,6 +10,7 @@ import { UserEditModalComponent } from "../modals/edit-user-modal/edit-user-moda
 import { User } from '../../models/user.model'
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services//authentication.service';
+import { MessageService } from '../../message-handler/message.service';
 
 
 @Component({
@@ -63,7 +64,8 @@ export class AdminComponent {
     public dialog: MatDialog,
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private messageService: MessageService
   ) {
     this.sourceData.data = [];
   }
@@ -143,12 +145,10 @@ export class AdminComponent {
     }
     this.userService.changePassword(passwords).subscribe(
       response => {
-        console.log(response);
-        console.log('cierra');
+        this.messageService.showSuccess(response.message, 3000);
       },
       error => {
-        console.log(error);
-        console.log('cierra');
+        this.messageService.showError(error, 3000);
       }
     );
   }

@@ -43,9 +43,11 @@ export class AddProductModalComponent {
 
     await this.productService.newProduct({ ...this.addProductForm.value }).subscribe(
       response => {
+        this.messageService.showSuccess(response.message, 3000);
         this.dialogRef.close(true);
       },
       error => {
+        this.messageService.showError(error, 3000);
         this.dialogRef.close(true);
       }
     );

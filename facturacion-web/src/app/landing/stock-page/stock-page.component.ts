@@ -84,10 +84,8 @@ export class StockComponent {
     });
 
     dialogRef.afterClosed().subscribe(async (res) => {
-      if (res) {
-        this.getAllProduct();
-        this.getTotalInWarehouse();
-      }
+      this.getAllProduct();
+      this.getTotalInWarehouse();
     });
   }
 
@@ -118,7 +116,7 @@ export class StockComponent {
   async getTotalInWarehouse() {
     this.productService.getTotalInWarehouse().subscribe(
       response => {
-        this.totalstock = response.totalInWarehouse;
+        this.totalstock = response.totalInWarehouse.toFixed(2);
       },
       error => {
         console.log(error);
