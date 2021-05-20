@@ -24,6 +24,6 @@ export class DeleteInvoiceItemModalComponent {
   }
 
   submit() {
-    this.dialogRef.close(true);
+    this.dialogRef.close(this.data.product);
   }
 }
