@@ -145,14 +145,10 @@ export class AdminComponent {
     }
     this.userService.changePassword(passwords).subscribe(
       response => {
-        console.log(response);
-        console.log('cierra');
         this.messageService.showSuccess(response.message, 3000);
       },
       error => {
-        console.log(error);
-        console.log('cierra');
-        this.messageService.showError(error, 30333);
+        this.messageService.showError(error, 3000);
       }
     );
   }

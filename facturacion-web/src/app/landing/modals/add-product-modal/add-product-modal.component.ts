@@ -47,8 +47,7 @@ export class AddProductModalComponent {
         this.dialogRef.close(true);
       },
       error => {
-        console.log(error);
-        this.messageService.showError(error, 30333);
+        this.messageService.showError(error, 3000);
         this.dialogRef.close(true);
       }
     );

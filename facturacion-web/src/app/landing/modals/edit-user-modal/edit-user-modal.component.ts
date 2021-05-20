@@ -53,7 +53,7 @@ export class UserEditModalComponent {
               this.dialogRef.close(true);
             },
             error => {
-              this.messageService.showError(error, 30333);
+              this.messageService.showError(error, 3000);
               //this.dialogRef.close(true);
             }
           );
@@ -64,8 +64,7 @@ export class UserEditModalComponent {
         }
       },
       error => {
-        this.messageService.showError(error, 30333);
-        //this.dialogRef.close(true);
+        this.messageService.showError(error, 3000);
       }
     );
   }

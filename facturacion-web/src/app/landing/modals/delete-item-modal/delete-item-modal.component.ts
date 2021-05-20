@@ -47,7 +47,7 @@ export class DeleteItemModalComponent {
         this.dialogRef.close(true);
       },
       error => {
-        this.messageService.showError(error, 30333);
+        this.messageService.showError(error, 3000);
         this.dialogRef.close(true);
       }
     );
@@ -59,7 +59,7 @@ export class DeleteItemModalComponent {
       this.messageService.showSuccess('El producto fue borrado correctamente.', 3000);
       this.dialogRef.close(this.data.product.id);
     } catch (error) {
-      this.messageService.showError(error, 30333);
+      this.messageService.showError(error, 3000);
       this.dialogRef.close();
     }
   }

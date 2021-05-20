@@ -51,7 +51,7 @@ export class EditProductModalComponent {
       this.dialogRef.close(true);
     }
     catch (error) {
-      this.messageService.showError(error, 30333);
+      this.messageService.showError(error, 3000);
       this.dialogRef.close(true);
     }
   }

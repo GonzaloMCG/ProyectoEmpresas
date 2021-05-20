@@ -46,7 +46,7 @@ export class AddUserModalComponent {
         this.dialogRef.close(true);
       },
       error => {
-        this.messageService.showError(error, 30333);
+        this.messageService.showError(error, 3000);
       }
     );
   }

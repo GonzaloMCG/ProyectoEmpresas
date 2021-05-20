@@ -84,10 +84,8 @@ export class StockComponent {
     });
 
     dialogRef.afterClosed().subscribe(async (res) => {
-      //if (res) {
-        this.getAllProduct();
-        this.getTotalInWarehouse();
-      //}
+      this.getAllProduct();
+      this.getTotalInWarehouse();
     });
   }
 
