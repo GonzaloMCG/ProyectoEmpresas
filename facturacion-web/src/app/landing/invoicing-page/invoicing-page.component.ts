@@ -101,18 +101,28 @@ export class InvoicingPageComponent implements OnInit {
     }
   }
 
-  openModalDelete(cod: number) {
+  openModalDelete(product: any) {
     const data = this.sourceData.data;
     const dialogRef = this.dialog.open(DeleteItemModalComponent, {
       autoFocus: false,
       data: {
-        isUser: false
+        isUser: false,
+        product
       }
     })
-    dialogRef.afterClosed().subscribe((res) => {
+    dialogRef.beforeClosed().subscribe((res) => {
       if (res) {
-        data.splice(cod, 1);
-        this.sourceData.data = data;
+        let removeItem = this.sourceData.data.find(product => product.id === res.id);
+        let index = this.sourceData.data.indexOf(removeItem);
+        delete this.sourceData.data[index];
+        console.log(this.sourceData.data);
+        // this.sourceData.data[index] = { ...updatedProduct };
+        // this.sourceData.data = [...this.sourceData.data];
+
+        // const newList = data.splice(cod, 1);
+        // console.log(data);
+        // console.log('toy entrando');
+        // this.sourceData.data = [...newList];
         this.calcularTotal();
       }
     });
@@ -156,6 +166,7 @@ export class InvoicingPageComponent implements OnInit {
       this.initForm();
       this.messageService.showSuccess('Factura emitida correctamente');
     } catch (error) {
+      console.log(error);
       this.messageService.showError(error);
     }
     console.log(data);
