@@ -10,3 +10,4 @@ facturacion-web/angular.json
 
 # dependencies
 /node_modules
+facturacion-web/package-lock.json
