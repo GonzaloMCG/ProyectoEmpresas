@@ -140,7 +140,7 @@ export class InvoicingPageComponent implements OnInit {
     if (this.sourceData.data && this.sourceData.data.length) {
       this.sourceData.data.map((elem: any) => totalValue += elem.total);
     }
-    this.total = totalValue.toFixed(2);
+    this.total = Number(totalValue).toFixed(2);
   }
 
   async submitInvoice() {
@@ -163,10 +163,8 @@ export class InvoicingPageComponent implements OnInit {
       this.openModalAdd(data);
 
     } catch (error) {
-      console.log(error);
       this.messageService.showError(error);
     }
-    console.log(data);
   }
 
   updateQuantityPrice() {
