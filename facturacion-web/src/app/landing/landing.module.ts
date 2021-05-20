@@ -25,6 +25,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { DeleteInvoiceItemModalComponent } from './modals/delete-invoice-item-modal/delete-invoice-item-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MatDividerModule } from '@angular/material/divider';
     EditInvoiceProductModalComponent,
     InvoicesEmittedComponent,
     AdminComponent,
-    StockComponent
+    StockComponent,
+    DeleteInvoiceItemModalComponent
   ],
   exports: [
     LandingComponent

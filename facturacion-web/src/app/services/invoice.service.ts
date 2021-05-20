@@ -13,7 +13,7 @@ export class InvoiceService {
   constructor(private http: HttpClient) { }
 
   async newInvoice(data: any) {
-    await this.http.post(`${environment.apiUrl}/invoices`, { ...data }).toPromise();
+    await this.http.post(`${environment.apiUrl}/invoices`, { ...data }).toPromise().catch(error => Promise.reject(error));
     const listInvoices = await this.getAll();
     this.$invoicesEmitted.next(listInvoices);
   }

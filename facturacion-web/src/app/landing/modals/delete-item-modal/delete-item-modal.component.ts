@@ -31,7 +31,6 @@ export class DeleteItemModalComponent {
   }
 
   submit() {
-
     if (this.data.isUser) {
       this.removeUser();
     }

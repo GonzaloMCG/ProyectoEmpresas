@@ -8,8 +8,8 @@ import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, skipWhile } from 'rxjs/operators';
 import { MessageService } from 'src/app/message-handler/message.service';
 import { InvoiceService } from 'src/app/services/invoice.service';
-import { DeleteItemModalComponent } from '../modals/delete-item-modal/delete-item-modal.component';
 import { EditInvoiceProductModalComponent } from '../modals/edit-invoice-product-modal/edit-invoice-product-modal.component';
+import { DeleteInvoiceItemModalComponent } from '../modals/delete-invoice-item-modal/delete-invoice-item-modal.component';
 
 @Component({
   selector: 'app-invoicing-page',
@@ -62,7 +62,6 @@ export class InvoicingPageComponent implements OnInit {
   async filterProducts(query: string) {
     if (query && query.length >= 3) {
       this.filteredProducts = await this.productService.getFilteredProducts(query);
-      console.log(this.filteredProducts);
     } else {
       this.articuloselect = { ...this.emptyArticle };
     }
@@ -101,18 +100,21 @@ export class InvoicingPageComponent implements OnInit {
     }
   }
 
-  openModalDelete(cod: number) {
-    const data = this.sourceData.data;
-    const dialogRef = this.dialog.open(DeleteItemModalComponent, {
+  openModalDelete(product: any) {
+    const dialogRef = this.dialog.open(DeleteInvoiceItemModalComponent, {
       autoFocus: false,
       data: {
-        isUser: false
+        isUser: false,
+        product
       }
     })
-    dialogRef.afterClosed().subscribe((res) => {
+    dialogRef.beforeClosed().subscribe((res) => {
       if (res) {
-        data.splice(cod, 1);
-        this.sourceData.data = data;
+        let removeItem = this.sourceData.data.find(product => product.id === res.id);
+        let index = this.sourceData.data.indexOf(removeItem);
+        const listElements = this.sourceData.data.length;
+        delete this.sourceData.data[index];
+        this.sourceData.data = listElements > 1 ? this.sourceData.data = [...this.sourceData.data] : [];
         this.calcularTotal();
       }
     });
@@ -133,8 +135,9 @@ export class InvoicingPageComponent implements OnInit {
 
   calcularTotal() {
     let totalValue = 0;
-    this.sourceData.data.map((elem: any) => totalValue += elem.total);
-    console.log(totalValue.toFixed(2));
+    if (this.sourceData.data && this.sourceData.data.length) {
+      this.sourceData.data.map((elem: any) => totalValue += elem.total);
+    }
     this.total = totalValue.toFixed(2);
   }
 
@@ -156,6 +159,7 @@ export class InvoicingPageComponent implements OnInit {
       this.initForm();
       this.messageService.showSuccess('Factura emitida correctamente');
     } catch (error) {
+      console.log(error);
       this.messageService.showError(error);
     }
     console.log(data);

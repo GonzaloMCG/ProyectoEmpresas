@@ -13,7 +13,7 @@ export class ProductService {
   constructor(private http: HttpClient,
     private authenticationService: AuthenticationService) { }
 
-    async getAllProducts(): Promise<any> {
+  async getAllProducts(): Promise<any> {
     return await this.http.get(`${environment.apiUrl}/products`).toPromise().catch(error => Promise.reject(error));
   }
 
