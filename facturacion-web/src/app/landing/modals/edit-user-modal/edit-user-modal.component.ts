@@ -43,7 +43,6 @@ export class UserEditModalComponent {
     repeatPassword: ['', Validators.compose([Validators.required])],
   }, {
     validators: [CustomValidators.passwordMatchValidator]
-    //validator: CustomValidators.passwordMatchValidator
   });
 
   constructor(public dialogRef: MatDialogRef<UserEditModalComponent>,
