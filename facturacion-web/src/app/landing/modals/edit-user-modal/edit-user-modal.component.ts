@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { MessageService } from '../../../message-handler/message.service';
+import { CustomValidators } from '../../../validators/custom-validators';
 
 
 @Component({
@@ -16,8 +17,33 @@ export class UserEditModalComponent {
   public editUserForm = this.formBuilder.group({
     username: [{ value: '', disabled: true }, Validators.required],
     roles: ['', Validators.required],
-    password: ['', Validators.required],
-    repeatPassword: ['', Validators.required],
+    password: ['', Validators.compose([
+      Validators.required,
+      // check whether the entered password has a number
+      CustomValidators.patternValidator(/\d/, {
+        hasNumber: true
+      }),
+      // check whether the entered password has upper case letter
+      CustomValidators.patternValidator(/[A-Z]/, {
+        hasCapitalCase: true
+      }),
+      // check whether the entered password has a lower case letter
+      CustomValidators.patternValidator(/[a-z]/, {
+        hasSmallCase: true
+      }),
+      // check whether the entered password has a special character
+      /*CustomValidators.patternValidator(
+        /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
+        {
+          hasSpecialCharacters: true
+        }
+      ),*/
+      Validators.minLength(8)
+    ])],
+    repeatPassword: ['', Validators.compose([Validators.required])],
+  }, {
+    validators: [CustomValidators.passwordMatchValidator]
+    //validator: CustomValidators.passwordMatchValidator
   });
 
   constructor(public dialogRef: MatDialogRef<UserEditModalComponent>,
@@ -68,4 +94,8 @@ export class UserEditModalComponent {
       }
     );
   }
+
+  get username() { return this.editUserForm.get('username'); }
+  get password() { return this.editUserForm.get('password'); }
+  get repeatPassword() { return this.editUserForm.get('repeatPassword'); }
 }

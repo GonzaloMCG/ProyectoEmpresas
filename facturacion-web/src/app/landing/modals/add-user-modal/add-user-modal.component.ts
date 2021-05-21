@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from '../../../message-handler/message.service';
+import { CustomValidators } from '../../../validators/custom-validators';
 
 
 @Component({
@@ -16,8 +17,32 @@ export class AddUserModalComponent {
   public addUserForm = this.formBuilder.group({
     username: ['', Validators.required],
     roles: ['', Validators.required],
-    password: ['', Validators.required],
-    repeatPassword: ['', Validators.required],
+    password: ['', Validators.compose([
+      Validators.required,
+      // check whether the entered password has a number
+      CustomValidators.patternValidator(/\d/, {
+        hasNumber: true
+      }),
+      // check whether the entered password has upper case letter
+      CustomValidators.patternValidator(/[A-Z]/, {
+        hasCapitalCase: true
+      }),
+      // check whether the entered password has a lower case letter
+      CustomValidators.patternValidator(/[a-z]/, {
+        hasSmallCase: true
+      }),
+      // check whether the entered password has a special character
+      /*CustomValidators.patternValidator(
+        /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
+        {
+          hasSpecialCharacters: true
+        }
+      ),*/
+      Validators.minLength(8)
+    ])],
+    repeatPassword: ['', Validators.compose([Validators.required])],
+  }, {
+    validators: [CustomValidators.passwordMatchValidator]
   });
 
   constructor(public dialogRef: MatDialogRef<AddUserModalComponent>,
@@ -41,7 +66,7 @@ export class AddUserModalComponent {
       roles: (formData.roles == 'Admin') ? ['Admin', 'User'] : ['User']
     }
     this.userService.registerUser(usuario).subscribe(
-      response => {        
+      response => {
         this.messageService.showSuccess(response.message, 3000);
         this.dialogRef.close(true);
       },
@@ -50,4 +75,8 @@ export class AddUserModalComponent {
       }
     );
   }
+
+  get username() { return this.addUserForm.get('username'); }
+  get password() { return this.addUserForm.get('password'); }
+  get repeatPassword() { return this.addUserForm.get('repeatPassword'); }
 }

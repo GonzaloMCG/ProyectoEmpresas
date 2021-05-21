@@ -16,9 +16,9 @@ export class EditProductModalComponent {
   public editProductForm = this.formBuilder.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
-    stock: ['', Validators.required],
-    costPrice: ['', Validators.required],
-    price: ['', Validators.required],
+    stock: ['', [Validators.required, Validators.pattern("^[1-9]+[0-9]*$")]],
+    costPrice: ['', [Validators.required, Validators.pattern("^[1-9]+[0-9]*\.?[0-9]?[0-9]?$")]],
+    price: ['', [Validators.required, Validators.pattern("^[1-9]+[0-9]*\.?[0-9]?[0-9]?$")]],
   });
 
   constructor(public dialogRef: MatDialogRef<EditProductModalComponent>,
@@ -36,8 +36,9 @@ export class EditProductModalComponent {
 
   async submit() {
     this.submitted = true;
+    console.log(this.editProductForm);
     if (this.editProductForm.invalid) {
-      this.messageService.showError('Todos los campos son obligatorios.', 3000);
+      //this.messageService.showError('Todos los campos son obligatorios.', 3000);
       console.log("entre");
       return;
     }
@@ -63,4 +64,10 @@ export class EditProductModalComponent {
     this.editProductForm.controls.costPrice.setValue(this.data.product.costPrice);
     this.editProductForm.controls.price.setValue(this.data.product.price);
   }
+
+  get name() { return this.editProductForm.get('name'); }
+  get description() { return this.editProductForm.get('description'); }
+  get stock() { return this.editProductForm.get('stock'); }
+  get costPrice() { return this.editProductForm.get('costPrice'); }
+  get price() { return this.editProductForm.get('price'); }
 }
