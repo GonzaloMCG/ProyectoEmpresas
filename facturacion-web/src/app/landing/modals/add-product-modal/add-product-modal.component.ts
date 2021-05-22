@@ -17,9 +17,9 @@ export class AddProductModalComponent {
   public addProductForm = this.formBuilder.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
-    stock: ['', Validators.required],
-    price: ['', Validators.required],
-    costPrice: ['', Validators.required],
+    stock: ['', [Validators.required, Validators.pattern("^[1-9]+[0-9]*$")]],
+    costPrice: ['', [Validators.required, Validators.pattern("^[1-9]+[0-9]*\.?[0-9]?[0-9]?$")]],
+    price: ['', [Validators.required, Validators.pattern("^[1-9]+[0-9]*\.?[0-9]?[0-9]?$")]],
   });
 
   constructor(public dialogRef: MatDialogRef<AddProductModalComponent>,
@@ -37,7 +37,6 @@ export class AddProductModalComponent {
 
     this.submitted = true;
     if (this.addProductForm.invalid) {
-      this.messageService.showError('Todos los campos son obligatorios.', 3000);
       return;
     }
 
@@ -52,4 +51,10 @@ export class AddProductModalComponent {
       }
     );
   }
+
+  get name() { return this.addProductForm.get('name'); }
+  get description() { return this.addProductForm.get('description'); }
+  get stock() { return this.addProductForm.get('stock'); }
+  get costPrice() { return this.addProductForm.get('costPrice'); }
+  get price() { return this.addProductForm.get('price'); }
 }

@@ -11,6 +11,7 @@ import { User } from '../../models/user.model'
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services//authentication.service';
 import { MessageService } from '../../message-handler/message.service';
+import { CustomValidators } from '../../validators/custom-validators';
 
 
 @Component({
@@ -24,13 +25,34 @@ export class AdminComponent {
 
   public changePasswordForm = this.formBuilder.group({
     username: [{value: '', disabled: true}, Validators.required],
-    password: ['', Validators.required],
-    newPassword: ['', Validators.required],
-    repeatPassword: ['', Validators.required],
+    oldPassword: ['', Validators.required],
+    password: ['', Validators.compose([
+      Validators.required,
+      // check whether the entered password has a number
+      CustomValidators.patternValidator(/\d/, {
+        hasNumber: true
+      }),
+      // check whether the entered password has upper case letter
+      CustomValidators.patternValidator(/[A-Z]/, {
+        hasCapitalCase: true
+      }),
+      // check whether the entered password has a lower case letter
+      CustomValidators.patternValidator(/[a-z]/, {
+        hasSmallCase: true
+      }),
+      // check whether the entered password has a special character
+      /*CustomValidators.patternValidator(
+        /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
+        {
+          hasSpecialCharacters: true
+        }
+      ),*/
+      Validators.minLength(8)
+    ])],
+    repeatPassword: ['', Validators.compose([Validators.required])],
+  }, {
+    validators: [CustomValidators.passwordMatchValidator]
   });
-
-  user = "NombreDeUsuario";
-  password: 12345678;
 
   columnas: string[] = ['username', 'roles', 'action'];
   sourceData = new MatTableDataSource();
@@ -140,8 +162,8 @@ export class AdminComponent {
       ...this.changePasswordForm.value
     }
     var passwords = {
-      oldPassword: formData.password,
-      password: formData.newPassword,
+      oldPassword: formData.oldPassword,
+      password: formData.password,
     }
     this.userService.changePassword(passwords).subscribe(
       response => {
@@ -156,4 +178,8 @@ export class AdminComponent {
   isAdmin() {
     return this.authenticationService.currentUserValue.roles.includes('Admin');
   }
+
+  
+  get password() { return this.changePasswordForm.get('password'); }
+  get repeatPassword() { return this.changePasswordForm.get('repeatPassword'); }
 }

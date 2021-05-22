@@ -9,28 +9,62 @@
           <span>Nombre:</span>
           <input id="name" class="input input-name" type="text" autocomplete="off" formControlName="name"
             [class.invalid-input-container]="addProductForm.get('name').errors?.required && submitted">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+              <div *ngIf="name.errors?.required">
+                No puede ser vacio.
+              </div>
+            </div>
         </div>
         <div class="item-atribute">
           <span>Descripción:</span>
           <input id="description" class="input input-description" type="text" autocomplete="off"
             formControlName="description"
             [class.invalid-input-container]="addProductForm.get('description').errors?.required && submitted">
+            <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+              <div *ngIf="description.errors?.required">
+                No puede ser vacio.
+              </div>
+            </div>
         </div>
         <div class="item-atribute">
           <span>Unidades en stock:</span>
-          <input id="count" class="input input-stock" type="number" autocomplete="off" formControlName="stock"
+          <input id="stock" class="input input-stock" type="text" autocomplete="off" formControlName="stock"
             [class.invalid-input-container]="addProductForm.get('stock').errors?.required && submitted">
+            <div *ngIf="stock.invalid && (stock.dirty || stock.touched)" class="alert alert-danger">
+              <div *ngIf="stock.errors?.required">
+                No puede ser vacio.
+              </div>
+              <div *ngIf="stock.errors?.pattern">
+                Debe ingresar un valor entero positivo.
+              </div>
+            </div>
         </div>
         <div class="item-atribute">
           <span>Precio de costo:</span>
-          <input id="costPrice" class="input input-costprice" type="number" autocomplete="off"
+          <input id="costPrice" class="input input-costprice" type="text" autocomplete="off"
             formControlName="costPrice"
             [class.invalid-input-container]="addProductForm.get('costPrice').errors?.required && submitted">
+            <div *ngIf="costPrice.invalid && (costPrice.dirty || costPrice.touched)" class="alert alert-danger">
+              <div *ngIf="costPrice.errors?.required">
+                No puede ser vacio.
+              </div>
+              <div *ngIf="costPrice.errors?.pattern">
+                Debe ingresar un valor decimal positivo.
+              </div>
+            </div>
         </div>
         <div class="item-atribute">
           <span>Precio final:</span>
-          <input id="price" class="input input-price" type="number" autocomplete="off" formControlName="price"
+          <input id="price" class="input input-price" type="text" autocomplete="off" formControlName="price"
             [class.invalid-input-container]="addProductForm.get('price').errors?.required && submitted">
+            <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+              <div *ngIf="price.errors?.required">
+                No puede ser vacio.
+              </div>
+              <div *ngIf="price.errors?.pattern">
+                Debe ingresar un valor decimal positivo.
+              </div>
+            </div>
         </div>
       </div>
     </form>
