@@ -37,7 +37,6 @@ export class AddProductModalComponent {
 
     this.submitted = true;
     if (this.addProductForm.invalid) {
-      //this.messageService.showError('Todos los campos son obligatorios.', 3000);
       return;
     }
 

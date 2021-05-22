@@ -79,7 +79,6 @@ export class UserEditModalComponent {
             },
             error => {
               this.messageService.showError(error, 3000);
-              //this.dialogRef.close(true);
             }
           );
         }

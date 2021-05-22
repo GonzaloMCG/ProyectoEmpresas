@@ -38,7 +38,6 @@ export class EditProductModalComponent {
     this.submitted = true;
     console.log(this.editProductForm);
     if (this.editProductForm.invalid) {
-      //this.messageService.showError('Todos los campos son obligatorios.', 3000);
       console.log("entre");
       return;
     }

@@ -54,9 +54,6 @@ export class AdminComponent {
     validators: [CustomValidators.passwordMatchValidator]
   });
 
-  //user = "NombreDeUsuario";
-  //password: 12345678;
-
   columnas: string[] = ['username', 'roles', 'action'];
   sourceData = new MatTableDataSource();
 
