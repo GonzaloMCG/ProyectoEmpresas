@@ -201,4 +201,8 @@ export class InvoicingPageComponent implements OnInit {
       }
     });
   }
+
+  cleanInvoice() {
+    this.initForm();
+  }
 }
