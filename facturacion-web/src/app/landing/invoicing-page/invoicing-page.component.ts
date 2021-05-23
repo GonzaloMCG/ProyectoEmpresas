@@ -68,8 +68,7 @@ export class InvoicingPageComponent implements OnInit {
       }
       catch(error) {
         this.messageService.showError(error, 4000);
-      }
-      
+      }      
     } else {
       this.articuloselect = { ...this.emptyArticle };
     }
@@ -167,7 +166,6 @@ export class InvoicingPageComponent implements OnInit {
       this.initForm();
       this.messageService.showSuccess('Factura emitida correctamente');
       this.openModalAdd(data);
-
     } catch (error) {
       this.messageService.showError(error);
     }

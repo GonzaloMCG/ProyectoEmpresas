@@ -17,7 +17,7 @@ export class EditInvoiceProductModalComponent {
     name: [{ value: '', disabled: true }, Validators.required],
     price: ['', [Validators.required, Validators.pattern(/^(([1-9]+[0-9]*\.?)|(0?\.))[0-9]?[0-9]?$/)]],
     quantity: ['', [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]],
-    total: [{ value: '', disabled: true }, [Validators.required, Validators.pattern(/^(([1-9]+[0-9]*\.?)|(0?\.))[0-9]?[0-9]?$/)]],
+    total: [{ value: '' }, [Validators.required, Validators.pattern(/^(([1-9]+[0-9]*\.?)|(0?\.))[0-9]?[0-9]?$/)]],
   });
 
   constructor(private formBuilder: FormBuilder,
@@ -30,12 +30,17 @@ export class EditInvoiceProductModalComponent {
     this.dialogRef.close();
   }
 
+  ngOnInit() {
+    this.productForm.get('total').disable();
+  }
+
   submit() {
 
     this.submitted = true;
     if (this.productForm.invalid) {
       return;
     }
+    this.productForm.get('total').enable();
 
     this.dialogRef.close({ ...this.data, ...this.productForm.value });
   }
