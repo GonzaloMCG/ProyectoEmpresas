@@ -7,8 +7,7 @@
       <div class="form-input">
         <div class="item-atribute">
           <span>Nombre</span>
-          <input id="name" class="input input-name" type="text" autocomplete="off" disabled readonly
-            formControlName="name">
+          <input id="name" class="input input-name" type="text" autocomplete="off" formControlName="name">
         </div>
         <div class="item-atribute">
           <span>Precio unitario</span>
@@ -40,8 +39,7 @@
         </div>
         <div class="item-atribute">
           <span>Precio</span>
-          <input id="total" class="input input-price" type="text" autocomplete="off" disabled readonly
-            formControlName="total"
+          <input id="total" class="input input-price" type="text" autocomplete="off" formControlName="total"
             [class.invalid-input-container]="total.errors?.required && total.errors?.pattern && submitted">
           <div *ngIf="total.invalid && (total.dirty || total.touched)" class="alert alert-danger">
             <div *ngIf="total.errors?.required">

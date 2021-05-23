@@ -62,8 +62,14 @@ export class InvoicingPageComponent implements OnInit {
   }
 
   async filterProducts(query: string) {
-    if (query && query.length >= 3) {
-      this.filteredProducts = await this.productService.getFilteredProducts(query);
+    if (query && query.length >= 2) {
+      try {
+        this.filteredProducts = await this.productService.getFilteredProducts(query);
+      }
+      catch(error) {
+        this.messageService.showError(error, 4000);
+      }
+      
     } else {
       this.articuloselect = { ...this.emptyArticle };
     }

@@ -14,10 +14,10 @@ export class EditInvoiceProductModalComponent {
   public submitted = false;
 
   public productForm = this.formBuilder.group({
-    name: ['', Validators.required],
+    name: [{ value: '', disabled: true }, Validators.required],
     price: ['', [Validators.required, Validators.pattern(/^(([1-9]+[0-9]*\.?)|(0?\.))[0-9]?[0-9]?$/)]],
     quantity: ['', [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]],
-    total: ['', [Validators.required, Validators.pattern(/^(([1-9]+[0-9]*\.?)|(0?\.))[0-9]?[0-9]?$/)]],
+    total: [{ value: '', disabled: true }, [Validators.required, Validators.pattern(/^(([1-9]+[0-9]*\.?)|(0?\.))[0-9]?[0-9]?$/)]],
   });
 
   constructor(private formBuilder: FormBuilder,
@@ -36,7 +36,7 @@ export class EditInvoiceProductModalComponent {
     if (this.productForm.invalid) {
       return;
     }
-    
+
     this.dialogRef.close({ ...this.data, ...this.productForm.value });
   }
 

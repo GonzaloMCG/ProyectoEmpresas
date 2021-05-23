@@ -22,11 +22,11 @@ import { CustomValidators } from '../../validators/custom-validators';
 
 
 export class AdminComponent {
-  
+
   public submitted = false;
 
   public changePasswordForm = this.formBuilder.group({
-    username: [{value: '', disabled: true}, Validators.required],
+    username: [{ value: '', disabled: true }, Validators.required],
     oldPassword: ['', Validators.required],
     password: ['', Validators.compose([
       Validators.required,
@@ -63,9 +63,11 @@ export class AdminComponent {
   @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit() {
-    this.sourceData.paginator = this.paginator;
-    this.sourceData.sort = this.sort;
-    this.paginator._intl.itemsPerPageLabel = "Ítems por Página";
+    if (this.paginator) {
+      this.sourceData.paginator = this.paginator;
+      this.sourceData.sort = this.sort;
+      this.paginator._intl.itemsPerPageLabel = "Ítems por Página";
+    }
   }
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageEvent: PageEvent;
@@ -84,6 +86,7 @@ export class AdminComponent {
       this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
     }
   }
+
   constructor(
     public dialog: MatDialog,
     private userService: UserService,
@@ -96,7 +99,9 @@ export class AdminComponent {
 
   async ngOnInit() {
     this.changePasswordForm.controls.username.setValue(this.authenticationService.currentUserValue.username);
-    this.getAllUsers();
+    if (this.authenticationService.currentUserValue.roles.includes('Admin')) {
+      this.getAllUsers();
+    }
   }
 
   openModalEdit(user: any) {
@@ -109,7 +114,6 @@ export class AdminComponent {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        console.log('aceptar');
         this.getAllUsers();
       }
     });
@@ -126,7 +130,6 @@ export class AdminComponent {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        console.log('aceptar');
         this.getAllUsers();
       }
     });
@@ -142,7 +145,6 @@ export class AdminComponent {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        console.log('aceptar');
         this.getAllUsers();
       }
     });
@@ -154,7 +156,7 @@ export class AdminComponent {
         this.sourceData.data = response;
       },
       error => {
-        console.log(error);
+        this.messageService.showError(error, 4000);
       }
     );
   }
@@ -165,7 +167,7 @@ export class AdminComponent {
     if (this.changePasswordForm.invalid) {
       return;
     }
-    
+
     const formData = {
       ...this.changePasswordForm.value
     }
@@ -187,7 +189,7 @@ export class AdminComponent {
     return this.authenticationService.currentUserValue.roles.includes('Admin');
   }
 
-  
+
   get password() { return this.changePasswordForm.get('password'); }
   get repeatPassword() { return this.changePasswordForm.get('repeatPassword'); }
 }

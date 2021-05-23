@@ -8,6 +8,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { Article } from 'src/app/models/article.model';
 import { EditProductModalComponent } from '../modals/edit-product-modal/edit-product-modal.component';
 import { AddProductModalComponent } from '../modals/add-product-modal/add-product-modal.component';
+import { MessageService } from 'src/app/message-handler/message.service';
 
 @Component({
   selector: 'app-stock-page',
@@ -48,7 +49,8 @@ export class StockComponent {
   }
   constructor(
     public dialog: MatDialog,
-    private productService: ProductService
+    private productService: ProductService,
+    private messageService: MessageService
   ) {
     this.sourceData.data = [];
   }
@@ -110,6 +112,7 @@ export class StockComponent {
       this.allProduct = (await this.productService.getAllProducts()).map(product => new Article(product));
       this.sourceData.data = this.allProduct;
     } catch (error) {
+      this.messageService.showError(error, 4000);
     }
   }
 
@@ -119,7 +122,7 @@ export class StockComponent {
         this.totalstock = response.totalInWarehouse.toFixed(2);
       },
       error => {
-        console.log(error);
+        this.messageService.showError(error, 4000);
       }
     );
   }

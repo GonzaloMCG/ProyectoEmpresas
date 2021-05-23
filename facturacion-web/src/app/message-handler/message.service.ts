@@ -27,25 +27,22 @@ export class MessageService {
   }
 
   private getMessage(message: any): string {
-    console.log('message: ');
-    console.log(message);
     if (!message) {
-      console.log('entre1');
       return 'Mensaje inseperado!';
     }
 
     if (typeof message === 'string') {
-      console.log('entre2');
       return message;
     }
 
     if ((message) instanceof Array) {
-      console.log('entre3');
       return this.getMessage(message[0].msg);
     }
 
     if ((message) instanceof Object) {
-      console.log('entre4');
+      if (message.error == 'Unauthorized') {
+        return 'No tiene permisos para acceder o su sesion expiro, por favor loguearse.';
+      }
       return this.getMessage(message.errors || message.error || message.message || message.messages);
     }
   }
