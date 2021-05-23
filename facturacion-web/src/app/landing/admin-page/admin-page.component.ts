@@ -22,6 +22,8 @@ import { CustomValidators } from '../../validators/custom-validators';
 
 
 export class AdminComponent {
+  
+  public submitted = false;
 
   public changePasswordForm = this.formBuilder.group({
     username: [{value: '', disabled: true}, Validators.required],
@@ -158,6 +160,12 @@ export class AdminComponent {
   }
 
   submit() {
+
+    this.submitted = true;
+    if (this.changePasswordForm.invalid) {
+      return;
+    }
+    
     const formData = {
       ...this.changePasswordForm.value
     }

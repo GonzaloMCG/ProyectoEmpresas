@@ -16,9 +16,9 @@ export class EditProductModalComponent {
   public editProductForm = this.formBuilder.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
-    stock: ['', [Validators.required, Validators.pattern("^[1-9]+[0-9]*$")]],
-    costPrice: ['', [Validators.required, Validators.pattern("^[1-9]+[0-9]*\.?[0-9]?[0-9]?$")]],
-    price: ['', [Validators.required, Validators.pattern("^[1-9]+[0-9]*\.?[0-9]?[0-9]?$")]],
+    stock: ['', [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]],
+    costPrice: ['', [Validators.required, Validators.pattern(/^(([1-9]+[0-9]*\.?)|(0?\.))[0-9]?[0-9]?$/)]],
+    price: ['', [Validators.required, Validators.pattern(/^(([1-9]+[0-9]*\.?)|(0?\.))[0-9]?[0-9]?$/)]],
   });
 
   constructor(public dialogRef: MatDialogRef<EditProductModalComponent>,

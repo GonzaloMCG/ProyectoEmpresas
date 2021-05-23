@@ -8,7 +8,7 @@
         <div class="item-atribute">
           <span>Nombre:</span>
           <input id="name" class="input input-name" type="text" autocomplete="off" formControlName="name"
-            [class.invalid-input-container]="addProductForm.get('name').errors?.required && submitted">
+            [class.invalid-input-container]="name.errors?.required && submitted">
             <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
               <div *ngIf="name.errors?.required">
                 No puede ser vacio.
@@ -19,7 +19,7 @@
           <span>Descripción:</span>
           <input id="description" class="input input-description" type="text" autocomplete="off"
             formControlName="description"
-            [class.invalid-input-container]="addProductForm.get('description').errors?.required && submitted">
+            [class.invalid-input-container]="description.errors?.required && submitted">
             <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
               <div *ngIf="description.errors?.required">
                 No puede ser vacio.
@@ -29,7 +29,7 @@
         <div class="item-atribute">
           <span>Unidades en stock:</span>
           <input id="stock" class="input input-stock" type="text" autocomplete="off" formControlName="stock"
-            [class.invalid-input-container]="addProductForm.get('stock').errors?.required && submitted">
+            [class.invalid-input-container]="stock.errors?.required && stock.errors?.pattern && submitted">
             <div *ngIf="stock.invalid && (stock.dirty || stock.touched)" class="alert alert-danger">
               <div *ngIf="stock.errors?.required">
                 No puede ser vacio.
@@ -43,7 +43,7 @@
           <span>Precio de costo:</span>
           <input id="costPrice" class="input input-costprice" type="text" autocomplete="off"
             formControlName="costPrice"
-            [class.invalid-input-container]="addProductForm.get('costPrice').errors?.required && submitted">
+            [class.invalid-input-container]="costPrice.errors?.required && costPrice.errors?.pattern && submitted">
             <div *ngIf="costPrice.invalid && (costPrice.dirty || costPrice.touched)" class="alert alert-danger">
               <div *ngIf="costPrice.errors?.required">
                 No puede ser vacio.
@@ -56,7 +56,7 @@
         <div class="item-atribute">
           <span>Precio final:</span>
           <input id="price" class="input input-price" type="text" autocomplete="off" formControlName="price"
-            [class.invalid-input-container]="addProductForm.get('price').errors?.required && submitted">
+            [class.invalid-input-container]="price.errors?.required && price.errors?.pattern && submitted">
             <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
               <div *ngIf="price.errors?.required">
                 No puede ser vacio.

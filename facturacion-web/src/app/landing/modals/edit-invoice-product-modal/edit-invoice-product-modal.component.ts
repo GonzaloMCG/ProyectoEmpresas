@@ -10,11 +10,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 
 export class EditInvoiceProductModalComponent {
+
+  public submitted = false;
+
   public productForm = this.formBuilder.group({
     name: ['', Validators.required],
-    price: ['', Validators.required],
-    quantity: ['', Validators.required],
-    total: ['', Validators.required],
+    price: ['', [Validators.required, Validators.pattern(/^(([1-9]+[0-9]*\.?)|(0?\.))[0-9]?[0-9]?$/)]],
+    quantity: ['', [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]],
+    total: ['', [Validators.required, Validators.pattern(/^(([1-9]+[0-9]*\.?)|(0?\.))[0-9]?[0-9]?$/)]],
   });
 
   constructor(private formBuilder: FormBuilder,
@@ -28,6 +31,12 @@ export class EditInvoiceProductModalComponent {
   }
 
   submit() {
+
+    this.submitted = true;
+    if (this.productForm.invalid) {
+      return;
+    }
+    
     this.dialogRef.close({ ...this.data, ...this.productForm.value });
   }
 
@@ -49,4 +58,9 @@ export class EditInvoiceProductModalComponent {
     Object.keys(this.productForm.controls).forEach(
       key => this.productForm.controls[key].setValue(this.data[key]));
   }
+
+  get name() { return this.productForm.get('name'); }
+  get price() { return this.productForm.get('price'); }
+  get quantity() { return this.productForm.get('quantity'); }
+  get total() { return this.productForm.get('total'); }
 }

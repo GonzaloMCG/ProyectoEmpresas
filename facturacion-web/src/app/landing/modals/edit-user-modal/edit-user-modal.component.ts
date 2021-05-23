@@ -14,6 +14,8 @@ import { CustomValidators } from '../../../validators/custom-validators';
 
 export class UserEditModalComponent {
 
+  public submitted = false;
+
   public editUserForm = this.formBuilder.group({
     username: [{ value: '', disabled: true }, Validators.required],
     roles: ['', Validators.required],
@@ -54,7 +56,7 @@ export class UserEditModalComponent {
 
   ngOnInit() {
     this.editUserForm.controls.username.setValue(this.data.user.username);
-    //this.editUserForm.controls.roles.setValue(this.data.user.roles);
+    this.editUserForm.controls.roles.setValue(this.data.user.roles[0]);
   }
 
   close() {
@@ -62,6 +64,12 @@ export class UserEditModalComponent {
   }
 
   submit() {
+
+    this.submitted = true;
+    if (this.editUserForm.invalid) {
+      return;
+    }
+    
     const formData = {
       ...this.editUserForm.value
     }

@@ -14,6 +14,8 @@ import { CustomValidators } from '../../../validators/custom-validators';
 
 export class AddUserModalComponent {
 
+  public submitted = false;
+
   public addUserForm = this.formBuilder.group({
     username: ['', Validators.required],
     roles: ['', Validators.required],
@@ -57,6 +59,12 @@ export class AddUserModalComponent {
   }
 
   submit() {
+
+    this.submitted = true;
+    if (this.addUserForm.invalid) {
+      return;
+    }
+    
     const formData = {
       ...this.addUserForm.value
     }

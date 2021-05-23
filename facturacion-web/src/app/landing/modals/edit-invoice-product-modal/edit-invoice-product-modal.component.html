@@ -12,18 +12,45 @@
         </div>
         <div class="item-atribute">
           <span>Precio unitario</span>
-          <input id="price" class="input input-description" type="number" (change)="negativeValuesControl($event)"
-            (keyup)="negativeValuesControl($event)" formControlName="price">
+          <input id="price" class="input input-description" type="text" (change)="negativeValuesControl($event)"
+            (keyup)="negativeValuesControl($event)" formControlName="price"
+            [class.invalid-input-container]="price.errors?.required && price.errors?.pattern && submitted">
+          <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+            <div *ngIf="price.errors?.required">
+              No puede ser vacio.
+            </div>
+            <div *ngIf="price.errors?.pattern">
+              Debe ingresar un valor decimal positivo.
+            </div>
+          </div>
         </div>
         <div class="item-atribute">
           <span>Cantidad</span>
-          <input id="quantity" class="input input-stock" type="number" autocomplete="off"
-            (change)="negativeValuesControl($event)" (keyup)="negativeValuesControl($event)" formControlName="quantity">
+          <input id="quantity" class="input input-stock" type="text" autocomplete="off"
+            (change)="negativeValuesControl($event)" (keyup)="negativeValuesControl($event)" formControlName="quantity"
+            [class.invalid-input-container]="quantity.errors?.required && quantity.errors?.pattern && submitted">
+          <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert alert-danger">
+            <div *ngIf="quantity.errors?.required">
+              No puede ser vacio.
+            </div>
+            <div *ngIf="quantity.errors?.pattern">
+              Debe ingresar un valor entero positivo.
+            </div>
+          </div>
         </div>
         <div class="item-atribute">
           <span>Precio</span>
-          <input id="total" class="input input-price" type="number" autocomplete="off" disabled readonly
-            formControlName="total">
+          <input id="total" class="input input-price" type="text" autocomplete="off" disabled readonly
+            formControlName="total"
+            [class.invalid-input-container]="total.errors?.required && total.errors?.pattern && submitted">
+          <div *ngIf="total.invalid && (total.dirty || total.touched)" class="alert alert-danger">
+            <div *ngIf="total.errors?.required">
+              No puede ser vacio.
+            </div>
+            <div *ngIf="total.errors?.pattern">
+              Debe ingresar un valor decimal positivo.
+            </div>
+          </div>
         </div>
       </div>
     </form>
