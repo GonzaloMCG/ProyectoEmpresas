@@ -31,13 +31,13 @@
               Debe contener al menos 8 caracteres.
             </div>
             <div *ngIf="password.hasError('required') || password.hasError('hasNumber')">
-              Debe contener al menos un numero.
+              Debe contener al menos un número.
             </div>
             <div *ngIf="password.hasError('required') || password.hasError('hasCapitalCase')">
-              Debe contener al menos una mayuscula.
+              Debe contener al menos una mayúscula.
             </div>
             <div *ngIf="password.hasError('required') || password.hasError('hasSmallCase')">
-              Debe contener al menos una minuscula.
+              Debe contener al menos una minúscula.
             </div>
             <!--<div *ngIf="password.hasError('required') || password.hasError('hasSpecialCharacters')">
                 Debe contener al menos un caracter especial.
@@ -52,10 +52,10 @@
           <div *ngIf="repeatPassword.invalid && (repeatPassword.dirty || repeatPassword.touched)"
             class="alert alert-danger">
             <div *ngIf="repeatPassword.hasError('required')">
-              No puede ser vacio.
+              No puede ser vacío.
             </div>
             <div *ngIf="repeatPassword.hasError('NoPassswordMatch')">
-              Los passwords no coinciden.
+              Los contraseñas no coinciden.
             </div>
           </div>
         </div>

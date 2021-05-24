@@ -16,7 +16,7 @@
             [class.invalid-input-container]="price.errors?.required && price.errors?.pattern && submitted">
           <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
             <div *ngIf="price.errors?.required">
-              No puede ser vacio.
+              No puede ser vacío.
             </div>
             <div *ngIf="price.errors?.pattern">
               Debe ingresar un valor decimal positivo.
@@ -30,7 +30,7 @@
             [class.invalid-input-container]="quantity.errors?.required && quantity.errors?.pattern && submitted">
           <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert alert-danger">
             <div *ngIf="quantity.errors?.required">
-              No puede ser vacio.
+              No puede ser vacío.
             </div>
             <div *ngIf="quantity.errors?.pattern">
               Debe ingresar un valor entero positivo.
@@ -43,7 +43,7 @@
             [class.invalid-input-container]="total.errors?.required && total.errors?.pattern && submitted">
           <div *ngIf="total.invalid && (total.dirty || total.touched)" class="alert alert-danger">
             <div *ngIf="total.errors?.required">
-              No puede ser vacio.
+              No puede ser vacío.
             </div>
             <div *ngIf="total.errors?.pattern">
               Debe ingresar un valor decimal positivo.

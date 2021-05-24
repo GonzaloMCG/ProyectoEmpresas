@@ -41,7 +41,7 @@ export class MessageService {
 
     if ((message) instanceof Object) {
       if (message.error == 'Unauthorized') {
-        return 'No tiene permisos para acceder o su sesion expiro, por favor loguearse.';
+        return 'No tiene permisos para acceder o su sesión expiro, por favor loguearse.';
       }
       return this.getMessage(message.errors || message.error || message.message || message.messages);
     }
