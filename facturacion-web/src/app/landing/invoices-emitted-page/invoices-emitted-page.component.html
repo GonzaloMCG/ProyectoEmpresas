@@ -9,7 +9,8 @@
       <mat-label>Filtrar</mat-label>
     </div>
     <div class="filter-input">
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese una palabra clave." autocomplete="off">
+      <!--<input matInput (keyup)="applyFilter($event)" placeholder="Ingrese una palabra clave." autocomplete="off">-->
+      <input matInput placeholder="Ingrese una palabra clave." [formControl]="dateAndClientFilter" autocomplete="off">
     </div>
   </div>
 

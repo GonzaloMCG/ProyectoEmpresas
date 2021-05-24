@@ -20,7 +20,7 @@ export class UserEditModalComponent {
     username: [{ value: '', disabled: true }, Validators.required],
     roles: ['', Validators.required],
     password: ['', Validators.compose([
-      Validators.required,
+      //Validators.required, //Queda comentado por si se quiere obligar cambiar la contraseña y no cambiar solo los roles
       // check whether the entered password has a number
       CustomValidators.patternValidator(/\d/, {
         hasNumber: true
@@ -42,7 +42,7 @@ export class UserEditModalComponent {
       ),*/
       Validators.minLength(8)
     ])],
-    repeatPassword: ['', Validators.compose([Validators.required])],
+    repeatPassword: ['', Validators.compose([])],//[Validators.required])], Queda comentado por si se quiere obligar cambiar la contraseña y no cambiar solo los roles
   }, {
     validators: [CustomValidators.passwordMatchValidator]
   });
@@ -56,7 +56,13 @@ export class UserEditModalComponent {
 
   ngOnInit() {
     this.editUserForm.controls.username.setValue(this.data.user.username);
-    this.editUserForm.controls.roles.setValue(this.data.user.roles[0]);
+    if (this.data.user.roles.includes('Admin')) {
+      this.editUserForm.controls.roles.setValue('Admin');
+    }
+    else {      
+      this.editUserForm.controls.roles.setValue('User');
+    }
+    
   }
 
   close() {

@@ -8,6 +8,8 @@ import { InvoiceService } from 'src/app/services/invoice.service';
 import { Subscription } from 'rxjs';
 import { Article } from 'src/app/models/article.model';
 import { MessageService } from 'src/app/message-handler/message.service';
+import { FormControl } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -17,18 +19,28 @@ import { MessageService } from 'src/app/message-handler/message.service';
 })
 
 export class InvoicesEmittedComponent implements AfterViewInit {
+
+  dateAndClientFilter = new FormControl('');
+
+  filterValues = {
+    createdAt: '',
+    client: '',
+    total: '',
+  };
+
   public columnas: string[] = ['createdAt', 'client', 'total', 'action'];
   public sourceData = new MatTableDataSource();
   public pageSizeOptions: number[] = [5, 10, 25, 100];
   public pageEvent: PageEvent;
   private subscription: Subscription;
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog,
     private invoiceService: InvoiceService,
-    private messageService: MessageService) {
+    private messageService: MessageService,
+    private datePipe: DatePipe) {
+    this.sourceData.filterPredicate = this.createFilter();
   }
 
   async ngAfterViewInit() {
@@ -44,6 +56,17 @@ export class InvoicesEmittedComponent implements AfterViewInit {
     catch (error) {
       this.messageService.showError(error, 4000);
     }
+  }
+
+  async ngOnInit() {
+    this.dateAndClientFilter.valueChanges
+      .subscribe(
+        dateAndClient => {
+          this.filterValues.createdAt = dateAndClient;
+          this.filterValues.client = dateAndClient;
+          this.sourceData.filter = JSON.stringify(this.filterValues);
+        }
+      )
   }
 
   ngOnDestroy() {
@@ -73,5 +96,15 @@ export class InvoicesEmittedComponent implements AfterViewInit {
       autoFocus: false,
       data: invoiceWithProducts
     });
+  }
+
+  createFilter(): (data: any, filter: string) => boolean {
+    let datePipe = this.datePipe;
+    let filterFunction = function (data, filter): boolean {
+      let searchTerms = JSON.parse(filter);
+      return datePipe.transform(data.createdAt, 'dd/MM/YYYY').toLowerCase().indexOf(searchTerms.createdAt) !== -1
+        || data.client.toLowerCase().indexOf(searchTerms.client) !== -1
+    }
+    return filterFunction;
   }
 }

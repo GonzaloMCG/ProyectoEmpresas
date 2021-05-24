@@ -10,7 +10,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { DetailInvoicesModalComponent } from './modals/details-invoices-modal/details-invoices-modal.component';
 import { AdminComponent } from './admin-page/admin-page.component';
 import { StockComponent } from './stock-page/stock-page.component';
@@ -73,6 +73,6 @@ import { NgxPrintModule } from 'ngx-print';
   entryComponents: [
 
   ],
-  providers: []
+  providers: [DatePipe]
 })
 export class LandingModule { }
