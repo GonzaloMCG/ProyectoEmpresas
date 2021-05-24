@@ -28,12 +28,6 @@
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 
-        <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef> Precio Unitario </th>
-          <td mat-cell *matCellDef="let articulo"> {{articulo.price}} </td>
-          <td mat-footer-cell *matFooterCellDef></td>
-        </ng-container>
-
         <ng-container matColumnDef="quantity">
           <th mat-header-cell *matHeaderCellDef> Cantidad </th>
           <td mat-cell *matCellDef="let articulo"> {{articulo.quantity}} </td>
@@ -56,7 +50,43 @@
   </div>
   <div mat-dialog-actions>
     <button class="button">
-      <a class="action-btn-emit" (click)="submit()">Emitir</a>
+      <button class="action-btn-emit" printSectionId="print-section" ngxPrint>Imprimir</button>
     </button>
   </div>
 </section>
+
+<div id="print-section" style="display: none">
+  <span>***********************************</span><br>
+  <span>Fecha: {{data.createdAt | date: 'dd/MM/YYYY'}}</span><br>
+  <span>Cliente: {{ data.client }}</span><br>
+  <span>Metodo de Pago: {{ data.paymentMethod }}</span><br>
+  <span>Moneda: {{data.currency}}</span><br>
+  <span>***********************************</span><br>
+  <div class="invoicing-container" style="text-align: center;">
+    <table mat-table [dataSource]="sourceData">
+
+      <ng-container matColumnDef="name">
+        <td mat-cell *matCellDef="let articulo"> {{articulo.name}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <td mat-cell *matCellDef="let articulo"> x{{articulo.quantity}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <td mat-cell *matCellDef="let articulo"> ${{articulo.total}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+      <tr mat-footer-row *matFooterRowDef="columnas"></tr>
+    </table>
+  </div>
+  <span>***********************************</span><br>
+  <span> Total : ${{data.total}} </span><br>
+  <span>***********************************</span><br>
+  <span>-> GRACIAS POR SU PREFERENCIA </span><br>
+  <span>***********************************</span><br>
+</div>
