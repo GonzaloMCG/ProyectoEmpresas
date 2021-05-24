@@ -24,37 +24,40 @@
         <div class="item-atribute">
           <span>Contraseña:</span>
           <input id="password" class="input input-password" type="password" autocomplete="off"
-            formControlName="password">
-            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
-              <div *ngIf="password.hasError('required') || password.hasError('minlength')">
-                Debe contener al menos 8 caracteres.
-              </div>
-              <div *ngIf="password.hasError('required') || password.hasError('hasNumber')">
-                Debe contener al menos un numero.
-              </div>
-              <div *ngIf="password.hasError('required') || password.hasError('hasCapitalCase')">
-                Debe contener al menos una mayuscula.
-              </div>
-              <div *ngIf="password.hasError('required') || password.hasError('hasSmallCase')">
-                Debe contener al menos una minuscula.
-              </div>
-              <!--<div *ngIf="password.hasError('required') || password.hasError('hasSpecialCharacters')">
+            formControlName="password"
+            [class.invalid-input-container]="password.hasError('required') && password.hasError('minlength') && password.hasError('hasNumber') && password.hasError('hasCapitalCase') && password.hasError('hasSmallCase') && submitted">
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+            <div *ngIf="password.hasError('required') || password.hasError('minlength')">
+              Debe contener al menos 8 caracteres.
+            </div>
+            <div *ngIf="password.hasError('required') || password.hasError('hasNumber')">
+              Debe contener al menos un número.
+            </div>
+            <div *ngIf="password.hasError('required') || password.hasError('hasCapitalCase')">
+              Debe contener al menos una mayúscula.
+            </div>
+            <div *ngIf="password.hasError('required') || password.hasError('hasSmallCase')">
+              Debe contener al menos una minúscula.
+            </div>
+            <!--<div *ngIf="password.hasError('required') || password.hasError('hasSpecialCharacters')">
                 Debe contener al menos un caracter especial.
               </div>-->
-            </div>
+          </div>
         </div>
         <div class="item-atribute">
           <span>Confirmar contraseña:</span>
           <input id="repeatPassword" class="input input-password" type="password" autocomplete="off"
-            formControlName="repeatPassword">
-            <div *ngIf="repeatPassword.invalid && (repeatPassword.dirty || repeatPassword.touched)" class="alert alert-danger">
-              <div *ngIf="repeatPassword.hasError('required')">
-                No puede ser vacio.
-              </div>
-              <div *ngIf="repeatPassword.hasError('NoPassswordMatch')">
-                Los passwords no coinciden.
-              </div>
+            formControlName="repeatPassword"
+            [class.invalid-input-container]="repeatPassword.hasError('required') && repeatPassword.hasError('NoPassswordMatch') && submitted">
+          <div *ngIf="repeatPassword.invalid && (repeatPassword.dirty || repeatPassword.touched)"
+            class="alert alert-danger">
+            <div *ngIf="repeatPassword.hasError('required')">
+              No puede ser vacío.
             </div>
+            <div *ngIf="repeatPassword.hasError('NoPassswordMatch')">
+              Los contraseñas no coinciden.
+            </div>
+          </div>
         </div>
       </div>
     </form>

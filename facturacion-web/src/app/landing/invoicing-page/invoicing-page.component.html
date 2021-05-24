@@ -48,7 +48,7 @@
       <mat-autocomplete #auto="matAutocomplete" class="action-select-box">
         <mat-option *ngFor="let product of filteredProducts" [value]="product.name"
           (onSelectionChange)="updateUnitPrice(product)">
-          {{product.name}}
+          {{product.name}} ({{product.stock}})
         </mat-option>
       </mat-autocomplete>
     </div>
@@ -138,7 +138,7 @@
   <hr class="line">
 
   <div class="button-row">
-    <button class="button">
+    <button class="button" (click)="cleanInvoice()">
       <a class="action-btn-cancel">Cancelar</a>
     </button>
     <button type="submit" class="button">

@@ -13,14 +13,15 @@
         <div class="item-atribute">
           <span>Rol:</span>
           <select class="action-select-box" formControlName="roles">
-            <option [selected]="true" value="User" class="select-option">Operador</option>
+            <option value="User" class="select-option">Operador</option>
             <option value="Admin" class="select-option">Administrador</option>
           </select>
         </div>
         <div class="item-atribute">
           <span>Nueva contraseña:</span>
           <input id="password" class="input input-password" type="password" autocomplete="off"
-            formControlName="password">
+            formControlName="password"
+            [class.invalid-input-container]="password.hasError('required') && password.hasError('minlength') && password.hasError('hasNumber') && password.hasError('hasCapitalCase') && password.hasError('hasSmallCase') && submitted">
           <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
             <div *ngIf="password.hasError('required') || password.hasError('minlength')">
               Debe contener al menos 8 caracteres.
@@ -42,7 +43,8 @@
         <div class="item-atribute">
           <span>Confirmar contraseña:</span>
           <input id="repeatPassword" class="input input-password" type="password" autocomplete="off"
-            formControlName="repeatPassword">
+            formControlName="repeatPassword"
+            [class.invalid-input-container]="repeatPassword.hasError('required') && repeatPassword.hasError('NoPassswordMatch') && submitted">
           <div *ngIf="repeatPassword.invalid && (repeatPassword.dirty || repeatPassword.touched)"
             class="alert alert-danger">
             <div *ngIf="repeatPassword.hasError('required')">

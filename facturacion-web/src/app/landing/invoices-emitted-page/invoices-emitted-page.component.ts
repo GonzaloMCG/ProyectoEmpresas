@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { InvoiceService } from 'src/app/services/invoice.service';
 import { Subscription } from 'rxjs';
 import { Article } from 'src/app/models/article.model';
+import { MessageService } from 'src/app/message-handler/message.service';
 
 
 @Component({
@@ -26,17 +27,23 @@ export class InvoicesEmittedComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog,
-    private invoiceService: InvoiceService) {
+    private invoiceService: InvoiceService,
+    private messageService: MessageService) {
   }
 
   async ngAfterViewInit() {
     this.sourceData.paginator = this.paginator;
     this.sourceData.sort = this.sort;
     this.paginator._intl.itemsPerPageLabel = "Ítems por Página";
-    const invoicesEmitted = await this.invoiceService.getAll();
-    this.sourceData.data = invoicesEmitted;
-    this.subscription = this.invoiceService.$invoicesEmitted.subscribe(
-      async invoicesEmitted => this.sourceData.data = invoicesEmitted);
+    try {
+      const invoicesEmitted = await this.invoiceService.getAll();
+      this.sourceData.data = invoicesEmitted;
+      this.subscription = this.invoiceService.$invoicesEmitted.subscribe(
+        async invoicesEmitted => this.sourceData.data = invoicesEmitted);
+    }
+    catch (error) {
+      this.messageService.showError(error, 4000);
+    }
   }
 
   ngOnDestroy() {
