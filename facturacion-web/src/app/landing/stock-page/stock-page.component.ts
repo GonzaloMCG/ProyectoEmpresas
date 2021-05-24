@@ -46,15 +46,6 @@ export class StockComponent {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageEvent: PageEvent;
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.sourceData.filter = filterValue.trim().toLowerCase();
-
-    if (this.sourceData.paginator) {
-      this.sourceData.paginator.firstPage();
-    }
-  }
-
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     if (setPageSizeOptionsInput) {
       this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
@@ -78,6 +69,9 @@ export class StockComponent {
           this.filterValues.name = nameAndDesc;
           this.filterValues.description = nameAndDesc;
           this.sourceData.filter = JSON.stringify(this.filterValues);
+          if (this.sourceData.paginator) {
+            this.sourceData.paginator.firstPage();
+          }
         }
       )
   }

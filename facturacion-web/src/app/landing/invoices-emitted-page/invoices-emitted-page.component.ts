@@ -65,6 +65,9 @@ export class InvoicesEmittedComponent implements AfterViewInit {
           this.filterValues.createdAt = dateAndClient;
           this.filterValues.client = dateAndClient;
           this.sourceData.filter = JSON.stringify(this.filterValues);
+          if (this.sourceData.paginator) {
+            this.sourceData.paginator.firstPage();
+          }
         }
       )
   }
@@ -72,15 +75,6 @@ export class InvoicesEmittedComponent implements AfterViewInit {
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
-    }
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.sourceData.filter = filterValue.trim().toLowerCase();
-
-    if (this.sourceData.paginator) {
-      this.sourceData.paginator.firstPage();
     }
   }
 
