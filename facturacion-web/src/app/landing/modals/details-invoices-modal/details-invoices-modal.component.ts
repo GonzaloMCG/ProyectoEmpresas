@@ -10,7 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 
 export class DetailInvoicesModalComponent implements AfterViewInit {
-  columnas: string[] = ['name', 'price', 'quantity', 'total'];
+  columnas: string[] = ['name', 'quantity', 'total'];
   sourceData = new MatTableDataSource();
 
   constructor(public dialogRef: MatDialogRef<DetailInvoicesModalComponent>,

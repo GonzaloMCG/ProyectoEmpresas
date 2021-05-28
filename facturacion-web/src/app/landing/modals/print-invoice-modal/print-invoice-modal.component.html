@@ -1,49 +1,86 @@
-<div id="print-section">
-  <section>
-    <div mat-dialog-content class="invoice-data">
-      <hr class="line">
+<section>
+  <div mat-dialog-content class="invoice-data">
+    <hr class="line">
+    <div>
+      <span>Fecha: {{ today }}</span>
+    </div>
+    <hr class="line">
+    <div class="form-init">
       <div>
-        <span>Fecha: {{ today }}</span>
+        <span>Cliente: {{data.printData.form.client}}</span>
       </div>
-      <hr class="line">
-      <div class="form-init">
-        <div>
-          <span>Cliente: {{data.printData.form.client}}</span>
-        </div>
-        <div>
-          <span>Método de Pago: {{data.printData.form.paymentMethod}}</span>
-        </div>
-        <div>
-          <span>Moneda: {{data.printData.form.currency}}</span>
-        </div>
+      <div>
+        <span>Método de Pago: {{data.printData.form.paymentMethod}}</span>
       </div>
-      <hr class="line">
-
-      <div class="invoicing-container">
-        <table mat-table [dataSource]="sourceData">
-
-          <ng-container matColumnDef="name">
-            <td mat-cell *matCellDef="let articulo"> {{articulo.name}} </td>
-            <td mat-footer-cell *matFooterCellDef></td>
-          </ng-container>
-
-          <ng-container matColumnDef="quantity">
-            <td mat-cell *matCellDef="let articulo"> {{articulo.quantity}} </td>
-            <td mat-footer-cell *matFooterCellDef>Total: </td>
-          </ng-container>
-
-          <ng-container matColumnDef="total">
-            <td mat-cell *matCellDef="let articulo"> {{articulo.total}} </td>
-            <td mat-footer-cell *matFooterCellDef> $ {{data.printData.form.total}} </td>
-          </ng-container>
-
-          <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
-          <tr mat-footer-row *matFooterRowDef="columnas"></tr>
-        </table>
+      <div>
+        <span>Moneda: {{data.printData.form.currency}}</span>
       </div>
     </div>
-  </section>
-</div>
+    <hr class="line">
+
+    <div class="invoicing-container">
+      <table mat-table [dataSource]="sourceData">
+
+        <ng-container matColumnDef="name">
+          <td mat-cell *matCellDef="let articulo"> {{articulo.name}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <td mat-cell *matCellDef="let articulo"> X {{articulo.quantity}} </td>
+          <td mat-footer-cell *matFooterCellDef>Total: </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+          <td mat-cell *matCellDef="let articulo"> $ {{articulo.total}} </td>
+          <td mat-footer-cell *matFooterCellDef> $ {{data.printData.form.total}} </td>
+        </ng-container>
+
+        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+        <tr mat-footer-row *matFooterRowDef="columnas"></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
 <div class="button-row">
-  <button [useExistingCss]="true" class="action-btn-emit" printSectionId="print-section" ngxPrint>Imprimir</button>
+  <button class="action-btn-emit" printSectionId="print-section" ngxPrint>Imprimir</button>
+</div>
+
+<div id="print-section" style="display: none">
+  <span>***********************************</span><br>
+  <span>** * N O T A - - D E - - P E D I D O * **</span><br>
+  <span>***********************************</span><br>
+  <span>Fecha: {{ today }}</span><br>
+  <span>Cliente: {{data.printData.form.client}}</span><br>
+  <span>Metodo de Pago: {{data.printData.form.paymentMethod}}</span><br>
+  <span>Moneda: {{data.printData.form.currency}}</span><br>
+  <span>***********************************</span><br>
+  <div class="invoicing-container" style="text-align: left;">
+    <table mat-table [dataSource]="sourceData">
+
+      <ng-container matColumnDef="name">
+        <td mat-cell *matCellDef="let articulo"> {{articulo.name}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <td mat-cell *matCellDef="let articulo"> x{{articulo.quantity}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <td mat-cell *matCellDef="let articulo"> ${{articulo.total}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+      <tr mat-footer-row *matFooterRowDef="columnas"></tr>
+    </table>
+  </div>
+  <span>***********************************</span><br>
+  <span>Total : ${{data.printData.form.total}}</span><br>
+  <span>***********************************</span><br>
+  <span>-> GRACIAS POR SU PREFERENCIA </span><br>
+  <span>***********************************</span><br>
 </div>
