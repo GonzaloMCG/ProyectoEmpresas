@@ -131,7 +131,23 @@ export class InvoicingPageComponent implements OnInit {
     const data = this.sourceData.data;
     if (!!this.articuloselect.name && !!this.articuloselect.price
       && !!this.articuloselect.quantity && !!this.articuloselect.total) {
-      data.push({ ...this.articuloselect });
+      let articleExists: boolean = false;
+      data.map(articles => {
+        if (!articleExists && articles.id === this.articuloselect.id) {
+          articleExists = true;
+          if (articles.price === this.articuloselect.price) {
+            articles.quantity += this.articuloselect.quantity;
+            articles.total += this.articuloselect.total;
+            articles.total = Number(articles.total.toFixed(2));
+          }
+          else {
+            this.messageService.showError('El producto ya existe en la nota de pedido y el valor del precio unitario debe coincidir.', 4000);
+          }
+        }
+      })
+      if (!articleExists) {
+        data.push({ ...this.articuloselect });
+      }
       this.articuloselect = { ...this.emptyArticle };
       this.sourceData.data = data;
       this.calcularTotal();

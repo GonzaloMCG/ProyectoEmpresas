@@ -9,6 +9,7 @@ import { Article } from 'src/app/models/article.model';
 import { EditProductModalComponent } from '../modals/edit-product-modal/edit-product-modal.component';
 import { AddProductModalComponent } from '../modals/add-product-modal/add-product-modal.component';
 import { MessageService } from 'src/app/message-handler/message.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-stock-page',
@@ -18,6 +19,18 @@ import { MessageService } from 'src/app/message-handler/message.service';
 
 
 export class StockComponent {
+
+  nameAndDescFilter = new FormControl('');
+
+  filterValues = {
+    id: '',
+    name: '',
+    description: '',
+    stock: '',
+    costPrice: '',
+    price: ''
+  };
+
   columnas: string[] = ['name', 'description', 'stock', 'costPrice', 'price', 'action'];
   sourceData = new MatTableDataSource();
   public allProduct: Article[];
@@ -33,15 +46,6 @@ export class StockComponent {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageEvent: PageEvent;
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.sourceData.filter = filterValue.trim().toLowerCase();
-
-    if (this.sourceData.paginator) {
-      this.sourceData.paginator.firstPage();
-    }
-  }
-
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     if (setPageSizeOptionsInput) {
       this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
@@ -53,11 +57,23 @@ export class StockComponent {
     private messageService: MessageService
   ) {
     this.sourceData.data = [];
+    this.sourceData.filterPredicate = this.createFilter();
   }
 
   async ngOnInit() {
     this.getAllProduct();
     this.getTotalInWarehouse();
+    this.nameAndDescFilter.valueChanges
+      .subscribe(
+        nameAndDesc => {
+          this.filterValues.name = nameAndDesc;
+          this.filterValues.description = nameAndDesc;
+          this.sourceData.filter = JSON.stringify(this.filterValues);
+          if (this.sourceData.paginator) {
+            this.sourceData.paginator.firstPage();
+          }
+        }
+      )
   }
 
   openModalEdit(product: Article) {
@@ -125,5 +141,14 @@ export class StockComponent {
         this.messageService.showError(error, 4000);
       }
     );
+  }
+
+  createFilter(): (data: any, filter: string) => boolean {
+    let filterFunction = function (data, filter): boolean {
+      let searchTerms = JSON.parse(filter);
+      return data.name.toLowerCase().indexOf(searchTerms.name) !== -1
+        || data.description.toLowerCase().indexOf(searchTerms.description) !== -1
+    }
+    return filterFunction;
   }
 }

@@ -18,7 +18,7 @@ export class AddUserModalComponent {
 
   public addUserForm = this.formBuilder.group({
     username: ['', Validators.required],
-    roles: ['', Validators.required],
+    roles: ['User', Validators.required],
     password: ['', Validators.compose([
       Validators.required,
       // check whether the entered password has a number
