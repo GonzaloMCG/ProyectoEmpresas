@@ -10,21 +10,20 @@
           <span>Nombre</span>
           <input id="name" class="input input-name" type="text" autocomplete="off" formControlName="name"
             [class.invalid-input-container]="name.errors?.required && submitted">
-            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
-              <div *ngIf="name.errors?.required">
-                No puede ser vacio.
-              </div>
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            <div *ngIf="name.errors?.required">
+              No puede ser vacío.
             </div>
+          </div>
         </div>
 
         <div class="item-atribute">
           <span>Descripción</span>
           <input id="description" class="input input-description" type="text" autocomplete="off"
-            formControlName="description"
-            [class.invalid-input-container]="description.errors?.required && submitted">
+            formControlName="description" [class.invalid-input-container]="description.errors?.required && submitted">
           <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
             <div *ngIf="description.errors?.required">
-              No puede ser vacio.
+              No puede ser vacío.
             </div>
           </div>
         </div>
@@ -35,7 +34,7 @@
             [class.invalid-input-container]="stock.errors?.required && stock.errors?.pattern && submitted">
           <div *ngIf="stock.invalid && (stock.dirty || stock.touched)" class="alert alert-danger">
             <div *ngIf="stock.errors?.required">
-              No puede ser vacio.
+              No puede ser vacío.
             </div>
             <div *ngIf="stock.errors?.pattern">
               Debe ingresar un valor entero positivo.
@@ -45,42 +44,40 @@
 
         <div class="item-atribute">
           <span>Precio de costo</span>
-          <input id="costPrice" class="input input-costprice" type="text" autocomplete="off"
-            formControlName="costPrice"
+          <input id="costPrice" class="input input-costprice" type="text" autocomplete="off" formControlName="costPrice"
             [class.invalid-input-container]="costPrice.errors?.required && costPrice.errors?.pattern && submitted">
-            <div *ngIf="costPrice.invalid && (costPrice.dirty || costPrice.touched)" class="alert alert-danger">
-              <div *ngIf="costPrice.errors?.required">
-                No puede ser vacio.
-              </div>
-              <div *ngIf="costPrice.errors?.pattern">
-                Debe ingresar un valor decimal positivo.
-              </div>
+          <div *ngIf="costPrice.invalid && (costPrice.dirty || costPrice.touched)" class="alert alert-danger">
+            <div *ngIf="costPrice.errors?.required">
+              No puede ser vacío.
             </div>
+            <div *ngIf="costPrice.errors?.pattern">
+              Debe ingresar un valor decimal positivo.
+            </div>
+          </div>
         </div>
 
         <div class="item-atribute">
           <span>Precio final</span>
           <input id="price" class="input input-price" type="text" autocomplete="off" formControlName="price"
             [class.invalid-input-container]="price.errors?.required && price.errors?.pattern && submitted">
-            <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
-              <div *ngIf="price.errors?.required">
-                No puede ser vacio.
-              </div>
-              <div *ngIf="price.errors?.pattern">
-                Debe ingresar un valor decimal positivo.
-              </div>
+          <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+            <div *ngIf="price.errors?.required">
+              No puede ser vacío.
             </div>
+            <div *ngIf="price.errors?.pattern">
+              Debe ingresar un valor decimal positivo.
+            </div>
+          </div>
         </div>
-
+      </div>
+      <div class="button-row">
+        <button type="button" class="button">
+          <a class="action-btn-cancel" (click)="close()">Cancelar</a>
+        </button>
+        <button type="button" class="button" [disabled]="editProductForm.invalid">
+          <a class="action-btn-save" (click)="submit()">Guardar</a>
+        </button>
       </div>
     </form>
-    <div class="button-row">
-      <button class="button">
-        <a class="action-btn-cancel" (click)="close()">Cancelar</a>
-      </button>
-      <button class="button">
-        <a class="action-btn-save" (click)="submit()">Guardar</a>
-      </button>
-    </div>
   </div>
 </section>

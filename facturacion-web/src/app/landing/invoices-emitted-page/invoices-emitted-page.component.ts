@@ -5,7 +5,6 @@ import { DetailInvoicesModalComponent } from '../modals/details-invoices-modal/d
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { InvoiceService } from 'src/app/services/invoice.service';
-import { Subscription } from 'rxjs';
 import { Article } from 'src/app/models/article.model';
 import { MessageService } from 'src/app/message-handler/message.service';
 import { FormControl } from '@angular/forms';
@@ -32,7 +31,6 @@ export class InvoicesEmittedComponent implements AfterViewInit {
   public sourceData = new MatTableDataSource();
   public pageSizeOptions: number[] = [5, 10, 25, 100];
   public pageEvent: PageEvent;
-  private subscription: Subscription;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -50,8 +48,6 @@ export class InvoicesEmittedComponent implements AfterViewInit {
     try {
       const invoicesEmitted = await this.invoiceService.getAll();
       this.sourceData.data = invoicesEmitted;
-      this.subscription = this.invoiceService.$invoicesEmitted.subscribe(
-        async invoicesEmitted => this.sourceData.data = invoicesEmitted);
     }
     catch (error) {
       this.messageService.showError(error, 4000);
@@ -70,12 +66,6 @@ export class InvoicesEmittedComponent implements AfterViewInit {
           }
         }
       )
-  }
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 
   setPageSizeOptions(setPageSizeOptionsInput: string) {

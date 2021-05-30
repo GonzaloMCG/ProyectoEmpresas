@@ -9,3 +9,8 @@
     margin-top: 0.7rem;
   }
 }
+
+[disabled] {
+  opacity: .7;
+  pointer-events: none;
+}
