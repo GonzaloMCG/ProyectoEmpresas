@@ -12,7 +12,7 @@
             [class.invalid-input-container]="name.errors?.required && submitted">
           <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
             <div *ngIf="name.errors?.required">
-              No puede ser vacio.
+              No puede ser vacío.
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@
             formControlName="description" [class.invalid-input-container]="description.errors?.required && submitted">
           <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
             <div *ngIf="description.errors?.required">
-              No puede ser vacio.
+              No puede ser vacío.
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@
             [class.invalid-input-container]="stock.errors?.required && stock.errors?.pattern && submitted">
           <div *ngIf="stock.invalid && (stock.dirty || stock.touched)" class="alert alert-danger">
             <div *ngIf="stock.errors?.required">
-              No puede ser vacio.
+              No puede ser vacío.
             </div>
             <div *ngIf="stock.errors?.pattern">
               Debe ingresar un valor entero positivo.
@@ -48,7 +48,7 @@
             [class.invalid-input-container]="costPrice.errors?.required && costPrice.errors?.pattern && submitted">
           <div *ngIf="costPrice.invalid && (costPrice.dirty || costPrice.touched)" class="alert alert-danger">
             <div *ngIf="costPrice.errors?.required">
-              No puede ser vacio.
+              No puede ser vacío.
             </div>
             <div *ngIf="costPrice.errors?.pattern">
               Debe ingresar un valor decimal positivo.
@@ -62,7 +62,7 @@
             [class.invalid-input-container]="price.errors?.required && price.errors?.pattern && submitted">
           <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
             <div *ngIf="price.errors?.required">
-              No puede ser vacio.
+              No puede ser vacío.
             </div>
             <div *ngIf="price.errors?.pattern">
               Debe ingresar un valor decimal positivo.
