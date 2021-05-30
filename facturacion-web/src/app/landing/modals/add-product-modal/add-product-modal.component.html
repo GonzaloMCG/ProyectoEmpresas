@@ -69,8 +69,8 @@
         <button type="button" class="button">
           <a class="action-btn-cancel" (click)="close()">Cancelar</a>
         </button>
-        <button type="button" class="button" [disabled]="addProductForm.invalid">
-          <a class="action-btn-save" (click)="submit()">Guardar</a>
+        <button type="submit" class="button" [disabled]="addProductForm.invalid">
+          <a class="action-btn-save">Guardar</a>
         </button>
       </div>
     </form>
