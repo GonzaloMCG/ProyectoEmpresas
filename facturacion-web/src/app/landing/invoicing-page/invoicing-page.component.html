@@ -8,15 +8,17 @@
 
       <div class="blue-container">
         <div class="sub-title">
-          <span>Nombre del Cliente</span>
+          <p>Nombre del Cliente</p>
         </div>
-        <input class="blue-input-name" matInput placeholder="Ingrese el nombre del Cliente" autocomplete="off"
-          formControlName="client">
+        <div class="client-name-container">
+          <input class="blue-input-name" matInput placeholder="Ingrese el nombre del Cliente" autocomplete="off"
+            formControlName="client">
+        </div>
       </div>
 
       <div class="blue-container">
         <div class="sub-title">
-          <span>Método de Pago</span>
+          <p>Método de Pago</p>
         </div>
         <select class="action-select-box" formControlName="paymentMethod">
           <option [selected]="true" value="efectivo" class="select-option">Efectivo</option>
@@ -28,7 +30,7 @@
 
       <div class="blue-container">
         <div class="sub-title">
-          <span>Moneda</span>
+          <p>Moneda</p>
         </div>
         <select class="action-select-box" formControlName="currency">
           <option [selected]="true" value="pesos">Pesos</option>
@@ -40,7 +42,7 @@
   </form>
   <hr class="line">
 
-  <div class="container">
+  <!-- <div class="container">
 
     <div class="blue-container">
       <input [(ngModel)]="articuloselect.name" type="text" placeholder="Ingrese un Producto" class="input-product"
@@ -133,7 +135,7 @@
       <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
       <tr mat-footer-row *matFooterRowDef="columnas"></tr>
     </table>
-  </div>
+  </div> -->
 
   <hr class="line">
 

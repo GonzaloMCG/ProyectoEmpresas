@@ -1,4 +1,7 @@
 @import 'colors';
+@import 'variables';
+
+$midle-tablet:'only screen and (max-width: 560px)';
 
 :host {
   flex: 0.8;
@@ -7,23 +10,36 @@
 }
 
 section {
-  padding: 0 10rem;
+  padding: 0 6rem;
+
+  @media #{$tablet} {
+    padding: 2rem 6rem 2rem 0;
+  }
 }
 
-.form-row{
+.form-row {
   font-size: 3em;
   padding: 3rem 0 1rem;
   user-select:none;
+
+  @media #{$tablet} {
+    padding: 7rem 0 0;
+  }
 }
 
 .line {
-  margin: 3rem 0;
+  margin: 3rem 0 1rem;
 }
 
-.first-line-invoice{
-display: flex;
-align-items: center;
-justify-content: space-between;
+.first-line-invoice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  @media #{$midle-tablet} {
+    flex-direction: column;
+  }
 }
 
 .container {
@@ -33,49 +49,75 @@ justify-content: space-between;
   padding: 1rem 0;
 }
 
-
-.item{
+.item {
   display: flex;
   justify-content: space-between;
   color: $white-color;
 }
 
-.blue-container{
+.blue-container {
   display: flex;
   justify-content: flex-start;
   align-items:center;
   color: $white-color;
   font-size: 1.6em;
-  height: 1rem;
+  margin-top: 1rem;
   cursor:context-menu;
   user-select:none;
 
-  .sub-title{
-    padding: 1rem;
-    background-color: $blue-color;
+  @media #{$midle-tablet} {
+    flex-direction: column;
+    width: 100%;
   }
-  .blue-input-name{
+
+  .sub-title {
+    background-color: $blue-color;
+    white-space: nowrap;
+
+    @media #{$midle-tablet} {
+      width: 100%;
+    }
+
+    p {
+      padding: 1rem;
+    }
+  }
+
+  .client-name-container {
+    width: 100%;
+    display: flex;
+    justify-content: stretch;
+  }
+
+  .blue-input-name {
     color: $shadow-black-color;
     width: 25rem;
     border:solid 0.1rem $dark-white-color;
     padding: 1rem;
     outline: none;
+
+    @media #{$midle-tablet} {
+      width: 100%;
+    }
   }
-  .input-product{
+
+  .input-product {
     color: $shadow-black-color;
     width: 30rem;
     border:solid 0.1rem $dark-white-color;
     padding: 1rem;
     outline: none;
   }
-  .input-unit-price{
+
+  .input-unit-price {
     color: $shadow-black-color;
     width: 10rem;
     border:solid 0.1rem $dark-white-color;
     padding: 1rem;
     text-align: center;
   }
-  .input-quantity{
+
+  .input-quantity {
     color: $shadow-black-color;
     width: 10rem;
     border:solid 0.1rem $dark-white-color;
@@ -83,7 +125,8 @@ justify-content: space-between;
     text-align: center;
     outline: none;
   }
-  .input-price{
+
+  .input-price {
     color: $shadow-black-color;
     width: 10rem;
     border:solid 0.1rem $dark-white-color;
@@ -126,6 +169,10 @@ justify-content: space-between;
   padding: 0.9rem;
   background-color: $dark-hover-white-color;
   overflow:hidden;
+
+  @media #{$midle-tablet} {
+    width: 100%;
+  }
 
   &:hover {
     background-color: $shadow-white-color;

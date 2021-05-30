@@ -18,7 +18,7 @@ export class MenuPanelComponent {
   constructor(private authenticationService: AuthenticationService, private observer: BreakpointObserver) { }
 
   ngAfterViewInit() {
-    this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
+    this.observer.observe(['(max-width: 768px)']).subscribe((res) => {
       if (res.matches) {
         this.sidenav.mode = 'over';
         this.sidenav.close();
