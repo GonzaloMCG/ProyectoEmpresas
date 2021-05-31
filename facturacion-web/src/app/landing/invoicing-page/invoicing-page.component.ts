@@ -75,10 +75,11 @@ export class InvoicingPageComponent implements OnInit {
   }
 
   updateUnitPrice(element: any) {
+    this.articuloselect.id = element.id;
     this.articuloselect.price = element.price;
     this.articuloselect.quantity = 1;
     this.articuloselect.total = element.price;
-    this.articuloselect.id = element.id;
+    this.filteredProducts = [];
   }
 
   openModalEdit(article: Article) {
@@ -119,9 +120,10 @@ export class InvoicingPageComponent implements OnInit {
       if (res) {
         let removeItem = this.sourceData.data.find(product => product.id === res.id);
         let index = this.sourceData.data.indexOf(removeItem);
-        const listElements = this.sourceData.data.length;
-        delete this.sourceData.data[index];
-        this.sourceData.data = listElements > 1 ? this.sourceData.data = [...this.sourceData.data] : [];
+        let listElements = this.sourceData.data.length;
+        this.sourceData.data.splice(index, 1);
+        listElements = this.sourceData.data.length;
+        this.sourceData.data = listElements >= 1 ? this.sourceData.data = [...this.sourceData.data] : [];
         this.calcularTotal();
       }
     });
