@@ -10,6 +10,7 @@ import { EditProductModalComponent } from '../modals/edit-product-modal/edit-pro
 import { AddProductModalComponent } from '../modals/add-product-modal/add-product-modal.component';
 import { MessageService } from 'src/app/message-handler/message.service';
 import { FormControl } from '@angular/forms';
+import { AuthenticationService } from '../../services//authentication.service';
 
 @Component({
   selector: 'app-stock-page',
@@ -54,7 +55,8 @@ export class StockComponent {
   constructor(
     public dialog: MatDialog,
     private productService: ProductService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private authenticationService: AuthenticationService
   ) {
     this.sourceData.data = [];
     this.sourceData.filterPredicate = this.createFilter();
@@ -150,5 +152,9 @@ export class StockComponent {
         || data.description.toLowerCase().indexOf(searchTerms.description) !== -1
     }
     return filterFunction;
+  }
+
+  isSuperAdmin() {
+    return this.authenticationService.currentUserValue.roles.includes('SuperAdmin');
   }
 }
