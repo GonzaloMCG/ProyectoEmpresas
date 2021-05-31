@@ -67,7 +67,7 @@
       (page)="pageEvent = $event">
     </mat-paginator>
 
-    <div class="total-stock-data">
+    <div *ngIf="isSuperAdmin()" class="total-stock-data">
       <span>Valor total de mercadería (Precio de costo): $ {{ totalstock }}</span>
     </div>
   </div>
