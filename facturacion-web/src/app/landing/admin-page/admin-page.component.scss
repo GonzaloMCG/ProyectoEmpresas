@@ -6,12 +6,12 @@
   ::ng-deep .mat-paginator-page-size {
     align-items: center !important;
   }
-  
+
   *:focus {outline:0;};
 }
 
 section {
-  padding: 0 10rem;
+  padding: 0 6rem;
 }
 
 .form-row{
@@ -105,7 +105,7 @@ section {
   display: flex;
   color: $white-color;
   font-size: 1.6em;
-  
+
   .filter-label{
     padding: 1rem 2rem;
     background-color: $blue-color;
