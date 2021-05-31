@@ -1,5 +1,5 @@
 @import 'colors';
-
+@import 'variables';
 
 :host {
   flex: 0.8;
@@ -13,6 +13,53 @@
 
 section {
   padding: 0 6rem;
+
+  @media #{$tablet} {
+    padding: 2rem 6rem 2rem 0;
+  }
+
+  @media #{$mobile} {
+    font-size: 0.9em;
+    padding: 2rem 3rem 2rem 0;
+  }
+}
+
+.mobile-label {
+  display: none;
+}
+
+@media(max-width: 600px) {
+  .mobile-label {
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    width: 100%;
+    text-align: left;
+    font-weight: normal;
+  }
+
+  td {
+    width: 90% !important;
+
+    &.mat-cell {
+      padding: 1rem !important;
+      text-align: left !important;
+    }
+  }
+
+  .mat-column-action {
+    min-width: 8rem !important;
+  }
 }
 
 .form-row{
@@ -28,27 +75,49 @@ section {
 .filter-additem{
   display: flex;
   justify-content: space-between;
+  @media #{$midle-tablet} {
+    flex-direction: column;
+  }
 }
 
 .filter-container{
   display: flex;
-  align-items:center;
   color: $white-color;
   font-size: 1.6em;
   user-select:none;
 
   .filter-label{
-    padding: 1rem 2rem;
     background-color: $blue-color;
+    width: 8rem;
+    @media #{$midle-tablet} {
+      width: 100.5%;
+      display: flex;
+      justify-content: stretch;
+    }
+    p {
+      padding: 1rem
+    }
   }
+
+  .filter-input-containter{
+    width: 100%;
+    padding: 1rem;
+  }
+
   .filter-input{
     color: $shadow-black-color;
     width: 30rem;
     border:solid 0.1rem $dark-white-color;
-    padding: 0.9rem;
+    @media #{$midle-tablet} {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
   }
   &:hover{
     cursor:context-menu;
+  }
+  @media #{$midle-tablet} {
+    flex-direction: column;
   }
 }
 
@@ -70,7 +139,6 @@ section {
 
 .add-btn{
   display: flex;
-  min-width: 5rem;
 
   .action-btn-add{
     user-select:none;
@@ -79,7 +147,16 @@ section {
     padding: 1rem 1.5rem;
     font-size: 1.35em;
     border-radius: 0.4rem;
+    display: inline-block;
+    user-select:none;
+    min-width: 1rem;
 
+    @media #{$midle-tablet} {
+      width: 100%;
+      text-align: center;
+      //margin-top: 2rem;
+    }
+    
     &:hover {
       background-color: $green-color;
       transition: all 0.5s;
@@ -127,7 +204,7 @@ section {
 
 .mat-column-action{
   text-align: center;
-  min-width: 10rem;
+  min-width: 8rem;
 }
 
 .page-number{

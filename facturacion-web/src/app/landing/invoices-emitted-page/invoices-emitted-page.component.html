@@ -6,29 +6,39 @@
 
   <div class="filter-container">
     <div class="filter-label">
-      <mat-label>Filtrar</mat-label>
+      <p>Filtrar</p>
     </div>
     <div class="filter-input">
-      <input matInput placeholder="Ingrese una palabra clave." [formControl]="dateAndClientFilter" autocomplete="off">
+      <input class="filter-input-containter" matInput placeholder="Ingrese una palabra clave."
+        [formControl]="dateAndClientFilter" autocomplete="off">
     </div>
   </div>
 
   <div class="invoicing-container">
-    <table mat-table [dataSource]="sourceData" class="mat-elevation-z8" matSort>
+    <table mat-table [dataSource]="sourceData" class="mat-elevation-z8 isMobile" matSort>
 
       <ng-container matColumnDef="createdAt">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
-        <td mat-cell *matCellDef="let articulo"> {{articulo.createdAt | date: 'dd/MM/YYYY'}} </td>
+        <td mat-cell *matCellDef="let articulo">
+          <p class="mobile-label">Fecha:</p>
+          {{articulo.createdAt | date: 'dd/MM/YYYY'}}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="client">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </th>
-        <td mat-cell *matCellDef="let articulo"> {{articulo.client}} </td>
+        <td mat-cell *matCellDef="let articulo">
+          <p class="mobile-label">Cliente:</p>
+          {{articulo.client}}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="total">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
-        <td mat-cell *matCellDef="let articulo"> ${{articulo.total}} </td>
+        <td mat-cell *matCellDef="let articulo">
+          <p class="mobile-label">Total:</p>
+          ${{articulo.total}}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="action">
