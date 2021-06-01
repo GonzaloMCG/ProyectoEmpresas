@@ -87,7 +87,7 @@ export class InvoicesEmittedComponent implements AfterViewInit {
     let filterFunction = function (data, filter): boolean {
       let searchTerms = JSON.parse(filter);
       return datePipe.transform(data.createdAt, 'dd/MM/YYYY').toLowerCase().indexOf(searchTerms.createdAt) !== -1
-        || data.client.toLowerCase().indexOf(searchTerms.client) !== -1
+        || data.client.toLowerCase().indexOf(searchTerms.client.toLowerCase()) !== -1
     }
     return filterFunction;
   }

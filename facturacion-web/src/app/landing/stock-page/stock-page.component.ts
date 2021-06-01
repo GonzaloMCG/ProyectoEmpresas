@@ -148,8 +148,8 @@ export class StockComponent {
   createFilter(): (data: any, filter: string) => boolean {
     let filterFunction = function (data, filter): boolean {
       let searchTerms = JSON.parse(filter);
-      return data.name.toLowerCase().indexOf(searchTerms.name) !== -1
-        || data.description.toLowerCase().indexOf(searchTerms.description) !== -1
+      return data.name.toLowerCase().indexOf(searchTerms.name.toLowerCase()) !== -1
+        || data.description.toLowerCase().indexOf(searchTerms.description.toLowerCase()) !== -1
     }
     return filterFunction;
   }
