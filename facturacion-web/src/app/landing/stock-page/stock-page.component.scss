@@ -11,19 +11,6 @@
   *:focus {outline:0;};
 }
 
-section {
-  padding: 0 6rem;
-
-  @media #{$tablet} {
-    padding: 2rem 6rem 2rem 0;
-  }
-
-  @media #{$mobile} {
-    font-size: 0.9em;
-    padding: 2rem 3rem 2rem 0;
-  }
-}
-
 .mobile-label {
   display: none;
 }
@@ -62,6 +49,28 @@ section {
   }
 }
 
+section {
+  padding: 0 6rem;
+
+  @media #{$tablet} {
+    padding: 2rem 6rem 2rem 0;
+  }
+
+  @media #{$mobile} {
+    font-size: 0.9em;
+    padding: 2rem 3rem 2rem 0;
+  }
+}
+
+.filter-additem{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media #{$midle-tablet} {
+    flex-direction: column;
+  }
+}
+
 .form-row{
   font-size: 3em;
   padding: 3rem 0 1rem;
@@ -72,53 +81,51 @@ section {
   margin: 2rem 0;
 }
 
-.filter-additem{
+.blue-container {
   display: flex;
-  justify-content: space-between;
-  @media #{$midle-tablet} {
-    flex-direction: column;
-  }
-}
-
-.filter-container{
-  display: flex;
+  justify-content: flex-start;
+  align-items:center;
   color: $white-color;
   font-size: 1.6em;
+  margin-top: 1rem;
+  cursor:context-menu;
   user-select:none;
 
-  .filter-label{
+  @media #{$midle-tablet} {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sub-title {
     background-color: $blue-color;
-    width: 8rem;
+    white-space: nowrap;
+
     @media #{$midle-tablet} {
-      width: 100.5%;
-      display: flex;
-      justify-content: stretch;
+      width: 100%;
     }
+
     p {
       padding: 1rem;
-      padding-left: 1.7rem;
     }
   }
 
-  .filter-input-containter{
+  .input-container {
     width: 100%;
-    padding: 1rem;
+    display: flex;
+    justify-content: stretch;
   }
 
-  .filter-input{
+  .blue-input-name {
     color: $shadow-black-color;
-    width: 30rem;
+    width: 25rem;
     border:solid 0.1rem $dark-white-color;
+    padding: 0.9rem;
+    outline: none;
+
     @media #{$midle-tablet} {
       width: 100%;
       margin-bottom: 2rem;
     }
-  }
-  &:hover{
-    cursor:context-menu;
-  }
-  @media #{$midle-tablet} {
-    flex-direction: column;
   }
 }
 
@@ -165,6 +172,10 @@ section {
       box-shadow: 0 0.063rem 0.3rem $light-black-color;
       transition: all 0s;
     }
+  }
+  @media #{$midle-tablet} {
+    width: 100%;
+    text-align: center;
   }
 }
 

@@ -72,44 +72,50 @@ section {
   margin: 2rem 0;
 }
 
-.filter-container{
+.blue-container {
   display: flex;
+  justify-content: flex-start;
+  align-items:center;
   color: $white-color;
   font-size: 1.6em;
+  margin-top: 1rem;
+  cursor:context-menu;
   user-select:none;
 
-  .filter-label{
-    background-color: $blue-color;
-    width: 8rem;
-    @media #{$midle-tablet} {
-      width: 100.5%;
-      display: flex;
-      justify-content: stretch;
-    }
-    p {
-      padding: 1rem;
-      padding-left: 1.7rem;
-    }
-  }
-
-  .filter-input-containter{
+  @media #{$midle-tablet} {
+    flex-direction: column;
     width: 100%;
-    padding: 1rem;
   }
 
-  .filter-input{
-    color: $shadow-black-color;
-    width: 30rem;
-    border:solid 0.1rem $dark-white-color;
+  .sub-title {
+    background-color: $blue-color;
+    white-space: nowrap;
+
     @media #{$midle-tablet} {
       width: 100%;
     }
+
+    p {
+      padding: 1rem;
+    }
   }
-  &:hover{
-    cursor:context-menu;
+
+  .input-container {
+    width: 100%;
+    display: flex;
+    justify-content: stretch;
   }
-  @media #{$midle-tablet} {
-    flex-direction: column;
+
+  .blue-input-name {
+    color: $shadow-black-color;
+    width: 25rem;
+    border:solid 0.1rem $dark-white-color;
+    padding: 0.9rem;
+    outline: none;
+
+    @media #{$midle-tablet} {
+      width: 100%;
+    }
   }
 }
 

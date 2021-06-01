@@ -156,53 +156,60 @@ section {
   }
 }
 
-.filter-adduser{
+.filter-additem{
   display: flex;
+  align-items: center;
   justify-content: space-between;
   @media #{$midle-tablet} {
     flex-direction: column;
   }
 }
 
-.filter-container{
+.blue-container {
   display: flex;
+  justify-content: flex-start;
+  align-items:center;
   color: $white-color;
   font-size: 1.6em;
+  margin-top: 1rem;
+  cursor:context-menu;
   user-select:none;
 
-  .filter-label{
+  @media #{$midle-tablet} {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sub-title {
     background-color: $blue-color;
-    width: 8rem;
+    white-space: nowrap;
+
     @media #{$midle-tablet} {
-      width: 100.5%;
-      display: flex;
-      justify-content: stretch;
+      width: 100%;
     }
+
     p {
       padding: 1rem;
-      padding-left: 1.7rem;
     }
   }
 
-  .filter-input-containter{
+  .input-container {
     width: 100%;
-    padding: 1rem;
+    display: flex;
+    justify-content: stretch;
   }
 
-  .filter-input{
+  .blue-input-name {
     color: $shadow-black-color;
-    width: 30rem;
+    width: 25rem;
     border:solid 0.1rem $dark-white-color;
+    padding: 0.9rem;
+    outline: none;
+
     @media #{$midle-tablet} {
       width: 100%;
       margin-bottom: 2rem;
     }
-  }
-  &:hover{
-    cursor:context-menu;
-  }
-  @media #{$midle-tablet} {
-    flex-direction: column;
   }
 }
 
@@ -234,7 +241,7 @@ section {
     border-radius: 0.4rem;
     display: inline-block;
     user-select:none;
-    width: 50%;
+    min-width: 1rem;
 
     @media #{$midle-tablet} {
       width: 100%;
@@ -250,6 +257,10 @@ section {
       transition: all 0s;
     }
   }
+  @media #{$midle-tablet} {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .invoicing-container {
@@ -261,6 +272,10 @@ section {
 
 .mat-elevation-z8{
   user-select:none;
+}
+
+.mat-header-cell{
+  padding-right: 4rem;
 }
 
 .header-align-right{
