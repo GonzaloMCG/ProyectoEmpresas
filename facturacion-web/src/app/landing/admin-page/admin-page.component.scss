@@ -93,13 +93,12 @@ section {
   justify-content: center;
   font-size: 1.8em;
   color: $white-color;
-  //display: inline-block;
   background-color: $blue-color;
   padding: 1rem;
   border-radius: 0.2rem;
-  width: 28rem;
+  width: 30rem;
   user-select:none;
-  //padding: 0.5rem 2rem;
+  align-items: center;
 
   @media #{$midle-tablet} {
     flex-direction: column;
@@ -236,7 +235,6 @@ section {
     display: inline-block;
     user-select:none;
     width: 50%;
-    //min-width: 100%;
 
     @media #{$midle-tablet} {
       width: 100%;

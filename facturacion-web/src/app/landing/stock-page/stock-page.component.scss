@@ -187,25 +187,29 @@ section {
 .mat-column-name {
   width: 30%;
   text-align: left;
-  word-wrap: break-word
+  padding-right: 2rem;
 }
 
 .mat-column-description{
   width: 30%;
   text-align: left;
+  padding-right: 2rem;
 }
 
 .mat-column-stock{
   text-align: left;
+  padding-right: 2rem;
 }
 
 .mat-column-price{
   text-align: left;
+  padding-right: 2rem;
 }
 
 .mat-column-action{
   text-align: center;
   min-width: 8rem;
+  padding-right: 2rem;
 }
 
 .page-number{
