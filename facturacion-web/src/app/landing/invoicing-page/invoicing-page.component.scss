@@ -249,6 +249,19 @@ section {
   }
 }
 
+.mat-option{
+  padding-right: 4rem;
+}
+
+.product-list{
+  display: inline;
+
+  &.stock{
+    position: absolute;
+    right: 10px;
+  }
+}
+
 .mat-elevation-z8{
   user-select:none;
 }
