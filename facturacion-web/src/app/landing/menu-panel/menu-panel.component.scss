@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'variables';
 
 :host {
   flex: 1;
@@ -88,6 +89,7 @@ max-width: 10rem;
   background: $light-black-color;
   color: $white-color;
   border-radius: 0.5rem;
+
 }
 
 .mat-sidenav-content{

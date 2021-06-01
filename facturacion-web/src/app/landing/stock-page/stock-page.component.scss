@@ -1,5 +1,5 @@
 @import 'colors';
-
+@import 'variables';
 
 :host {
   flex: 0.8;
@@ -11,8 +11,64 @@
   *:focus {outline:0;};
 }
 
+.mobile-label {
+  display: none;
+}
+
+@media(max-width: 600px) {
+  .mobile-label {
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    width: 100%;
+    text-align: left;
+    font-weight: normal;
+  }
+
+  td {
+    width: 90% !important;
+
+    &.mat-cell {
+      padding: 1rem !important;
+      text-align: left !important;
+    }
+  }
+
+  .mat-column-action {
+    min-width: 8rem !important;
+  }
+}
+
 section {
   padding: 0 6rem;
+
+  @media #{$tablet} {
+    padding: 2rem 6rem 2rem 0;
+  }
+
+  @media #{$mobile} {
+    font-size: 0.9em;
+    padding: 2rem 3rem 2rem 0;
+  }
+}
+
+.filter-additem{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media #{$midle-tablet} {
+    flex-direction: column;
+  }
 }
 
 .form-row{
@@ -25,30 +81,51 @@ section {
   margin: 2rem 0;
 }
 
-.filter-additem{
+.blue-container {
   display: flex;
-  justify-content: space-between;
-}
-
-.filter-container{
-  display: flex;
+  justify-content: flex-start;
   align-items:center;
   color: $white-color;
   font-size: 1.6em;
+  margin-top: 1rem;
+  cursor:context-menu;
   user-select:none;
 
-  .filter-label{
-    padding: 1rem 2rem;
-    background-color: $blue-color;
+  @media #{$midle-tablet} {
+    flex-direction: column;
+    width: 100%;
   }
-  .filter-input{
+
+  .sub-title {
+    background-color: $blue-color;
+    white-space: nowrap;
+
+    @media #{$midle-tablet} {
+      width: 100%;
+    }
+
+    p {
+      padding: 1rem;
+    }
+  }
+
+  .input-container {
+    width: 100%;
+    display: flex;
+    justify-content: stretch;
+  }
+
+  .blue-input-name {
     color: $shadow-black-color;
-    width: 30rem;
+    width: 25rem;
     border:solid 0.1rem $dark-white-color;
     padding: 0.9rem;
-  }
-  &:hover{
-    cursor:context-menu;
+    outline: none;
+
+    @media #{$midle-tablet} {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
   }
 }
 
@@ -70,7 +147,6 @@ section {
 
 .add-btn{
   display: flex;
-  min-width: 5rem;
 
   .action-btn-add{
     user-select:none;
@@ -79,7 +155,15 @@ section {
     padding: 1rem 1.5rem;
     font-size: 1.35em;
     border-radius: 0.4rem;
+    display: inline-block;
+    user-select:none;
+    min-width: 1rem;
 
+    @media #{$midle-tablet} {
+      width: 100%;
+      text-align: center;
+    }
+    
     &:hover {
       background-color: $green-color;
       transition: all 0.5s;
@@ -88,6 +172,10 @@ section {
       box-shadow: 0 0.063rem 0.3rem $light-black-color;
       transition: all 0s;
     }
+  }
+  @media #{$midle-tablet} {
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -110,24 +198,29 @@ section {
 .mat-column-name {
   width: 30%;
   text-align: left;
+  padding-right: 2rem;
 }
 
 .mat-column-description{
   width: 30%;
   text-align: left;
+  padding-right: 2rem;
 }
 
 .mat-column-stock{
   text-align: left;
+  padding-right: 2rem;
 }
 
 .mat-column-price{
   text-align: left;
+  padding-right: 2rem;
 }
 
 .mat-column-action{
   text-align: center;
-  min-width: 10rem;
+  min-width: 8rem;
+  padding-right: 2rem;
 }
 
 .page-number{

@@ -51,7 +51,8 @@
         <mat-autocomplete #auto="matAutocomplete" class="action-select-box">
           <mat-option *ngFor="let product of filteredProducts" [value]="product.name"
             (onSelectionChange)="updateUnitPrice(product)">
-            {{product.name| slice:0:30}} ({{product.stock}})
+            <p class="product-list">{{product.name| slice:0:30}}</p>
+            <p class="product-list stock">({{product.stock}})</p>
           </mat-option>
         </mat-autocomplete>
       </div>

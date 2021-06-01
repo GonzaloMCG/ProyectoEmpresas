@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'variables';
 
 :host {
   flex: 0.8;
@@ -12,6 +13,15 @@
 
 section {
   padding: 0 6rem;
+
+  @media #{$tablet} {
+    padding: 2rem 6rem 2rem 0;
+  }
+
+  @media #{$mobile} {
+    font-size: 0.9em;
+    padding: 2rem 3rem 2rem 0;
+  }
 }
 
 .form-row{
@@ -36,15 +46,20 @@ section {
   display: flex;
   flex-direction:column;
   padding: 0.5rem 2rem;
-  justify-content: flex-end;
+  justify-content: center;
   font-size: 1.5em;
   color: $grey-color;
   user-select:none;
+  width: 30rem;
+
+  @media #{$midle-tablet} {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 .input{
   color: $shadow-black-color;
-  width: 25rem;
   border: solid 0.1rem $dark-white-color;
   padding: 0.9rem;
   outline: none;
@@ -53,10 +68,8 @@ section {
 .button-row{
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  max-width: 70%;
-  margin: auto;
-  margin-top: 3rem;
+  justify-content:center;
+  margin-top: 2rem;
 }
 
 .action-btn-small{
@@ -76,14 +89,22 @@ section {
 }
 
 .action-btn-save{
-  color: $white-color;
-  display: inline-block;
-  background-color: $blue-color;
-  padding: 0.8rem 7.5rem;
+  display: flex;
+  justify-content: center;
   font-size: 1.8em;
+  color: $white-color;
+  background-color: $blue-color;
+  padding: 1rem;
   border-radius: 0.2rem;
-  width: 12rem;
+  width: 30rem;
   user-select:none;
+  align-items: center;
+
+  @media #{$midle-tablet} {
+    flex-direction: column;
+    width: 100%;
+  }
+
   &:hover {
     background-color: $dark-blue-color;
     transition: all 0.5s;
@@ -92,38 +113,124 @@ section {
     box-shadow: 0 0.063rem 0.5rem $light-black-color;
     transition: all 0s;
   }
+  
 }
 
 /*ADMIN ROL*/
 
-.filter-adduser{
-  display: flex;
-  justify-content: space-between;
+.mobile-label {
+  display: none;
 }
 
-.filter-container{
+@media(max-width: 600px) {
+  .mobile-label {
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    width: 100%;
+    text-align: left;
+    font-weight: normal;
+  }
+
+  td {
+    width: 90% !important;
+
+    &.mat-cell {
+      padding: 1rem !important;
+      text-align: left !important;
+    }
+  }
+
+  .mat-column-action {
+    min-width: 8rem !important;
+  }
+}
+
+.filter-additem{
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media #{$midle-tablet} {
+    flex-direction: column;
+  }
+}
+
+.blue-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items:center;
   color: $white-color;
   font-size: 1.6em;
+  margin-top: 1rem;
+  cursor:context-menu;
+  user-select:none;
 
-  .filter-label{
-    padding: 1rem 2rem;
-    background-color: $blue-color;
+  @media #{$midle-tablet} {
+    flex-direction: column;
+    width: 100%;
   }
-  .filter-input{
+
+  .sub-title {
+    background-color: $blue-color;
+    white-space: nowrap;
+
+    @media #{$midle-tablet} {
+      width: 100%;
+    }
+
+    p {
+      padding: 1rem;
+    }
+  }
+
+  .input-container {
+    width: 100%;
+    display: flex;
+    justify-content: stretch;
+  }
+
+  .blue-input-name {
     color: $shadow-black-color;
-    width: 30rem;
+    width: 25rem;
     border:solid 0.1rem $dark-white-color;
     padding: 0.9rem;
+    outline: none;
+
+    @media #{$midle-tablet} {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
   }
-  &:hover{
-    cursor: context-menu;
+}
+
+.action-btn-small{
+  color: $white-color;
+  display: inline-block;
+  border-radius: 0.9rem;
+  outline: none;
+
+  &:hover {
+    transition: all 0.5s;
+    filter: brightness(90%);
+  }
+  &:active{
+    box-shadow: 0 0.063rem 0.5rem $light-black-color;
+    transition: all 0 s;
   }
 }
 
 .add-btn{
   display: flex;
-  min-width: 5rem;
 
   .action-btn-add{
     user-select:none;
@@ -132,7 +239,15 @@ section {
     padding: 1rem 1.5rem;
     font-size: 1.35em;
     border-radius: 0.4rem;
+    display: inline-block;
+    user-select:none;
+    min-width: 1rem;
 
+    @media #{$midle-tablet} {
+      width: 100%;
+      text-align: center;
+    }
+    
     &:hover {
       background-color: $green-color;
       transition: all 0.5s;
@@ -141,6 +256,10 @@ section {
       box-shadow: 0 0.063rem 0.3rem $light-black-color;
       transition: all 0s;
     }
+  }
+  @media #{$midle-tablet} {
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -153,6 +272,10 @@ section {
 
 .mat-elevation-z8{
   user-select:none;
+}
+
+.mat-header-cell{
+  padding-right: 4rem;
 }
 
 .header-align-right{
