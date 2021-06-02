@@ -22,6 +22,7 @@ section {
 
 .mobile-label {
   display: none;
+  padding-right: 0.5rem;
 }
 
 @media(max-width: 600px) {
@@ -50,6 +51,10 @@ section {
     &.mat-cell {
       padding: 1rem !important;
       text-align: left !important;
+
+      @media #{$midle-tablet} {
+        display: flex;
+      }
     }
   }
 
@@ -371,7 +376,6 @@ section {
   font-size: 1.8em;
   border-radius: 0.2rem;
   user-select:none;
-  margin: 0 1rem;
 
   &:hover {
     background-color: $dark-blue-color;
