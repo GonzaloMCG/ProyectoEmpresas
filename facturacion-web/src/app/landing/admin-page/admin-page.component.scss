@@ -120,6 +120,7 @@ section {
 
 .mobile-label {
   display: none;
+  padding-right: 0.5rem;
 }
 
 @media(max-width: 600px) {
@@ -148,6 +149,10 @@ section {
     &.mat-cell {
       padding: 1rem !important;
       text-align: left !important;
+
+      @media #{$midle-tablet} {
+        display: flex;
+      }
     }
   }
 
