@@ -73,30 +73,21 @@
   <span>Metodo de Pago: {{ data.paymentMethod }}</span><br>
   <span>Moneda: {{data.currency}}</span><br>
   <span>***********************************</span><br>
-  <div class="invoicing-container" style="text-align: center;">
+  <div class="invoicing-container" style="text-align: left;">
     <table mat-table [dataSource]="sourceData">
 
       <ng-container matColumnDef="name">
-        <td mat-cell *matCellDef="let articulo">
-          <p class="mobile-label">Producto: </p>
-          {{articulo.name}}
-        </td>
+        <td mat-cell *matCellDef="let articulo"> {{articulo.name}} </td>
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
 
       <ng-container matColumnDef="quantity">
-        <td mat-cell *matCellDef="let articulo">
-          <p class="mobile-label">Cantidad: </p>
-          x{{articulo.quantity}}
-        </td>
+        <td mat-cell *matCellDef="let articulo"> x{{articulo.quantity}} </td>
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
 
       <ng-container matColumnDef="total">
-        <td mat-cell *matCellDef="let articulo">
-          <p class="mobile-label">Total: </p>
-          ${{articulo.total}}
-        </td>
+        <td mat-cell *matCellDef="let articulo"> ${{articulo.total}} </td>
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
 
