@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'variables';
 
 :host{
   *:focus {outline:0;};
@@ -29,8 +30,11 @@
 }
 
 .product-data{
-  width: 45rem;
+  width: 40rem;
   font-size: 2em;
+  @media #{$midle-tablet} {
+    width: 100%;
+  }
 }
 
 .form-input{
@@ -44,13 +48,16 @@
 .item-atribute{
   display: flex;
   flex-direction:column;
-  padding: 0.5rem 2rem;
+  padding: 0.9rem 2rem;
   justify-content: flex-end;
   font-size: 1.5em;
   color: $grey-color;
   font-size: 0.8em;
-}
 
+  p {
+    margin-bottom: 0.5rem;
+  }
+}
 .input{
   color: $shadow-black-color;
   width: 25rem;
