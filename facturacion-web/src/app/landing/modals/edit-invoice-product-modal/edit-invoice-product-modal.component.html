@@ -6,11 +6,11 @@
     <form [formGroup]="productForm" (submit)="submit()">
       <div class="form-input">
         <div class="item-atribute">
-          <span>Nombre</span>
+          <p>Nombre</p>
           <input id="name" class="input input-name" type="text" autocomplete="off" formControlName="name">
         </div>
         <div class="item-atribute">
-          <span>Precio unitario</span>
+          <p>Precio unitario</p>
           <input id="price" class="input input-description" type="text" (change)="negativeValuesControl($event)"
             (keyup)="negativeValuesControl($event)" formControlName="price"
             [class.invalid-input-container]="price.errors?.required && price.errors?.pattern && submitted">
@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="item-atribute">
-          <span>Cantidad</span>
+          <p>Cantidad</p>
           <input id="quantity" class="input input-stock" type="text" autocomplete="off"
             (change)="negativeValuesControl($event)" (keyup)="negativeValuesControl($event)" formControlName="quantity"
             [class.invalid-input-container]="quantity.errors?.required && quantity.errors?.pattern && submitted">
@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="item-atribute">
-          <span>Precio</span>
+          <p>Precio</p>
           <input id="total" class="input input-price" type="text" autocomplete="off" formControlName="total"
             [class.invalid-input-container]="total.errors?.required && total.errors?.pattern && submitted">
           <div *ngIf="total.invalid && (total.dirty || total.touched)" class="alert alert-danger">

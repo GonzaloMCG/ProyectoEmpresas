@@ -31,12 +31,17 @@ section {
     font-weight: bold;
   }
 
+  .mat-table {
+    flex-direction: column;
+    display: flex;
+  }
+  
   .mat-header-row {
     display: none;
   }
 
   .mat-row {
-    display: flex;;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     height: auto;
@@ -46,7 +51,7 @@ section {
   }
 
   td {
-    width: 100% !important;
+    width: 90% !important;
 
     &.mat-cell {
       padding: 1rem !important;
@@ -60,6 +65,7 @@ section {
 
   .mat-column-action {
     min-width: 1rem !important;
+    text-align: center !important;
   }
 }
 
@@ -297,7 +303,8 @@ section {
 
 .mat-column-action{
   text-align: center;
-  min-width: 10rem;
+  min-width: 10rem; 
+
 }
 
 .button-row {

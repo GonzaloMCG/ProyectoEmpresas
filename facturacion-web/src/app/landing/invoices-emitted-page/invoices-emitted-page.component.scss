@@ -22,6 +22,8 @@
     font-weight: bold;
   }
 
+
+
   .mat-header-row {
     display: none;
   }
@@ -143,7 +145,7 @@ section {
   padding-right: 4rem;
 }
 
-.button{
+button{
   border-radius: 0.9rem;
   outline: none;
 
@@ -172,6 +174,10 @@ section {
 
 .mat-column-action{
   text-align: center;
+  @media(max-width: 600px) {
+    display: flex;
+    justify-content: space-evenly;
+  } 
 }
 
 .page-number{

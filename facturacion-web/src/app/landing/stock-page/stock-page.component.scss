@@ -22,6 +22,11 @@
     font-weight: bold;
   }
 
+  .mat-table {
+    flex-direction: column;
+    display: flex;
+  }
+
   .mat-header-row {
     display: none;
   }
@@ -47,10 +52,6 @@
         display: flex;
       }
     }
-  }
-
-  .mat-column-action {
-    min-width: 8rem !important;
   }
 }
 
@@ -226,6 +227,10 @@ section {
   text-align: center;
   min-width: 8rem;
   padding-right: 2rem;
+  @media(max-width: 600px) {
+    display: flex;
+    justify-content: space-evenly;
+  } 
 }
 
 .page-number{

@@ -302,6 +302,10 @@ section {
 .mat-column-action{
   text-align: center;
   min-width: 20rem;
+  @media(max-width: 600px) {
+    display: flex;
+    justify-content: space-evenly;
+  } 
 }
 
 .page-number{

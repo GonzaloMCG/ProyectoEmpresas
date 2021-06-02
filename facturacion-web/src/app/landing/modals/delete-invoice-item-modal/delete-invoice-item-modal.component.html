@@ -4,14 +4,10 @@
   </div>
 
   <div class="question-box">
-    <span [textContent]="bodyText"></span>
+    <p [textContent]="bodyText"></p>
   </div>
   <div class="button-row">
-    <button class="button">
-      <a class="action-btn-cancel" (click)="close()">Cancelar</a>
-    </button>
-    <button class="button">
-      <a class="action-btn-delete" (click)="submit()">Borrar</a>
-    </button>
+    <a class="button-modal-option action-btn-cancel" (click)="close()">Cancelar</a>
+    <a class="button-modal-option action-btn-delete" (click)="submit()">Borrar</a>
   </div>
 </section>
