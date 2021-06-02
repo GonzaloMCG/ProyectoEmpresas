@@ -76,7 +76,6 @@
 
 .button-row{
   display: flex;
-  align-items: center;
   justify-content: center;
   margin-top: 4rem;
   padding-bottom: 1.5rem;
@@ -86,18 +85,17 @@
   }
 }
 
-button{
+.button-invoicing{
   color: $white-color;
-  background-color: $white-color;
   display: inline-block;
   font-size: 0.6em;
   user-select: none;
   margin: 0 1rem;
 
-  .action-btn-cancel{
+  &.action-btn-cancel{
     background-color: $grey-color;
-    padding: 0.5rem 1.5rem;
-    font-size: 1.8em;
+    padding: 0.5rem 2.5rem;
+    font-size: 1em;
     border-radius: 0.2rem;
 
     &:hover {
@@ -110,11 +108,12 @@ button{
     }
   }
 
-  .action-btn-save{
+  &.action-btn-save{
     background-color: $blue-color;
-    padding: 0.5rem 2.5rem;
-    font-size: 1.8em;
+    padding: 0.5rem 2.9rem;
+    font-size: 1em;
     border-radius: 0.2rem;
+
 
     &:hover {
       background-color: $dark-blue-color;
@@ -124,6 +123,10 @@ button{
       box-shadow: 0 0.063rem 0.5rem $light-black-color;
       transition: all 0s;
     }
+
+    @media #{$mobile} {
+      margin-top: 0.5rem;
+    }
   }
 }
 
@@ -131,10 +134,4 @@ button{
   font-size: 0.7em;
   text-align: center;
   color: $shadow-red-color;
-}
-
-.mat-dialog-content{
-  @media #{$mobile} {
-    margin: 0px -36px;
-  }
 }
