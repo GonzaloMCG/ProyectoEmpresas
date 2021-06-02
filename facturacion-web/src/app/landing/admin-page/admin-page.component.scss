@@ -24,10 +24,14 @@ section {
   }
 }
 
-.form-row{
+.form-row {
   font-size: 3em;
   padding: 3rem 0 1rem;
-  user-select:none
+  user-select:none;
+
+  @media #{$tablet} {
+    padding: 7rem 0 0;
+  }
 }
 
 .line {
@@ -72,7 +76,7 @@ section {
   margin-top: 2rem;
 }
 
-.action-btn-small{
+.action-btn-small {
   color: $white-color;
   display: inline-block;
   border-radius: 0.9rem;
@@ -82,6 +86,7 @@ section {
     transition: all 0.5s;
     filter: brightness(90%);
   }
+
   &:active{
     box-shadow: 0 0.063rem 0.5rem $light-black-color;
     transition: all 0 s;
@@ -113,7 +118,7 @@ section {
     box-shadow: 0 0.063rem 0.5rem $light-black-color;
     transition: all 0s;
   }
-  
+
 }
 
 /*ADMIN ROL*/
@@ -252,7 +257,7 @@ section {
       width: 100%;
       text-align: center;
     }
-    
+
     &:hover {
       background-color: $green-color;
       transition: all 0.5s;
@@ -272,7 +277,7 @@ section {
   display: flex;
   flex-direction: column;
   margin:1rem auto;
-  padding: 1rem;
+  padding-top: 1rem;
 }
 
 .mat-elevation-z8{
@@ -305,7 +310,7 @@ section {
   @media(max-width: 600px) {
     display: flex;
     justify-content: space-evenly;
-  } 
+  }
 }
 
 .page-number{

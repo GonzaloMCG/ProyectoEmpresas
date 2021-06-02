@@ -1,15 +1,16 @@
 @import 'colors';
+@import 'variables';
 
 :host{
   *:focus {outline:0;};
 }
 
-.close-button-line{
+.close-button-line {
   display: flex;
   justify-content: flex-end;
 }
 
-.cross{
+.cross {
   background: $red-error-color;
   color: $white-color;
   padding: 0.4rem 0.9rem;
@@ -22,15 +23,16 @@
     background-color: $shadow-red-color;
     transition: all 0.5s;
   }
-  &:active{
+  &:active {
     box-shadow: 0 0.063rem 0.5rem $light-black-color;
     transition: all 0s;
   }
 }
 
-.invoice-data{
+.invoice-data {
   margin-top: 2rem;
-  width: 80rem;
+  width: 100%;
+  max-width: 60rem;
   user-select:none;
 }
 
@@ -38,19 +40,31 @@
   margin: 1rem;
 }
 
-.form-init{
+.form-init {
   font-size: 1.5em;
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  font-weight: normal;
+
+  @media #{$midle-tablet} {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  p {
+    padding-right: 1rem;
+  }
 }
 
 .invoicing-container {
   display: flex;
   flex-direction: column;
   margin:1rem auto;
-  padding: 1rem;
+  padding-top: 1rem;
 }
 
 .mat-elevation-z8{
@@ -97,5 +111,43 @@
       box-shadow: 0 0.063rem 0.5rem $light-black-color;
       transition: all 0s;
     }
+  }
+}
+
+.mobile-label {
+  display: none;
+}
+
+@media(max-width: 600px) {
+  .mobile-label {
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    width: 100%;
+    text-align: left;
+    font-weight: normal;
+  }
+
+  td {
+    width: 90% !important;
+
+    &.mat-cell {
+      padding: 1rem !important;
+      text-align: left !important;
+    }
+  }
+
+  .mat-column-total {
+    white-space: nowrap;
   }
 }

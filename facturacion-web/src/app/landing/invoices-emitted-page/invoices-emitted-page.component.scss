@@ -22,8 +22,6 @@
     font-weight: bold;
   }
 
-
-
   .mat-header-row {
     display: none;
   }
@@ -73,6 +71,10 @@ section {
   font-size: 3em;
   padding: 3rem 0 1rem;
   user-select:none;
+
+    @media #{$tablet} {
+    padding: 7rem 0 0;
+  }
 }
 
 .line {
@@ -82,7 +84,7 @@ section {
 .blue-container {
   display: flex;
   justify-content: flex-start;
-  align-items:center;
+  align-items: baseline;
   color: $white-color;
   font-size: 1.6em;
   margin-top: 1rem;
@@ -134,7 +136,11 @@ section {
   display: flex;
   flex-direction: column;
   margin:1rem auto;
-  padding: 1rem;
+  padding-top: 1rem;
+
+  @media #{$midle-tablet} {
+    padding: 0;
+  }
 }
 
 .mat-elevation-z8{
@@ -177,7 +183,7 @@ button{
   @media(max-width: 600px) {
     display: flex;
     justify-content: space-evenly;
-  } 
+  }
 }
 
 .page-number{

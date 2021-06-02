@@ -9,6 +9,12 @@
   };
 }
 
+section {
+  @media #{$midle-tablet} {
+    padding: 0 2rem;
+  }
+}
+
 .close-button-line{
   display: flex;
   justify-content: flex-end;
@@ -60,6 +66,7 @@
 
   @media #{$midle-tablet} {
     justify-content: stretch;
+    padding: 0.9rem 0;
   }
 
   p {

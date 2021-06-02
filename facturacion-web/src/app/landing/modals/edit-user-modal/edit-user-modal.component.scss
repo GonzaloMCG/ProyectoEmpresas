@@ -5,6 +5,12 @@
   *:focus {outline:0;};
 }
 
+section {
+  @media #{$midle-tablet} {
+    padding: 0 2rem;
+  }
+}
+
 .close-button-line{
   display: flex;
   justify-content: flex-end;
@@ -29,9 +35,10 @@
   }
 }
 
-.user-data{
+.user-data {
   width: 45rem;
   font-size: 2em;
+
   @media #{$midle-tablet} {
     width: 100%;
   }
@@ -45,7 +52,7 @@
   user-select: none;
 }
 
-.item-atribute{
+.item-atribute {
   display: flex;
   flex-direction:column;
   padding: 0.5rem 2rem;
@@ -54,43 +61,48 @@
   color: $grey-color;
   font-size: 0.8em;
 
+  @media #{$midle-tablet} {
+    padding: 0.5rem 0;
+    width: 100%;
+  }
+
   p {
     margin-bottom: 0.5rem;
   }
 }
 
-.input{
+.input {
   color: $shadow-black-color;
   width: 25rem;
   border: solid 0.1rem $dark-white-color;
   padding: 1rem;
   outline: none;
+
   @media #{$midle-tablet} {
-    width: 100%;
+    width: auto;
   }
 }
 
-.action-select-box{
-  height: 3rem;
-  padding: 0.3rem 0.4rem;
+.action-select-box {
+  height: auto;
+  padding: 1rem;
   font-size: 0.9em;
   border: 0.063rem solid $dark-white-color;
   border-radius: 0.25rem;
   outline: 0;
-  width: 21rem;
-  @media #{$midle-tablet} {
-    width: 100%;
-  }
+  width: 100%;
 }
 
-.button-row{
+.button-row {
   display: flex;
   justify-content: center;
   margin-top: 4rem;
   padding-bottom: 1.5rem;
+
   @media #{$midle-tablet} {
     flex-direction: column;
     width: 100%;
+    margin-top: 1rem;
   }
 }
 
@@ -100,6 +112,10 @@
   font-size: 0.6em;
   user-select: none;
   margin: 0 1rem;
+
+  @media #{$midle-tablet} {
+    margin: 0;
+  }
 
   &.action-btn-cancel{
     background-color: $grey-color;
