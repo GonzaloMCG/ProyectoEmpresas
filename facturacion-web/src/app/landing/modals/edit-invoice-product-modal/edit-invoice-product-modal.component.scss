@@ -1,7 +1,12 @@
 @import 'colors';
+@import 'variables';
 
 :host{
   *:focus {outline:0;};
+
+  ::ng-deep {
+    max-width: 100vw;
+  };
 }
 
 .close-button-line{
@@ -31,6 +36,9 @@
 .product-data{
   width: 33rem;
   font-size: 2em;
+  @media #{$mobile} {
+    width: 100%;
+  }
 }
 
 .form-input{
@@ -61,6 +69,9 @@
   border: solid 0.1rem $dark-white-color;
   padding: 1rem;
   outline: none;
+  @media #{$mobile} {
+    width: 100%;
+  }
 }
 
 .button-row{
@@ -69,9 +80,13 @@
   justify-content: center;
   margin-top: 4rem;
   padding-bottom: 1.5rem;
+  @media #{$mobile} {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
-.button{
+button{
   color: $white-color;
   background-color: $white-color;
   display: inline-block;
@@ -116,4 +131,10 @@
   font-size: 0.7em;
   text-align: center;
   color: $shadow-red-color;
+}
+
+.mat-dialog-content{
+  @media #{$mobile} {
+    margin: 0px -36px;
+  }
 }
