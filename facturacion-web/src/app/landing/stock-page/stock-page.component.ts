@@ -64,7 +64,9 @@ export class StockComponent {
 
   async ngOnInit() {
     this.getAllProduct();
-    this.getTotalInWarehouse();
+    if (this.isSuperAdmin()) {
+      this.getTotalInWarehouse();
+    }
     this.nameAndDescFilter.valueChanges
       .subscribe(
         nameAndDesc => {
@@ -89,7 +91,9 @@ export class StockComponent {
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
         this.getAllProduct();
-        this.getTotalInWarehouse();
+        if (this.isSuperAdmin()) {
+          this.getTotalInWarehouse();
+        }
       }
     });
   }
@@ -105,7 +109,9 @@ export class StockComponent {
 
     dialogRef.afterClosed().subscribe(async (res) => {
       this.getAllProduct();
-      this.getTotalInWarehouse();
+      if (this.isSuperAdmin()) {
+        this.getTotalInWarehouse();
+      }
     });
   }
 
@@ -120,7 +126,9 @@ export class StockComponent {
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
         this.getAllProduct();
-        this.getTotalInWarehouse();
+        if (this.isSuperAdmin()) {
+          this.getTotalInWarehouse();
+        }
       }
     });
   }
@@ -134,7 +142,7 @@ export class StockComponent {
     }
   }
 
-  async getTotalInWarehouse() {
+  getTotalInWarehouse() {
     this.productService.getTotalInWarehouse().subscribe(
       response => {
         this.totalstock = response.totalInWarehouse.toFixed(2);
