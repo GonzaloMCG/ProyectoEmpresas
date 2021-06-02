@@ -104,7 +104,7 @@
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Nombre de Producto </th>
         <td mat-cell *matCellDef="let articulo">
-          <p class="mobile-label">Nombre de Producto:</p>
+          <p class="mobile-label">Nombre de Producto: </p>
           {{articulo?.name}}
         </td>
         <td mat-footer-cell *matFooterCellDef></td>
@@ -113,7 +113,7 @@
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef> Precio Unitario </th>
         <td mat-cell *matCellDef="let articulo">
-          <p class="mobile-label">Precio Unitario:</p>
+          <p class="mobile-label">Precio Unitario: </p>
           {{articulo?.price}}
         </td>
         <td mat-footer-cell *matFooterCellDef></td>
@@ -122,7 +122,7 @@
       <ng-container matColumnDef="quantity">
         <th mat-header-cell *matHeaderCellDef> Cantidad </th>
         <td mat-cell *matCellDef="let articulo">
-          <p class="mobile-label">Cantidad:</p>
+          <p class="mobile-label">Cantidad: </p>
           {{articulo?.quantity}}
         </td>
         <td mat-footer-cell *matFooterCellDef>Total: </td>
@@ -131,7 +131,7 @@
       <ng-container matColumnDef="total">
         <th mat-header-cell *matHeaderCellDef> Precio </th>
         <td mat-cell *matCellDef="let articulo">
-          <p class="mobile-label">Precio:</p>
+          <p class="mobile-label">Precio: </p>
           {{articulo?.total}}
         </td>
         <td mat-footer-cell *matFooterCellDef> $ {{total}} </td>
@@ -159,11 +159,7 @@
   <hr class="line">
 
   <div class="button-row">
-    <button class="button" (click)="cleanInvoice()">
-      <a class="action-btn-cancel">Cancelar</a>
-    </button>
-    <button type="submit" class="button">
-      <a class="action-btn-emit" (click)="submitInvoice()">Emitir</a>
-    </button>
+    <a class="action-btn-cancel button" (click)="cleanInvoice()">Cancelar</a>
+    <a class="action-btn-emit button" (click)="submitInvoice()">Emitir</a>
   </div>
 </section>
