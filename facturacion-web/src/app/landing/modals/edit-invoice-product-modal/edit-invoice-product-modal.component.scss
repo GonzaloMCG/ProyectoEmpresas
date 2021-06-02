@@ -58,39 +58,50 @@
   color: $grey-color;
   font-size: 0.8em;
 
+  @media #{$midle-tablet} {
+    justify-content: stretch;
+  }
+
   p {
     margin-bottom: 0.5rem;
   }
 }
 
-.input{
+.input {
   color: $shadow-black-color;
   width: 25rem;
   border: solid 0.1rem $dark-white-color;
   padding: 1rem;
   outline: none;
+
   @media #{$midle-tablet} {
-    width: 100%;
+    width: auto;
   }
 }
 
-.button-row{
+.button-row {
   display: flex;
   justify-content: center;
   margin-top: 4rem;
   padding-bottom: 1.5rem;
+
   @media #{$midle-tablet} {
     flex-direction: column;
     width: 100%;
+    margin-top: 1rem;
   }
 }
 
-.button-invoicing{
+.button-invoicing {
   color: $white-color;
   display: inline-block;
   font-size: 0.6em;
   user-select: none;
   margin: 0 1rem;
+
+  @media #{$midle-tablet} {
+    margin: 0;
+  }
 
   &.action-btn-cancel{
     background-color: $grey-color;
@@ -107,6 +118,7 @@
       box-shadow: 0 0.063rem 0.5rem $light-black-color;
       transition: all 0s;
     }
+
     @media #{$midle-tablet} {
       width: 100%;
     }
@@ -140,4 +152,3 @@
   text-align: center;
   color: $shadow-red-color;
 }
-

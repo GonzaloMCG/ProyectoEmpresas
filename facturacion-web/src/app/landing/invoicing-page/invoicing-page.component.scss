@@ -29,13 +29,14 @@ section {
   .mobile-label {
     display: inline-block;
     font-weight: bold;
+    padding-right: 0.5rem;
   }
 
   .mat-table {
     flex-direction: column;
     display: flex;
   }
-  
+
   .mat-header-row {
     display: none;
   }
@@ -303,7 +304,7 @@ section {
 
 .mat-column-action{
   text-align: center;
-  min-width: 10rem; 
+  min-width: 10rem;
 
 }
 
