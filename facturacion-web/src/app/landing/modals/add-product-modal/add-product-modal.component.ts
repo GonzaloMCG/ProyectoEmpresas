@@ -47,7 +47,9 @@ export class AddProductModalComponent {
       },
       error => {
         this.messageService.showError(error, 3000);
-        this.dialogRef.close(true);
+        if (error.status === 500) {
+          this.dialogRef.close(false);
+        }
       }
     );
   }
