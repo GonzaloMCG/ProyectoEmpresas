@@ -5,6 +5,12 @@
   *:focus {outline:0;};
 }
 
+section {
+  @media #{$midle-tablet} {
+    padding: 0 2rem;
+  }
+}
+
 .close-button-line{
   display: flex;
   justify-content: flex-end;
@@ -54,6 +60,11 @@
   color: $grey-color;
   font-size: 0.8em;
 
+  @media #{$midle-tablet} {
+    justify-content: stretch;
+    padding: 0.9rem 0;
+  }
+
   p {
     margin-bottom: 0.5rem;
   }
@@ -66,18 +77,20 @@
   padding: 1rem;
   outline: none;
   @media #{$midle-tablet} {
-    width: 100%;
+    width: auto;
   }
 }
 
-.button-row{
+.button-row {
   display: flex;
   justify-content: center;
   margin-top: 4rem;
   padding-bottom: 1.5rem;
+
   @media #{$midle-tablet} {
     flex-direction: column;
     width: 100%;
+    margin-top: 1rem;
   }
 }
 
@@ -87,6 +100,10 @@
   font-size: 0.6em;
   user-select: none;
   margin: 0 1rem;
+
+  @media #{$midle-tablet} {
+    margin: auto;
+  }
 
   &.action-btn-cancel{
     background-color: $grey-color;

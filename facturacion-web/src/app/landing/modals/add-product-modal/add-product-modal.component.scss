@@ -52,11 +52,14 @@
 .item-atribute{
   display: flex;
   flex-direction:column;
-  padding: 0.5rem 2rem;
-  justify-content: flex-end;
+  justify-content: stretch;
   font-size: 1.5em;
   color: $grey-color;
   font-size: 0.8em;
+  padding: 0.5rem 2rem;
+  @media #{$midle-tablet} {
+    padding: 0.5rem 0;
+  }
 }
 
 .input{
@@ -68,7 +71,7 @@
   outline: 0;
   width: 20rem;
   @media #{$midle-tablet} {
-    width: 100%;
+    width: auto;
   }
 }
 
@@ -76,12 +79,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: auto;
   margin-top: 4rem;
   text-align: center;
   @media #{$midle-tablet} {
     flex-direction: column;
     width: 100%;
+    margin-top: 1rem;
   }
 }
 

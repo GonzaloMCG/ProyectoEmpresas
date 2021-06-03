@@ -90,7 +90,11 @@ section {
   border: 0.063rem solid $dark-white-color;
   border-radius: 0.25rem;
   outline: 0;
-  width: 100%;
+  //width: 100%;
+  width: 27rem;
+  @media #{$midle-tablet} {
+    width: 100%;
+  }
 }
 
 .button-row {
