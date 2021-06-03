@@ -64,7 +64,7 @@ export class AddUserModalComponent {
     if (this.addUserForm.invalid) {
       return;
     }
-    
+
     const formData = {
       ...this.addUserForm.value
     }
@@ -80,6 +80,9 @@ export class AddUserModalComponent {
       },
       error => {
         this.messageService.showError(error, 3000);
+        if (error.status === 500) {
+          this.dialogRef.close(false);
+        }
       }
     );
   }

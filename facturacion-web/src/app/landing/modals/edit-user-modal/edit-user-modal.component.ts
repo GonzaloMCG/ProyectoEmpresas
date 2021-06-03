@@ -92,6 +92,9 @@ export class UserEditModalComponent {
             },
             error => {
               this.messageService.showError(error, 3000);
+              if (error.status === 500) {
+                this.dialogRef.close(false);
+              }
             }
           );
         }
@@ -102,6 +105,9 @@ export class UserEditModalComponent {
       },
       error => {
         this.messageService.showError(error, 3000);
+        if (error.status === 500) {
+          this.dialogRef.close(false);
+        }
       }
     );
   }

@@ -36,9 +36,7 @@ export class EditProductModalComponent {
 
   async submit() {
     this.submitted = true;
-    console.log(this.editProductForm);
     if (this.editProductForm.invalid) {
-      console.log("entre");
       return;
     }
 
@@ -52,7 +50,9 @@ export class EditProductModalComponent {
     }
     catch (error) {
       this.messageService.showError(error, 3000);
-      this.dialogRef.close(true);
+      if (error.status === 500) {
+        this.dialogRef.close(false);
+      }
     }
   }
 
