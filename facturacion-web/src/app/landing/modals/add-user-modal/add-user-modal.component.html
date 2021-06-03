@@ -6,7 +6,7 @@
     <form [formGroup]="addUserForm" (submit)="submit()">
       <div class="form-input">
         <div class="item-atribute">
-          <span>Usuario:</span>
+          <p>Usuario:</p>
           <input id="username" class="input input-user" type="text" autocomplete="off" formControlName="username">
           <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
             <div *ngIf="username.errors?.required">
@@ -15,14 +15,14 @@
           </div>
         </div>
         <div class="item-atribute">
-          <span>Rol:</span>
+          <p>Rol:</p>
           <select class="action-select-box" formControlName="roles">
             <option [selected]="true" value="User" class="select-option">Operador</option>
             <option value="Admin" class="select-option">Administrador</option>
           </select>
         </div>
         <div class="item-atribute">
-          <span>Contraseña:</span>
+          <p>Contraseña:</p>
           <input id="password" class="input input-password" type="password" autocomplete="off"
             formControlName="password"
             [class.invalid-input-container]="password.hasError('required') && password.hasError('minlength') && password.hasError('hasNumber') && password.hasError('hasCapitalCase') && password.hasError('hasSmallCase') && submitted">
@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="item-atribute">
-          <span>Confirmar contraseña:</span>
+          <p>Confirmar contraseña:</p>
           <input id="repeatPassword" class="input input-password" type="password" autocomplete="off"
             formControlName="repeatPassword"
             [class.invalid-input-container]="repeatPassword.hasError('required') && repeatPassword.hasError('NoPassswordMatch') && submitted">
@@ -61,11 +61,11 @@
         </div>
       </div>
       <div class="button-row">
-        <button type="button" class="button">
-          <a class="action-btn-cancel" (click)="close()">Cancelar</a>
+        <button type="button" class="button-modal-submit action-btn-cancel" (click)="close()">
+          Cancelar
         </button>
-        <button type="submit" class="button" [disabled]="addUserForm.invalid">
-          <a class="action-btn-save">Guardar</a>
+        <button type="submit" class="button-modal-submit action-btn-save" [disabled]="addUserForm.invalid">
+          Guardar
         </button>
       </div>
     </form>

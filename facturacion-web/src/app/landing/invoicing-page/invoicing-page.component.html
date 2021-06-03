@@ -114,7 +114,7 @@
         <th mat-header-cell *matHeaderCellDef> Precio Unitario </th>
         <td mat-cell *matCellDef="let articulo">
           <p class="mobile-label">Precio Unitario: </p>
-          {{articulo?.price}}
+          {{articulo?.price | currency}}
         </td>
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
@@ -132,7 +132,7 @@
         <th mat-header-cell *matHeaderCellDef> Precio </th>
         <td mat-cell *matCellDef="let articulo">
           <p class="mobile-label">Precio: </p>
-          {{articulo?.total}}
+          {{articulo?.total | currency}}
         </td>
         <td mat-footer-cell *matFooterCellDef> $ {{total}} </td>
       </ng-container>
@@ -159,7 +159,7 @@
   <hr class="line">
 
   <div class="button-row">
-    <a class="action-btn-cancel button" (click)="cleanInvoice()">Cancelar</a>
-    <a class="action-btn-emit button" (click)="submitInvoice()">Emitir</a>
+    <a class="action-btn-cancel" (click)="cleanInvoice()">Cancelar</a>
+    <a class="action-btn-emit" (click)="submitInvoice()">Emitir</a>
   </div>
 </section>

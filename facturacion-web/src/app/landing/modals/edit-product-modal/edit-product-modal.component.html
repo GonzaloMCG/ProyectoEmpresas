@@ -7,7 +7,7 @@
       <div class="form-input">
 
         <div class="item-atribute">
-          <span>Nombre</span>
+          <p>Nombre</p>
           <input id="name" class="input input-name" type="text" autocomplete="off" formControlName="name"
             [class.invalid-input-container]="name.errors?.required && submitted">
           <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
@@ -18,7 +18,7 @@
         </div>
 
         <div class="item-atribute">
-          <span>Descripción</span>
+          <p>Descripción</p>
           <input id="description" class="input input-description" type="text" autocomplete="off"
             formControlName="description" [class.invalid-input-container]="description.errors?.required && submitted">
           <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
@@ -29,7 +29,7 @@
         </div>
 
         <div class="item-atribute">
-          <span>Unidades en stock</span>
+          <p>Unidades en stock</p>
           <input id="stock" class="input input-stock" type="text" autocomplete="off" formControlName="stock"
             [class.invalid-input-container]="stock.errors?.required && stock.errors?.pattern && submitted">
           <div *ngIf="stock.invalid && (stock.dirty || stock.touched)" class="alert alert-danger">
@@ -43,7 +43,7 @@
         </div>
 
         <div class="item-atribute">
-          <span>Precio de costo</span>
+          <p>Precio de costo</p>
           <input id="costPrice" class="input input-costprice" type="text" autocomplete="off" formControlName="costPrice"
             [class.invalid-input-container]="costPrice.errors?.required && costPrice.errors?.pattern && submitted">
           <div *ngIf="costPrice.invalid && (costPrice.dirty || costPrice.touched)" class="alert alert-danger">
@@ -57,7 +57,7 @@
         </div>
 
         <div class="item-atribute">
-          <span>Precio final</span>
+          <p>Precio final</p>
           <input id="price" class="input input-price" type="text" autocomplete="off" formControlName="price"
             [class.invalid-input-container]="price.errors?.required && price.errors?.pattern && submitted">
           <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
@@ -71,11 +71,11 @@
         </div>
       </div>
       <div class="button-row">
-        <button type="button" class="button">
-          <a class="action-btn-cancel" (click)="close()">Cancelar</a>
+        <button type="button" class="button-modal-submit action-btn-cancel" (click)="close()">
+          Cancelar
         </button>
-        <button type="submit" class="button" [disabled]="editProductForm.invalid">
-          <a class="action-btn-save">Guardar</a>
+        <button type="submit" class="button-modal-submit action-btn-save" [disabled]="editProductForm.invalid">
+          Guardar
         </button>
       </div>
     </form>

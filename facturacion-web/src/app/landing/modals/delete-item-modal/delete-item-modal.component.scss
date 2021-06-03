@@ -1,8 +1,13 @@
 @import 'colors';
+@import 'variables';
 
 .close-button-line{
   display: flex;
   justify-content: flex-end;
+  width: 40rem;
+  @media #{$midle-tablet} {
+    width: 100%;
+  }
 }
 
 .cross{
@@ -26,39 +31,47 @@
 
 .question-box{
   font-size: 2em;
-  width: 40rem;
+  width: auto;
   display: flex;
   justify-content:center;
   user-select:none;
-  
+  margin-top: 2rem;
+
+  @media #{$midle-tablet} {
+    width: 100%;
+  }
   .input-question{
     display: flex;
     justify-content:center;
-    width: 27rem;
     background: $white-color;
-    
-    }
+  }
 }
 
 .button-row{
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  max-width: 70%;
   margin: auto;
   margin-top: 4rem;
+  text-align: center;
+  @media #{$midle-tablet} {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
 }
 
-.button{
+.button-modal-option{
   color: $white-color;
   background-color: $white-color;
   display: inline-block;
   user-select:none;
   outline: none;
 
-  .action-btn-cancel{
+  &.action-btn-cancel{
     background-color: $grey-color;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem;
+    width: 12rem;
     font-size: 1.8em;
     border-radius: 0.2rem;
 
@@ -70,11 +83,15 @@
       box-shadow: 0 0.063rem 0.5rem $light-black-color;
       transition: all 0s;
     }
+    @media #{$midle-tablet} {
+      width: 100%;
+    }
   }
 
-  .action-btn-delete{
+  &.action-btn-delete{
     background-color: $red-error-color;
-    padding: 0.5rem 2.5rem;
+    padding: 0.5rem;
+    width: 12rem;
     font-size: 1.8em;
     border-radius: 0.2rem;
 
@@ -85,6 +102,10 @@
     &:active{
       box-shadow: 0 0.063rem 0.5rem $light-black-color;
       transition: all 0s;
+    }
+    @media #{$midle-tablet} {
+      width: 100%;
+      margin-top: 0.5rem;
     }
   }
 }

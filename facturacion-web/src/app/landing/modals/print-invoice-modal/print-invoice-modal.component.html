@@ -1,19 +1,19 @@
 <section>
   <div mat-dialog-content class="invoice-data">
     <hr class="line">
-    <div>
-      <span>Fecha: {{ today }}</span>
+    <div class="form-init">
+      <p>Fecha: {{ today }}</p>
     </div>
     <hr class="line">
     <div class="form-init">
       <div>
-        <span>Cliente: {{data.printData.form.client}}</span>
+        <p>Cliente: {{data.printData.form.client}}</p>
       </div>
       <div>
-        <span>Método de Pago: {{data.printData.form.paymentMethod}}</span>
+        <p>Método de Pago: {{data.printData.form.paymentMethod}}</p>
       </div>
       <div>
-        <span>Moneda: {{data.printData.form.currency}}</span>
+        <p>Moneda: {{data.printData.form.currency}}</p>
       </div>
     </div>
     <hr class="line">
@@ -22,17 +22,26 @@
       <table mat-table [dataSource]="sourceData">
 
         <ng-container matColumnDef="name">
-          <td mat-cell *matCellDef="let articulo"> {{articulo.name}} </td>
+          <td mat-cell *matCellDef="let articulo">
+            <p class="mobile-label">Producto: </p>
+            {{articulo.name}}
+          </td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 
         <ng-container matColumnDef="quantity">
-          <td mat-cell *matCellDef="let articulo"> X {{articulo.quantity}} </td>
+          <td mat-cell *matCellDef="let articulo">
+            <p class="mobile-label">Cantidad: </p>
+            X {{articulo.quantity}}
+          </td>
           <td mat-footer-cell *matFooterCellDef>Total: </td>
         </ng-container>
 
         <ng-container matColumnDef="total">
-          <td mat-cell *matCellDef="let articulo"> $ {{articulo.total}} </td>
+          <td mat-cell *matCellDef="let articulo">
+            <p class="mobile-label">Total: </p>
+            $ {{articulo.total}}
+          </td>
           <td mat-footer-cell *matFooterCellDef> $ {{data.printData.form.total}} </td>
         </ng-container>
 
@@ -40,6 +49,7 @@
         <tr mat-footer-row *matFooterRowDef="columnas"></tr>
       </table>
     </div>
+    <hr class="line">
   </div>
 </section>
 

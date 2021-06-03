@@ -1,7 +1,12 @@
 @import 'colors';
+@import 'variables';
 
 :host{
   *:focus {outline:0;};
+
+  ::ng-deep {
+    max-width: 100vw;
+  };
 }
 
 .close-button-line{
@@ -29,8 +34,11 @@
 }
 
 .product-data{
-  width: 45rem;
+  width: auto;
   font-size: 2em;
+  @media #{$midle-tablet} {
+    width: 100%;
+  }
 }
 
 .form-input{
@@ -44,11 +52,14 @@
 .item-atribute{
   display: flex;
   flex-direction:column;
-  padding: 0.5rem 2rem;
-  justify-content: flex-end;
+  justify-content: stretch;
   font-size: 1.5em;
   color: $grey-color;
   font-size: 0.8em;
+  padding: 0.5rem 2rem;
+  @media #{$midle-tablet} {
+    padding: 0.5rem 0;
+  }
 }
 
 .input{
@@ -59,30 +70,37 @@
   border-radius: 0.25rem;
   outline: 0;
   width: 20rem;
+  @media #{$midle-tablet} {
+    width: auto;
+  }
 }
 
 .button-row{
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  max-width: 70%;
-  margin: auto;
+  justify-content: center;
   margin-top: 4rem;
-  padding-bottom: 1.5rem;
+  text-align: center;
+  @media #{$midle-tablet} {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
 }
 
-.button{
+.button-modal-submit {
   color: $white-color;
-  background-color: $white-color;
   display: inline-block;
   font-size: 0.6em;
   user-select: none;
+  margin: 0 1rem;
 
-  .action-btn-cancel{
+  &.action-btn-cancel{
     background-color: $grey-color;
-    padding: 0.5rem 1.5rem;
-    font-size: 1.8em;
+    padding: 0.5rem;
+    font-size: 1em;
     border-radius: 0.2rem;
+    width: 12rem;
 
     &:hover {
       background-color: $shadow-black-color;
@@ -92,13 +110,17 @@
       box-shadow: 0 0.063rem 0.5rem $light-black-color;
       transition: all 0s;
     }
+    @media #{$midle-tablet} {
+      width: 100%;
+    }
   }
 
-  .action-btn-save{
+  &.action-btn-save{
     background-color: $blue-color;
-    padding: 0.5rem 2.5rem;
-    font-size: 1.8em;
+    padding: 0.5rem;
+    font-size: 1em;
     border-radius: 0.2rem;
+    width: 12rem;
 
     &:hover {
       background-color: $dark-blue-color;
@@ -107,6 +129,11 @@
     &:active{
       box-shadow: 0 0.063rem 0.5rem $light-black-color;
       transition: all 0s;
+    }
+
+    @media #{$midle-tablet} {
+      width: 100%;
+      margin-top: 0.5rem;
     }
   }
 }
