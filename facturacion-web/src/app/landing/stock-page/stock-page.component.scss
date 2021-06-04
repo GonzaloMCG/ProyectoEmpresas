@@ -245,6 +245,8 @@ section {
 }
 
 .total-stock-data{
+  display: flex;
+  white-space: wrap;
   font-size: 1.5em;
   user-select:none;
 }
