@@ -169,7 +169,7 @@ section {
 
   .input-product {
     color: $shadow-black-color;
-    width: 30rem;
+    width: 40rem;
     border:solid 0.1rem $dark-white-color;
     padding: 1rem;
     outline: none;
@@ -267,10 +267,15 @@ section {
 
 .product-list{
   display: inline;
+  font-size: 0.8em;
 
   &.stock{
     position: absolute;
     right: 10px;
+  }
+
+  @media #{$mobile} {
+    font-size: 0.9em;
   }
 }
 
