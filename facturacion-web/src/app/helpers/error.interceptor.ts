@@ -16,7 +16,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         this.authenticationService.logout();
       }
       if (err.status === 502) {
-        this.messageService.showError('Ocurrió un error con el Servidor.')
+        this.messageService.showError('Ocurrió un error con el Servidor.');
+        return;
       }
       return throwError(err);
     }))
