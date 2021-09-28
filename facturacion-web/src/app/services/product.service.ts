@@ -19,8 +19,8 @@ export class ProductService {
     return await this.http.get(`${environment.apiUrl}/products?name=${query}`).toPromise().catch(error => Promise.reject(error));
   }
 
-  newProduct(data: any): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/products`, { ...data });
+  newProduct(data: any): Promise<any> {
+    return this.http.post(`${environment.apiUrl}/products`, { ...data }).toPromise();
   }
 
   //probar endpoint

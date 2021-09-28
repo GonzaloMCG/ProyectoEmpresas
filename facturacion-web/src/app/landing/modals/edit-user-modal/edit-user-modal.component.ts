@@ -45,6 +45,7 @@ export class UserEditModalComponent {
   }, {
     validators: [CustomValidators.passwordMatchValidator]
   });
+  private saving = false;
 
   constructor(public dialogRef: MatDialogRef<UserEditModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -58,23 +59,22 @@ export class UserEditModalComponent {
     if (this.data.user.roles.includes('Admin')) {
       this.editUserForm.controls.roles.setValue('Admin');
     }
-    else {      
+    else {
       this.editUserForm.controls.roles.setValue('User');
     }
-    
+
   }
 
   close() {
     this.dialogRef.close();
   }
 
-  submit() {
-
+  async submit() {
     this.submitted = true;
-    if (this.editUserForm.invalid) {
+    if (this.editUserForm.invalid || this.saving) {
       return;
     }
-    
+
     const formData = {
       ...this.editUserForm.value
     }
@@ -82,34 +82,24 @@ export class UserEditModalComponent {
       password: formData.password,
       roles: (formData.roles == 'Admin') ? ['Admin', 'User'] : ['User']
     }
-    this.userService.manageRoles({ username: this.data.user.username, roles: usuario.roles }).subscribe(
-      response => {
-        if (usuario.password) {
-          this.userService.resetPassword({ username: this.data.user.username, password: usuario.password }).subscribe(
-            response => {
-              this.messageService.showSuccess(response.message, 3000);
-              this.dialogRef.close(true);
-            },
-            error => {
-              this.messageService.showError(error, 3000);
-              if (error.status === 500) {
-                this.dialogRef.close(false);
-              }
-            }
-          );
-        }
-        else {
-          this.messageService.showSuccess(response.message, 3000);
-          this.dialogRef.close(true);
-        }
-      },
-      error => {
-        this.messageService.showError(error, 3000);
-        if (error.status === 500) {
-          this.dialogRef.close(false);
-        }
+    try {
+      this.saving = true;
+      const rolesRequest = await this.userService.manageRoles({ username: this.data.user.username, roles: usuario.roles })
+      if (usuario.password) {
+        const passwordResponse = await this.userService.resetPassword({ username: this.data.user.username, password: usuario.password });
+        this.messageService.showSuccess(passwordResponse.message, 3000);
+      } else {
+        this.messageService.showSuccess(rolesRequest.message, 3000);
       }
-    );
+      this.dialogRef.close(true);
+    } catch (error) {
+      this.messageService.showError(error, 3000);
+      if (error.status === 500) {
+        this.dialogRef.close(false);
+      }
+    } finally {
+      this.saving = false;
+    }
   }
 
   get username() { return this.editUserForm.get('username'); }

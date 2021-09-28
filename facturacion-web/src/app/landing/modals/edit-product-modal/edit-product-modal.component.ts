@@ -20,6 +20,7 @@ export class EditProductModalComponent {
     costPrice: ['', [Validators.required, Validators.pattern(/^(([1-9]+[0-9]*\.?)|(0?\.))[0-9]?[0-9]?$/)]],
     price: ['', [Validators.required, Validators.pattern(/^(([1-9]+[0-9]*\.?)|(0?\.))[0-9]?[0-9]?$/)]],
   });
+  private saving = false;
 
   constructor(public dialogRef: MatDialogRef<EditProductModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -36,23 +37,26 @@ export class EditProductModalComponent {
 
   async submit() {
     this.submitted = true;
-    if (this.editProductForm.invalid) {
+    if (this.editProductForm.invalid || this.saving) {
       return;
     }
 
     const data = {
       ...this.editProductForm.value
     }
+
     try {
+      this.saving = true;
       await this.productService.updateProduct({ ...this.data.product, ...data });
       this.messageService.showSuccess('El producto fue actualizado correctamente.', 3000);
       this.dialogRef.close(true);
-    }
-    catch (error) {
+    } catch (error) {
       this.messageService.showError(error, 3000);
       if (error.status === 500) {
         this.dialogRef.close(false);
       }
+    } finally {
+      this.saving = false;
     }
   }
 

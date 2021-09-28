@@ -42,6 +42,7 @@ export class InvoicingPageComponent implements OnInit {
   public productList: Article[] = [];
 
   public articuloselect = { ...this.emptyArticle };
+  private savingInvoice = false;
 
   constructor(public dialog: MatDialog,
     private formBuilder: FormBuilder,
@@ -66,9 +67,9 @@ export class InvoicingPageComponent implements OnInit {
       try {
         this.filteredProducts = await this.productService.getFilteredProducts(query);
       }
-      catch(error) {
+      catch (error) {
         this.messageService.showError(error, 4000);
-      }      
+      }
     } else {
       this.articuloselect = { ...this.emptyArticle };
     }
@@ -167,6 +168,9 @@ export class InvoicingPageComponent implements OnInit {
   }
 
   async submitInvoice() {
+    if (this.savingInvoice) {
+      return;
+    }
     const buildProductList = this.sourceData.data;
 
     const data = {
@@ -180,12 +184,15 @@ export class InvoicingPageComponent implements OnInit {
     }
 
     try {
+      this.savingInvoice = true;
       await this.invoiceService.newInvoice(data);
       this.initForm();
       this.messageService.showSuccess('Factura emitida correctamente');
       this.openModalAdd(data);
     } catch (error) {
       this.messageService.showError(error);
+    } finally {
+      this.savingInvoice = false;
     }
   }
 

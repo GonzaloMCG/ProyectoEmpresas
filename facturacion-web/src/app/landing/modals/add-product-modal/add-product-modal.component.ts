@@ -21,6 +21,7 @@ export class AddProductModalComponent {
     costPrice: ['', [Validators.required, Validators.pattern(/^(([1-9]+[0-9]*\.?)|(0?\.))[0-9]?[0-9]?$/)]],///^[1-9]+[0-9]*\.?[0-9]?[0-9]?$|^0?\.[0-9]?[0-9]?$/)]],
     price: ['', [Validators.required, Validators.pattern(/^(([1-9]+[0-9]*\.?)|(0?\.))[0-9]?[0-9]?$/)]],
   });
+  private saving = false;
 
   constructor(public dialogRef: MatDialogRef<AddProductModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -34,24 +35,24 @@ export class AddProductModalComponent {
   }
 
   async submit() {
-
     this.submitted = true;
-    if (this.addProductForm.invalid) {
+    if (this.addProductForm.invalid || this.saving) {
       return;
     }
 
-    await this.productService.newProduct({ ...this.addProductForm.value }).subscribe(
-      response => {
-        this.messageService.showSuccess(response.message, 3000);
-        this.dialogRef.close(true);
-      },
-      error => {
-        this.messageService.showError(error, 3000);
-        if (error.status === 500) {
-          this.dialogRef.close(false);
-        }
+    try {
+      this.saving = true;
+      const response = await this.productService.newProduct({ ...this.addProductForm.value });
+      this.messageService.showSuccess(response.message, 3000);
+      this.dialogRef.close(true);
+    } catch (error) {
+      this.messageService.showError(error, 3000);
+      if (error.status === 500) {
+        this.dialogRef.close(false);
       }
-    );
+    } finally {
+      this.saving = false;
+    }
   }
 
   get name() { return this.addProductForm.get('name'); }

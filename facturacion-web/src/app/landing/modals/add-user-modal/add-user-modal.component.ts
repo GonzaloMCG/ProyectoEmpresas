@@ -46,6 +46,7 @@ export class AddUserModalComponent {
   }, {
     validators: [CustomValidators.passwordMatchValidator]
   });
+  private saving = false;
 
   constructor(public dialogRef: MatDialogRef<AddUserModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -58,33 +59,35 @@ export class AddUserModalComponent {
     this.dialogRef.close();
   }
 
-  submit() {
-
+  async submit() {
     this.submitted = true;
-    if (this.addUserForm.invalid) {
+    if (this.addUserForm.invalid || this.saving) {
       return;
     }
 
     const formData = {
       ...this.addUserForm.value
     }
+
     var usuario = {
       username: formData.username,
       password: formData.password,
       roles: (formData.roles == 'Admin') ? ['Admin', 'User'] : ['User']
     }
-    this.userService.registerUser(usuario).subscribe(
-      response => {
-        this.messageService.showSuccess(response.message, 3000);
-        this.dialogRef.close(true);
-      },
-      error => {
-        this.messageService.showError(error, 3000);
-        if (error.status === 500) {
-          this.dialogRef.close(false);
-        }
+
+    try {
+      this.saving = true;
+      const response = await this.userService.registerUser(usuario);
+      this.messageService.showSuccess(response.message, 3000);
+      this.dialogRef.close(true);
+    } catch (error) {
+      this.messageService.showError(error, 3000);
+      if (error.status === 500) {
+        this.dialogRef.close(false);
       }
-    );
+    } finally {
+      this.saving = false;
+    }
   }
 
   get username() { return this.addUserForm.get('username'); }

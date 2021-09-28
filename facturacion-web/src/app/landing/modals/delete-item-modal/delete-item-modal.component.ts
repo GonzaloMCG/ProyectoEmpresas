@@ -13,7 +13,9 @@ import { MessageService } from '../../../message-handler/message.service';
 
 export class DeleteItemModalComponent {
   public bodyText: string;
-  public message: string
+  public message: string;
+  private removingUser = false;
+  private removingProduct = false;
 
   constructor(public dialogRef: MatDialogRef<DeleteItemModalComponent>,
     private productService: ProductService,
@@ -39,27 +41,39 @@ export class DeleteItemModalComponent {
     }
   }
 
-  removeUser() {
-    this.userService.deleteUser(this.data.username).subscribe(
-      response => {
-        this.messageService.showSuccess(response.message, 3000);
-        this.dialogRef.close(true);
-      },
-      error => {
-        this.messageService.showError(error, 3000);
-        this.dialogRef.close(true);
-      }
-    );
+  async removeUser() {
+    if (this.removingUser) {
+      return;
+    }
+
+    try {
+      this.removingUser = true;
+      const response = await this.userService.deleteUser(this.data.username);
+      this.messageService.showSuccess(response.message, 3000);
+      this.dialogRef.close(true);
+    } catch (error) {
+      this.messageService.showError(error, 3000);
+      this.dialogRef.close(true);
+    } finally {
+      this.removingUser = false;
+    }
   }
 
   async removeProduct() {
+    if (this.removingProduct) {
+      return;
+    }
+
     try {
+      this.removingProduct = true;
       await this.productService.removeProduct(this.data.product.id);
       this.messageService.showSuccess('El producto fue borrado correctamente.', 3000);
       this.dialogRef.close(this.data.product.id);
     } catch (error) {
       this.messageService.showError(error, 3000);
       this.dialogRef.close();
+    } finally {
+      this.removingProduct = false;
     }
   }
 }
