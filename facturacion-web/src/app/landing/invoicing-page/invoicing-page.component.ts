@@ -24,6 +24,7 @@ export class InvoicingPageComponent implements OnInit {
   public sourceData = new MatTableDataSource<Article>();
   public searchQuery$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   public filteredProducts = []
+  public submited: boolean = true;
 
   public invoicingForm = this.formBuilder.group({
     client: ['', Validators.required],
@@ -65,10 +66,9 @@ export class InvoicingPageComponent implements OnInit {
     if (query && query.length >= 2) {
       try {
         this.filteredProducts = await this.productService.getFilteredProducts(query);
-      }
-      catch(error) {
+      } catch (error) {
         this.messageService.showError(error, 4000);
-      }      
+      }
     } else {
       this.articuloselect = { ...this.emptyArticle };
     }
@@ -180,10 +180,14 @@ export class InvoicingPageComponent implements OnInit {
     }
 
     try {
-      await this.invoiceService.newInvoice(data);
-      this.initForm();
-      this.messageService.showSuccess('Factura emitida correctamente');
-      this.openModalAdd(data);
+      if (this.submited) {
+        this.submited = false;
+        await this.invoiceService.newInvoice(data);
+        this.initForm();
+        this.messageService.showSuccess('Factura emitida correctamente');
+        this.openModalAdd(data);
+        this.submited = true;
+      }
     } catch (error) {
       this.messageService.showError(error);
     }
