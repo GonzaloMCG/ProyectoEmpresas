@@ -24,6 +24,7 @@ import { CustomValidators } from '../../validators/custom-validators';
 export class AdminComponent {
 
   public submitted = false;
+  public saving = false;
 
   public changePasswordForm = this.formBuilder.group({
     username: [{ value: '', disabled: true }, Validators.required],
@@ -161,7 +162,7 @@ export class AdminComponent {
     );
   }
 
-  submit() {
+  async submit() {
 
     this.submitted = true;
     if (this.changePasswordForm.invalid) {
@@ -175,14 +176,18 @@ export class AdminComponent {
       oldPassword: formData.oldPassword,
       password: formData.password,
     }
-    this.userService.changePassword(passwords).subscribe(
-      response => {
+
+    try {
+      if (!this.saving) {
+        this.saving = true;
+        const response = await this.userService.changePassword(passwords);
         this.messageService.showSuccess(response.message, 3000);
-      },
-      error => {
-        this.messageService.showError(error, 3000);
       }
-    );
+    } catch (error) {
+      this.messageService.showError(error, 3000);
+    } finally {
+      this.saving = false;
+    }
   }
 
   isAdmin() {

@@ -55,7 +55,7 @@
         </div>
       </div>
       <div class="button-row">
-        <button type="submit" class="action-btn-save button" [disabled]="changePasswordForm.invalid">
+        <button type="submit" class="action-btn-save button" [disabled]="changePasswordForm.invalid || saving">
           Guardar
         </button>
       </div>

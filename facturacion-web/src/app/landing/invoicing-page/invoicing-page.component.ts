@@ -24,7 +24,7 @@ export class InvoicingPageComponent implements OnInit {
   public sourceData = new MatTableDataSource<Article>();
   public searchQuery$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   public filteredProducts = []
-  public submited: boolean = true;
+  public submitted: boolean = false;
 
   public invoicingForm = this.formBuilder.group({
     client: ['', Validators.required],
@@ -180,8 +180,8 @@ export class InvoicingPageComponent implements OnInit {
     }
 
     try {
-      if (this.submited) {
-        this.submited = false;
+      if (!this.submitted) {
+        this.submitted = true;
         await this.invoiceService.newInvoice(data);
         this.initForm();
         this.messageService.showSuccess('Factura emitida correctamente');
@@ -190,7 +190,7 @@ export class InvoicingPageComponent implements OnInit {
     } catch (error) {
       this.messageService.showError(error);
     } finally {
-      this.submited = true;
+      this.submitted = false;
     }
   }
 

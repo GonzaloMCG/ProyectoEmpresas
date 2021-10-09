@@ -15,6 +15,7 @@ import { CustomValidators } from '../../../validators/custom-validators';
 export class UserEditModalComponent {
 
   public submitted = false;
+  public saving = false;
 
   public editUserForm = this.formBuilder.group({
     username: [{ value: '', disabled: true }, Validators.required],
@@ -58,23 +59,23 @@ export class UserEditModalComponent {
     if (this.data.user.roles.includes('Admin')) {
       this.editUserForm.controls.roles.setValue('Admin');
     }
-    else {      
+    else {
       this.editUserForm.controls.roles.setValue('User');
     }
-    
+
   }
 
   close() {
     this.dialogRef.close();
   }
 
-  submit() {
+  async submit() {
 
     this.submitted = true;
     if (this.editUserForm.invalid) {
       return;
     }
-    
+
     const formData = {
       ...this.editUserForm.value
     }
@@ -82,34 +83,27 @@ export class UserEditModalComponent {
       password: formData.password,
       roles: (formData.roles == 'Admin') ? ['Admin', 'User'] : ['User']
     }
-    this.userService.manageRoles({ username: this.data.user.username, roles: usuario.roles }).subscribe(
-      response => {
+
+    try {
+      if (!this.saving) {
+        this.saving = true;
+        const response = await this.userService.manageRoles({ username: this.data.user.username, roles: usuario.roles });
+
         if (usuario.password) {
-          this.userService.resetPassword({ username: this.data.user.username, password: usuario.password }).subscribe(
-            response => {
-              this.messageService.showSuccess(response.message, 3000);
-              this.dialogRef.close(true);
-            },
-            error => {
-              this.messageService.showError(error, 3000);
-              if (error.status === 500) {
-                this.dialogRef.close(false);
-              }
-            }
-          );
-        }
-        else {
+          const response = await this.userService.resetPassword({ username: this.data.user.username, password: usuario.password });
           this.messageService.showSuccess(response.message, 3000);
           this.dialogRef.close(true);
         }
-      },
-      error => {
-        this.messageService.showError(error, 3000);
-        if (error.status === 500) {
-          this.dialogRef.close(false);
-        }
+        this.messageService.showSuccess(response.message, 3000);
       }
-    );
+    } catch (error) {
+      this.messageService.showError(error, 3000);
+      if (error.status === 500) {
+        this.dialogRef.close(false);
+      }
+    } finally {
+      this.saving = false;
+    }
   }
 
   get username() { return this.editUserForm.get('username'); }

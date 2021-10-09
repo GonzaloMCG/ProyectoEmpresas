@@ -69,7 +69,7 @@
         <button type="submit" class="button-modal-submit  action-btn-cancel" (click)="close()">
           Cancelar
         </button>
-        <button type="submit" class="button-modal-submit action-btn-save" [disabled]="addProductForm.invalid">
+        <button type="submit" class="button-modal-submit action-btn-save" [disabled]="addProductForm.invalid || saving">
           Guardar
         </button>
       </div>

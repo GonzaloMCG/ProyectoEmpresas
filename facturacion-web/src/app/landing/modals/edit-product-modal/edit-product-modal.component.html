@@ -74,7 +74,8 @@
         <button type="button" class="button-modal-submit action-btn-cancel" (click)="close()">
           Cancelar
         </button>
-        <button type="submit" class="button-modal-submit action-btn-save" [disabled]="editProductForm.invalid">
+        <button type="submit" class="button-modal-submit action-btn-save"
+          [disabled]="editProductForm.invalid || saving">
           Guardar
         </button>
       </div>
