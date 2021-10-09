@@ -186,10 +186,11 @@ export class InvoicingPageComponent implements OnInit {
         this.initForm();
         this.messageService.showSuccess('Factura emitida correctamente');
         this.openModalAdd(data);
-        this.submited = true;
       }
     } catch (error) {
       this.messageService.showError(error);
+    } finally {
+      this.submited = true;
     }
   }
 
