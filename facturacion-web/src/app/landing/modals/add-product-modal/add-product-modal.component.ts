@@ -14,7 +14,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class AddProductModalComponent {
 
   public submitted = false;
-  public preventDoubleClick: boolean = true;
+  public saving = false;
   public addProductForm = this.formBuilder.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
@@ -35,28 +35,26 @@ export class AddProductModalComponent {
   }
 
   async submit() {
-    if (this.preventDoubleClick) {
-      this.preventDoubleClick = false;
-      this.submitted = true;
-      if (this.addProductForm.invalid) {
-        return;
-      }
+    this.submitted = true;
+    if (this.addProductForm.invalid) {
+      return;
+    }
 
-
-      try {
+    try {
+      if (!this.saving) {
+        this.saving = true;
         const response = await this.productService.newProduct({ ...this.addProductForm.value })
         this.messageService.showSuccess(response.message, 3000);
-        
-        this.dialogRef.close(true);        
-      }
-      catch (error) {
-        this.messageService.showError(error, 3000);
-        if (error.status === 500) {
-          this.dialogRef.close(false);
-        }
-      }
 
-      this.preventDoubleClick = true;
+        this.dialogRef.close(true);
+      }
+    } catch (error) {
+      this.messageService.showError(error, 3000);
+      if (error.status === 500) {
+        this.dialogRef.close(false);
+      }
+    } finally {
+      this.saving = false;
     }
   }
 

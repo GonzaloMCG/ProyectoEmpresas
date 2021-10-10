@@ -13,6 +13,7 @@ import { MessageService } from 'src/app/message-handler/message.service';
 export class EditProductModalComponent {
 
   public submitted = false;
+  public saving = false;
   public editProductForm = this.formBuilder.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
@@ -44,15 +45,19 @@ export class EditProductModalComponent {
       ...this.editProductForm.value
     }
     try {
-      await this.productService.updateProduct({ ...this.data.product, ...data });
-      this.messageService.showSuccess('El producto fue actualizado correctamente.', 3000);
-      this.dialogRef.close(true);
-    }
-    catch (error) {
+      if (!this.saving) {
+        this.saving = true;
+        await this.productService.updateProduct({ ...this.data.product, ...data });
+        this.messageService.showSuccess('El producto fue actualizado correctamente.', 3000);
+        this.dialogRef.close(true);
+      }
+    } catch (error) {
       this.messageService.showError(error, 3000);
       if (error.status === 500) {
         this.dialogRef.close(false);
       }
+    } finally {
+      this.saving = false;
     }
   }
 

@@ -389,6 +389,7 @@ section {
   font-size: 1.8em;
   border-radius: 0.2rem;
   user-select:none;
+  margin: 0 1rem;
 
   &:hover {
     background-color: $dark-blue-color;
@@ -403,4 +404,9 @@ section {
 
 .label-title {
   margin-bottom: 0.5rem;
+}
+
+.disabled {
+	pointer-events:none;
+  opacity: 0.6;
 }

@@ -35,23 +35,23 @@ export class UserService {
     return this.http.get(`${environment.apiUrl}/users`);
   }
 
-  registerUser(data: any): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/users/register`, { ...data });
+  registerUser(data: any): Promise<any> {
+    return this.http.post(`${environment.apiUrl}/users/register`, { ...data }).toPromise();
   }
 
   deleteUser(data: any): Observable<any> {
     return this.http.delete(`${environment.apiUrl}/users/${data}`,);
   }
 
-  manageRoles(data: any): Observable<any> {
-    return this.http.put(`${environment.apiUrl}/users/manage-roles`, { ...data });
+  manageRoles(data: any): Promise<any> {
+    return this.http.put(`${environment.apiUrl}/users/manage-roles`, { ...data }).toPromise();
   }
 
-  resetPassword(data: any): Observable<any> {
-    return this.http.put(`${environment.apiUrl}/users/reset-password`, { ...data });
+  resetPassword(data: any): Promise<any> {
+    return this.http.put(`${environment.apiUrl}/users/reset-password`, { ...data }).toPromise();
   }
 
-  changePassword(data: any): Observable<any> {
-    return this.http.put(`${environment.apiUrl}/users/change-password`, { ...data });
+  changePassword(data: any): Promise<any> {
+    return this.http.put(`${environment.apiUrl}/users/change-password`, { ...data }).toPromise();
   }
 }
